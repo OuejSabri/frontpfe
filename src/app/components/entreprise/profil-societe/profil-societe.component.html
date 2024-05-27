@@ -1,0 +1,238 @@
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+  <div class="container">
+  <div class="row -spacing-a">
+    <div class="col-md-12">
+      <h1>Mein Profil</h1>
+    </div>
+  </div>
+  <div class="row -spacing-a">
+    <div class="col-md-4">
+      <div class="profile-image">
+        <img src="https://www.xing.com/image/0_c_3_3fce34b38_15444149_3/fabian-pecher-foto.1024x1024.jpg" class="fullwidth"/>
+        <div class="edit-profile-image">
+        <span class="edit-profile-image__information">
+          <span class="fa fa-camera"></span>
+          <span class="edit-profile-image__label">
+            Profile
+          </span>
+        </span>
+       </div>
+      </div>
+      
+    </div>
+    <div class="col-md-8">
+      <h5>{{currentUser?.nom}}</h5>
+      <div class="row -spacing-b">
+        <div class="col-md-3">
+          <p class="-typo-copy">Role</p>
+          <p class="-typo-copy">matricule Fiscale</p>
+          <p class="-typo-copy">Fax</p>
+          <p class="-typo-copy">Telephone</p>
+          <p class="-typo-copy">E-Mail Adresse</p>
+        </div>
+        <div class="col-md-3">
+          <p class="-typo-copy -typo-copy--blue">.</p>
+          <p class="-typo-copy -typo-copy--blue">.</p>
+          <p class="-typo-copy -typo-copy--blue">.</p>
+          <p class="-typo-copy -typo-copy--blue">{{currentUser?.telephone}}</p>
+          <p class="-typo-copy -typo-copy--blue">{{currentUser?.email}}</p>
+        </div>
+        <div class="col-md-3">
+          <p class="-typo-copy">Zip<br>Adresse</p>
+          <p class="-typo-copy">Passwort</p>
+          
+          <button class="btn btn--green">
+            <span class="btn__icon fa fa-pencil"></span>
+            <span class="btn__label">Profil bearbeiten</span>
+          </button>
+          
+        </div>
+        <div class="col-md-3">
+          <p class="-typo-copy -typo-copy--blue">12345<br>Musterstadt</p>
+          <p class="-typo-copy -typo-copy--blue">******</p>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
+    <!-- <form class="row g-3" [formGroup] = "profileForm" method="post">
+   <div class="row"> 
+    <div class="col-md-4">
+      <label class="form-label">nom</label>
+      <input type="text" class="form-control" placeholder="nom" [value]="currentUser?.nom" formControlName="nom">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">N° matricule fiscale</label>
+        <input type="text"  class="form-control" formControlName="matriculeFiscale" />
+      </div>
+    <div class="col-md-4">
+        <label class="form-label">Domaine</label>
+        <input type="text" class="form-control" formControlName="domaine"/>
+      </div> 
+    <div class="col-md-4">
+      <label class="form-label">email Professional</label>
+      <input type="text" class="form-control" placeholder="email" formControlName="email">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Telephone </label>
+        <input type="Number" class="form-control" formControlName="telephone"/>
+    </div>  
+    <div class="col-md-4">
+        <label class="form-label">fax </label>
+        <input type="text" class="form-control" formControlName="fax"/>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Addresse</label>
+        <input type="text" class="form-control" placeholder="1234 Main St" formControlName="adresse">
+    </div>
+    <div class="col-md-4">
+        <label  class="form-label">ville</label>
+        <select  class="form-select" formControlName="ville">
+          <option selected>Choose...</option>
+          <option value="Ariana">Ariana</option>
+          <option value="Beja">Beja</option>
+          <option value="ben arous">Ben Arous</option>
+          <option value="bizete">Bizerte</option>
+          <option value="Gabes">Gabès</option>
+          <option value="Gafsa">Gafsa</option>
+          <option value="Jendouba">Jendouba</option>
+          <option value="Kairouan">Kairouan</option>
+          <option value="Kasserine">Kasserine</option>
+          <option value="Kebili">Kebili</option>
+          <option value="Kef">Kef</option>
+          <option value="Mahdia">Mahdia</option>
+          <option value="Manouba">Manouba</option>
+          <option value="Medenine">Médenine</option>
+          <option value="Monastir">Monastir</option>
+          <option value="Nabeul">Nabeul</option>
+          <option value="Sfax">Sfax</option>
+          <option value="Sidi bouzid">Sidi Bouzid</option>
+          <option value="Siliana">Siliana</option>
+          <option value="Sousse">Sousse</option>
+          <option value="Tataouine">Tataouine</option>
+          <option value="Tozeur">Tozeur</option>
+          <option value="Tunisie">Tunisie</option>
+          <option value="Zagyhouan">Zaghouan</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">code postal</label>
+        <input type="text" class="form-control" formControlName="code_postal"/>
+      </div>     
+      <div class="col-md-8">
+        <label>site web</label>
+        <input type="url" class="form-control" formControlName="website"/> 
+      </div>
+      <div>
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+      </div>      
+    </div> 
+    <div>
+        <button type="submit" class="btn btn-primary" (click)="enregistrer()" formmethod="post">Enregistrer</button>
+    </div>
+
+
+
+    <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">modifier le mot de passe</button>
+        
+
+     
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">modifier votre mot  de passe ?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="addFormP" method="post">
+                  <div class="mb-3">
+                      <label class="form-label">ancien mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="****" formControlName="ancienMotDePasse" >
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">nouveau mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="****" formControlName="nouveauMotDePasse" >
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">repeter mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="****" formControlName="repMotDePasse" >
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+                <button type="submit" class="btn btn-primary" (click)="modifierPassword()" formmethod="post">modifier</button>
+              </div>
+            </div>
+          </div>
+        </div>   
+      </div>  
+  </form> -->
+  <div class="container">
+
+	<h1 class="title">Modifier mon profil</h1>
+
+	<div class="grid">
+		<div class="form-group a">
+			<label for="name">Nom</label>
+			<input id="name" type="text">
+		</div>
+
+		<div class="form-group b">
+			<label for="first-name">Prénom</label>
+			<input id="first-name" type="text">
+		</div>
+
+		<div class="form-group email-group">
+			<label for="email">Email</label>
+			<input id="email" type="text">
+		</div>
+
+		<div class="form-group phone-group">
+			<label for="phone">Téléphone (mobile)</label>
+			<input id="phone" type="text">
+		</div>
+
+		<div class="textarea-group">
+			<label for="bio">Bio</label>
+			<textarea id="bio"></textarea>
+		</div>
+
+		<div class="form-group">
+			<label for="address">Adresse</label>
+			<input id="address" type="text">
+		</div>
+
+		<div class="form-group">
+			<label for="city">Ville</label>
+			<input id="city" type="text">
+		</div>
+
+		<div class="form-group">
+			<label for="zip">Code postal</label>
+			<input id="zip" type="text">
+		</div>
+	</div>
+
+	<div class="checkboxes">
+
+		<div class="checkbox-group">
+			<input id="newsletter" type="checkbox">
+			<label for="newsletter">Je souhaite recevoir la newsletter</label>
+		</div>
+
+		<div class="checkbox-group">
+			<input id="newsletter-partners" type="checkbox">
+			<label for="newsletter-partners">Je souhaite recevoir la newsletter des partenaires</label>
+		</div>
+
+	</div>
+
+	<div class="button-container">
+		<button class="button">Enregister les modifications</button>
+	</div>
+</div>
+</body>

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Parcours de stage</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>pour faire</th>
+                                <th>Encore</th>
+                                <th>Terminer</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="candidature?._id">
+                            <tr>
+                                <td>Upload lettre affectation</td>
+                                <td>
+                                    <input type="file" placeholder="Lettre affectation" (change)="onChangeFileLettre($event)" [multiple]="false">
+                                    <button  (click)="uploadAffectation()" class="action-button" [disabled]="lettreAffectation!=null">Add Lettre</button>
+                                </td>
+                                <td><input type="checkbox" id="step1Checkbox" [checked]="lettreAffectation!=null"></td>
+                                <!-- Cellule pour la case à cocher -->
+                            </tr>
+                            <tr class="details" >
+                                <td>Upload rapport</td>
+                                <td>
+                                    <input type="file" placeholder="Lettre affectation" (change)="onChangeFileRapport($event)">
+                                    <button   (click)="uploadRapport()" class="action-button" [disabled]="rapport!=null">Add rapport</button>
+                                </td>
+                                <td><input type="checkbox" id="step2Checkbox" [checked]="rapport!=null">
+                                </td>
+                            </tr>
+                            <tr class="details">
+                                <td>Training certificate</td>
+                                <td>
+                                    <button  [routerLink]="attestation?.filePath" class="action-button" [disabled]="attestation==null">Download</button>
+                                </td>
+                                <td><input type="checkbox" id="step4Checkbox" [checked]="attestation!=null"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

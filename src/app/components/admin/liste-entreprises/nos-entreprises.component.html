@@ -1,0 +1,41 @@
+
+<div class="col-12">
+  <div class="card">
+    <h5 >Liste des Sociétées</h5>
+
+    <p-table
+      [value]="data"
+      scrollDirection="both"
+      [scrollable]="true"
+      scrollHeight="400px"
+      styleClass="mt-3"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 200px">Nom de société</th>
+          <th style="width: 200px">E-mail</th>
+          <th style="width: 200px">Téléphone</th>
+          <th style="width: 200px">actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-company>
+        <tr>
+          <td style="width: 200px">
+            <img src="" width="32" style="vertical-align: middle" />
+            <span class="image-text ml-2">{{ company?.nom }}</span>
+          </td>
+          <td style="width: 200px">{{ company?.email }}</td>
+          <td style="width: 200px">{{ company?.telephone }}</td>
+          <td >
+            <p-button pRipple label="profil" icon="pi pi-user" (click)="getProfilById(company?._id)"></p-button>
+            <p-button pRipple label="supprimer" icon="pi pi-trash" severity="danger"  (click)="deleteItem(company?._id)" ></p-button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary"
+        >In total there are {{ data ? data.length : 0 }} societe(s).
+      </ng-template>
+    </p-table>
+  </div>
+</div>

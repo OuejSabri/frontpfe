@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <p-button (click)="toggleSideBar()" icon="pi pi-bars" class="p-3"></p-button>
+    <a class="navbar-brand">Mon Stage </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <!-- <li class="nav-item">
+          <a class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/nos-societes">Nos Société</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/nos-offres">offres de Stage</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/nos-stagiaires">Nos Stagiaires</a>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav">
+        <a class="nav-link" type="button" (click)="logOut()">Se déconnecter</a>
+      </ul>
+    </div>
+  </div>
+
+
+</nav>

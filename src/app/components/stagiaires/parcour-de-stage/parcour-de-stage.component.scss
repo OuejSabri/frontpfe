@@ -1,0 +1,92 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Stylisation des boutons */
+.action-button {
+  background-color: #1976d2; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement intérieur */
+  border: none; /* Suppression du bord */
+  border-radius: 4px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur au survol */
+  transition: background-color 0.3s ease; /* Animation de transition */
+  width: 150px; /* Largeur fixe */
+  height: 40px;
+}
+
+.action-button:disabled {
+  background-color: #ccc; /* Couleur de fond pour bouton désactivé */
+  cursor: not-allowed; /* Curseur désactivé */
+}
+
+.action-button:hover {
+  background-color: white; /* Couleur de fond au survol */
+}
+
+
+
+
+
+
+
+/* Stylisation des cases à cocher */
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* Style pour les cases à cocher lorsqu'elles sont désactivées */
+.custom-checkbox input:disabled ~ .checkmark {
+  background-color: #f2f2f2;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Style pour les cases à cocher lorsqu'elles sont désactivées et cochées */
+.custom-checkbox input:checked:disabled ~ .checkmark:after {
+  border-color: #ccc;
+}
+

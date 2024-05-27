@@ -1,0 +1,52 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h5>Mes Candidatures</h5>
+      <p-table
+        [value]="data"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [autoLayout]="true"
+        [scrollable]="true"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>nom de candidats</th>
+            <th>titre d'offre</th>
+            <th>datePostulation</th>
+            <th>status du candidature</th>
+            <th>profil</th>
+            <th>action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr
+            [ngClass]="{
+                'bg-green-500':item.status == 'accepter',
+                'bg-yellow-500':item.status == 'en_attente',
+                'bg-red-500':item.status == 'refuser',
+            }"
+          >
+            <td>{{ item?.stagiaire?.nom }}</td>
+            <td>{{ item?.offreStage?.titre }}</td>
+            <td>{{ item.datePostulation | date }}</td>
+            <td>
+              {{ item?.status }}
+            </td>
+            <td>
+              <p-button label="Voir profil" icon="pi pi-user"></p-button>
+            </td>
+            <td>
+              <button (click)="accepter(item?._id)" class="btn btn-success">accepter</button>
+              <button (click)="refuser(item?._id)" class="btn btn-danger">Refuser</button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            En totale il y'a {{ data ? data.length : 0 }} candidature(s) .
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

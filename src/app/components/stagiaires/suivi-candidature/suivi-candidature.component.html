@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold flex align-items-center justify-content-center  text-primary">Suivi l'avancement du candidature</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <header>
+                    <div>Societe :  {{candidature?.offreStage?.societe?.nom}}</div>
+                    <div>L'offre :  {{candidature?.offreStage?.titre}}</div>
+                </header>
+
+                <div class="container" cdkDropListGroup>
+                    <div class="liste" id="Todo" cdkDropList #pendingList="cdkDropList" [cdkDropListData]="pendingTask"
+                        [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+                        (cdkDropListDropped)="drop($event)">
+                        <h2>Les tâches à faire</h2>
+                        <div class="tache row gap-2" cdkDrag *ngFor="let taskP of pendingTask" [cdkDragData]="taskP">
+                            <span>{{taskP?.title}}</span>
+                            <span>{{taskP?.description}}</span>
+                            <span>{{taskP?.date|date: 'dd/MM/yyyy'}}</span>
+                        </div>
+
+                    </div>
+                    <div class="liste" id="InProgress" cdkDropList #progressList="cdkDropList"
+                        [cdkDropListData]="progressTask"
+                        [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+                        (cdkDropListDropped)="drop($event)">
+                        <h2>Les tâches en cours</h2>
+                        <div class="tache row gap-2" id="tache1" cdkDrag *ngFor="let taskProg of progressTask"
+                            [cdkDragData]="taskProg">
+                            <span>{{taskProg?.title}}</span>
+                            <span>{{taskProg?.description}}</span>
+                            <span>{{taskProg?.date|date:'dd/MM/yyyy'}}</span>
+                        </div>
+
+                    </div>
+                    <div class="liste" id="Done" cdkDropList #completedList="cdkDropList"
+                        [cdkDropListData]="completedTask"
+                        [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+                        (cdkDropListDropped)="drop($event)">
+                        <h2>Les tâches terminées</h2>
+                        <div class="tache row gap-2" id="tache1" cdkDrag *ngFor="let taskC of completedTask"
+                            [cdkDragData]="taskC">
+                            <span>{{taskC?.title}}</span>
+                            <span>{{taskC?.description}}</span>
+                            <span>{{taskC?.date|date: 'dd/MM/yyyy'}}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

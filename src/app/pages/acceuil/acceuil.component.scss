@@ -1,0 +1,33 @@
+.card {
+    height: 100% !important;
+}
+
+.p-input-icon-left{
+    width: 40% !important;
+}
+
+.champ{
+    position: relative;
+    button{
+        position: absolute;
+        bottom: -25px;
+        right: 5px;
+        box-shadow: 2px 3px 2px rgb(167, 167, 167) ;
+    }
+  
+}
+
+.contener{
+    position: relative;
+    .date-fix{
+        position: absolute !important;
+        right: 15px;
+        top: 5px;
+    }
+    .user-fix{
+        position: absolute !important;
+        right: 15px;
+        top: 30px;
+    }
+}
+

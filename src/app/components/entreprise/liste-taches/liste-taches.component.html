@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <a type="button" href="javascript:history.go(-1)">retour</a>
+      <h6 class="m-0 font-weight-bold text-primary flex align-items-center justify-content-center ">Suivi Candidature</h6>
+    </div>
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <header>
+          <p>le candidat :{{candidature?.stagiaire?.nom}} </p>
+          <p>l'offre de stage : {{candidature?.offreStage?.titre}}</p>
+          <button class="btn btn-primary" (click)="showDialog()">Ajouter tâche</button>
+
+        </header>
+        <div class="container"cdkDropListGroup>
+          <div class="liste" id="Todo" 
+          cdkDropList #pendingList="cdkDropList" [cdkDropListData]="pendingTask"
+            [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <h2>Les tâches en attente</h2>
+            <div class="tache row gap-2" cdkDrag  *ngFor="let taskP of pendingTask"  [cdkDragData]="taskP">
+              <span>{{taskP?.title}}</span>
+              <span>{{taskP?.description}}</span>
+              <span>{{taskP?.date | date }}</span>
+            </div>
+
+          </div>
+          <div class="liste" id="InProgress"cdkDropList #progressList="cdkDropList" [cdkDropListData]="progressTask"
+            [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <h2>Les tâches en cours</h2>
+            <div class="tache row gap-2" id="tache1"cdkDrag *ngFor="let taskProg of progressTask" [cdkDragData]="taskProg">
+              <span>{{taskProg?.title}}</span>
+              <span>{{taskProg?.description}}</span>
+              <span>{{taskProg?.date | date  }}</span>
+            </div>
+
+          </div>
+          <div class="liste" id="Done"cdkDropList #completedList="cdkDropList" [cdkDropListData]="completedTask"
+            [cdkDropListConnectedTo]="[pendingList,progressList,completedList]"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <h2>Les tâches terminées</h2>
+            <div class="tache row gap-2" id="tache1"cdkDrag *ngFor="let taskC of completedTask" [cdkDragData]="taskC">
+              <span>{{taskC?.title}}</span>
+              <span>{{taskC?.description}}</span>
+              <span>{{taskC?.date | date  }}</span>
+            </div>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+  <ng-template pTemplate="header">
+      <span class="text-xl font-bold">Ajouter une tache</span>
+  </ng-template>
+  <div class="card-body">
+    <form [formGroup]="addForm">
+      <div class="section section-gestion">
+        <label for="titre">Titre:</label>
+        <input formControlName="title" type="text" id="titre" name="titre" placeholder="titre" 
+          required minlength="3" maxlength="20">
+
+        <br>
+
+        <label for="description">Déscription:</label>
+        <input formControlName="description" type="text" id="description" name="description" placeholder="..."
+          required minlength="3" maxlength="20">
+
+        <br>
+
+        <label for="date">date:</label>
+        <input formControlName="date" type="date" id="date" name="date" 
+          required>
+        <br>
+   
+      </div>
+    </form>
+
+  </div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="visible = false" label="Enregistrer" styleClass="p-button-text" (click)="submit()"></p-button>
+  </ng-template>
+</p-dialog>
+

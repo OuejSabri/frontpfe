@@ -1,0 +1,46 @@
+
+body {
+  background-image: url('https://lintermediaire.ma/blog/wp-content/uploads/2018/05/8-etapes-pour-trouver-un-stage-lg-289-720x340.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  .container1 {
+    position: relative;
+
+    height: 670px; 
+    background-size: cover;
+    background-position: center;
+    }
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(69, 68, 90); /* Couleur du texte */
+     font-size: 1.5em;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+.content p {
+    margin-top: 10px;
+}
+
+.content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0068d6; /* Couleur de fond du bouton */
+    color: rgb(0, 0, 0); /* Couleur du texte du bouton */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content button:hover {
+    background-color: #0056b3; /* Couleur de fond du bouton au survol */
+}
+

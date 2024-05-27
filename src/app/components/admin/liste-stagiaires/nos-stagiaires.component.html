@@ -1,0 +1,39 @@
+<div class="card">
+  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Liste des Stagiaires
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col">nom Complete</th>
+        <th scope="col">email</th>
+        <th scope="col">telephone</th>
+        <th scope="col">actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item of data>
+      <tr>
+        <td>{{ item.nom }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.telephone }}</td>
+        <td>
+          <button pButton pRipple label="profil" icon="pi pi-user"></button>
+          <p-button
+            pRipple
+            label="supprimer"
+            icon="pi pi-trash"
+            severity="danger"
+            (click)="deleteItem(item?._id)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ data ? data.length : 0 }} stagiaire(s).
+      </div>
+    </ng-template>
+  </p-table>
+</div>

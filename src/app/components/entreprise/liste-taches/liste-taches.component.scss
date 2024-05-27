@@ -1,0 +1,960 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  header {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin: 5px 0;
+  }
+  
+  .encadrant,
+  .avancement {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .avancement {
+    float: right;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: flex-start;
+  }
+  
+  .liste {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 30%;
+    margin: 0 5px;
+    box-sizing: border-box;
+    height: 400px;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .liste h2 {
+    font-size: 20px;
+    margin: 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .tache {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .tache:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fleche-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+  }
+  
+  .fleche {
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #1976d2;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .fleche:hover {
+    background-color: #999;
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Keyframe Animation for Fade In */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  
+    
+  /* Modifier les couleurs */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  
+  .header {
+    background-color: #1976d2;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .encadrant,
+  .avancement {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .avancement {
+    float: right;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: flex-start;
+  }
+  
+  .liste {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 30%;
+    margin: 0 5px;
+    box-sizing: border-box;
+    height: 400px;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .liste h2 {
+    font-size: 20px;
+    margin: 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .tache {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .tache:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fleche-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+  }
+  
+  .fleche {
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #1976d2;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .fleche:hover {
+    background-color: #999;
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Keyframe Animation for Fade In */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  .liste h2 {
+    font-size: 20px; /* Augmenter légèrement la taille du texte */
+    margin: 10px 0 10px; /* Ajouter une marge autour du titre */
+    padding: 10px; /* Ajouter un peu de rembourrage pour aérer le texte */
+    border-bottom: 3px solid #4e73df; /* Utiliser une bordure plus épaisse avec une couleur contrastante */
+    text-align: center;
+    background-color: #f8f9fa; /* Ajouter une couleur de fond légère */
+    color: #333; /* Conserver la couleur du texte */
+    font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
+    font-weight: bold; /* Mettre en gras pour une meilleure lisibilité */
+  }
+  
+  
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  
+  /* Style pour le titre du tableau */
+  .card-header h6 {
+    font-size: 1.5rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  /* Style pour le bouton "ajouter" */
+  .btn-ajouter {
+    padding: 4px 30px;
+    background-color: #4e73df;
+    border-color: #4e73df;
+    color: white;
+  }
+  
+  .table .btn-modifier,
+  .table .btn-supprimer {
+    padding: 8px 16px; /* Ajustement de la taille des boutons */
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  /* Style pour le bouton "modifier" */
+  .btn-modifier {
+    padding: 4px 30px;
+    background-color: #14e144;
+    border-color: #14e144;
+    color:#333;
+  }
+  
+  /* Style pour le bouton "supprimer" */
+  .btn-supprimer {
+    padding: 4px 30px;
+    background-color: #ec0e25;
+    border-color: #ec0e25;
+    color:#333;
+  }
+  
+  /* Style pour le tableau */
+  .table {
+    width: 100%; /* Ajustement de la largeur */
+    border-collapse: collapse;
+  }
+  
+  /* Style pour les cellules du tableau */
+  .table th,
+  .table td {
+    padding: 8px; /* Ajustement du padding */
+    border: 1px solid #dee2e6;
+    background-color: #fff; /* Couleur de fond des cellules */
+  }
+  
+  /* Style pour les en-têtes de colonne */
+  .table th {
+    background-color: #4e73df;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  
+  .table-responsive {
+    width: 100%; /* Ajustement de la largeur */
+    height: 400px; /* Ajustement de la hauteur */
+    background-color: #f8f9fa; /* Couleur de fond */
+    overflow-y: auto; /* Ajout d'une barre de défilement vertical si nécessaire */
+  }
+  
+  /* Style de survol des lignes du tableau */
+  .table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* Centrer le texte dans les cellules */
+  .table th,
+  .table td {
+    text-align: center;
+  }
+  
+  /* Couleur de fond alternative pour les lignes paires */
+  .table-striped tbody tr:nth-child(even) {
+    background-color: #f8f9fc;
+  }
+  
+  
+  /* Style pour le conteneur du tableau */
+  .card-body {
+    padding: 20px;
+    font-size: 16px; /* Changer la taille du texte */
+    color: #333; /* Changer la couleur du texte */
+  }
+  /* Style pour le titre du tableau */
+  .card-header h6 {
+    font-size: 1.5rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  /* Style pour le bouton "ajouter" */
+  .btn-primary {
+    padding: 4px 30px;
+    background-color:  #4e73df;
+    border-color:  #4e73df;
+  }
+  
+  .table .btn-modifier,
+  .table .btn-supprimer {
+    padding: 8px 16px; /* Ajustement de la taille des boutons */
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Style pour le bouton "modifier" */
+  .btn-modifier {
+    padding: 4px 30px;
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  /* Style pour le bouton "supprimer" */
+  .btn-supprimer {
+    padding: 4px 30px;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  /* Style pour le tableau */
+  .table {
+    width: 100%; /* Ajustement de la largeur */
+    border-collapse: collapse;
+  }
+  
+  /* Style pour les cellules du tableau */
+  .table th,
+  .table td {
+    padding: 8px; /* Ajustement du padding */
+    border: 1px solid #dee2e6;
+    background-color: #fff; /* Couleur de fond des cellules */
+  }
+  
+  /* Style pour les en-têtes de colonne */
+  .table th {
+    background-color: #4e73df;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  
+  .table-responsive {
+    width: 100%; /* Ajustement de la largeur */
+    height: 800px; /* Ajustement de la hauteur */
+    background-color: #f8f9fa; /* Couleur de fond */
+    overflow-y: auto; /* Ajout d'une barre de défilement vertical si nécessaire */
+  }
+  
+  /* Style de survol des lignes du tableau */
+  .table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* Centrer le texte dans les cellules */
+  .table th,
+  .table td {
+    text-align: center;
+  }
+  
+  
+  
+  body {
+    background:white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  
+  button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px; /* Ajustement de la taille des boutons */
+    font-size: 16px; /* Ajustement de la taille du texte */
+    cursor: pointer;
+    background-color:#4e73df;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown-options {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+    margin-top: 5px; /* Ajustement de la marge pour la liste déroulante */
+  }
+  
+  .dropdown:hover .dropdown-options {
+    display: block;
+  }
+  
+  .dropdown-btn {
+    display: block;
+    border: none;
+    background-color: transparent;
+    color: #000000;
+    padding: 10px 20px; /* Ajustement de la taille des boutons */
+    text-decoration: none;
+    font-size: 16px; /* Ajustement de la taille du texte */
+    cursor: pointer;
+  }
+  
+  .dropdown-btn:hover {
+    color: #0a0a23;
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  
+  
+  
+  .card-header h6 {
+    font-size: 1.5rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  
+  header h2 {
+    margin-bottom: 10px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  section h3 {
+    margin-bottom: 10px;
+  }
+  
+  textarea, input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  footer {
+    text-align: right;
+  }
+  
+  footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4e73df;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  footer button:first-child {
+    margin-right: 10px;
+  }
+  
+  footer button:hover {
+    background-color: #2e59d9;
+  }
+  
+  footer button:focus {
+    outline: none;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  body {
+    background:white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Style pour la liste déroulante */
+  select {
+    width: 100%; /* La liste déroulante prendra la largeur de son conteneur */
+    padding: 8px; /* Ajoute un peu d'espacement autour du texte */
+    font-size: 16px; /* Taille de police */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 4px; /* Coins arrondis */
+    box-sizing: border-box; /* La largeur inclura également les bordures et le padding */
+  }
+  
+  /* Style pour les options de la liste déroulante */
+  select option {
+    padding: 8px; /* Ajoute un peu d'espacement autour du texte */
+  }
+  
+  
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fc;
+  }
+  
+  header, section, footer {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .card-body header {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  .card-body header h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card-body header p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .card-body header strong {
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #4e73df;
+    color: #fff;
+  }
+  
+  table td:last-child {
+    text-align: center;
+  }
+  
+  button {
+    background-color: #4e73df;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #375abb;
+  }
+  
+  .card-body section {
+    margin-bottom: 30px;
+  }
+  
+  .card-body section h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .card-body section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .card-body section strong {
+    color: #333;
+  }
+  .card-body header {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  .card-body header h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card-body header p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .card-body header strong {
+    color: #333;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Style pour header */
+  header {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Ajouter une ombre au survol du header */
+  header:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Style pour footer */
+  footer {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Ajouter une ombre au survol du footer */
+  footer:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  /* Style de base pour le bouton */
+  button {
+    background-color: #4e73df;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Animation lors du survol */
+  button:hover {
+    background-color: #375abb; /* Changement de couleur de fond */
+    transform: scale(1.05); /* Zoom du bouton */
+  }
+  
+  
+  
+  /* Transition pour les sections */
+  section {
+    transition: box-shadow 0.3s ease; /* Transition de 0.3 seconde avec une accélération douce */
+  }
+  
+  /* Ajouter une ombre lors du survol */
+  section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée au survol */
+  }
+  
+  
+  /* Ombre autour du header */
+  header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Ombre autour des sections */
+  section {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Ombre autour du footer */
+  footer {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  
+  
+  
+  h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  
+  /* Style pour les champs de formulaire */
+  .modal-content input[type="text"],
+  .modal-content input[type="email"],
+  .modal-content input[type="password"] {
+    width: 100%; /* Prend toute la largeur disponible */
+    padding: 10px; /* Espace intérieur */
+    margin-bottom: 15px; /* Marge en bas */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 5px; /* Coins arrondis */
+    box-sizing: border-box; /* Boîte modèle: inclut le rembourrage et la bordure dans la largeur et la hauteur totales */
+  }
+  
+  /* Style pour les boutons du formulaire */
+  .modal-content button {
+    background-color: #4e73df; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 20px; /* Rembourrage */
+    cursor: pointer; /* Curseur en forme de main au survol */
+  }
+  
+  .modal-content button:hover {
+    background-color: #375abb; /* Couleur de fond au survol */
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Style for the "Add User" button */
+  .btn-primary {
+    float: right; /* Align the button to the right */
+  }
+  
+  /* Style for the "Delete" and "Update" buttons */
+  .dropdown-btn {
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+  }
+  
+  /* Style for the icons */
+  .dropdown-btn i {
+    font-size: 20px; /* Icon font size */
+    margin-right: 5px; /* Right margin of the icon */
+  }
+  
+  /* Style for the "Delete" icon */
+  .dropdown-btn.delete i {
+    color: #dc3545; /* Red color for the "Delete" icon */
+  }
+  
+  /* Style for the "Update" icon */
+  .dropdown-btn.update i {
+    color: #007bff; /* Blue color for the "Update" icon */
+  }
+  
+  /* Style for the "Add User" button */
+  .btn-primary {
+    float: right; /* Align the button to the right */
+    background-color: #007bff; /* Blue background color */
+    border-color: #007bff; /* Blue border color */
+  }
+  
+  /* Hover effect for the "Add User" button */
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3; /* Darker border color on hover */
+  }
+  
+  /* Style for the "Delete" and "Update" buttons */
+  .dropdown-btn {
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+    cursor: pointer; /* Show pointer cursor on hover */
+  }
+  
+  /* Hover effect for the "Delete" and "Update" buttons */
+  .dropdown-btn:hover {
+    background-color: #f8f9fa; /* Light gray background on hover */
+  }
+  
+  /* Style for the icons */
+  .dropdown-btn i {
+    font-size: 20px; /* Icon font size */
+    margin-right: 5px; /* Right margin of the icon */
+  }
+  
+  /* Style for the "Delete" icon */
+  .dropdown-btn.delete i {
+    color: #dc3545; /* Red color for the "Delete" icon */
+  }
+  
+  /* Style for the "Update" icon */
+  .dropdown-btn.update i {
+    color: #007bff; /* Blue color for the "Update" icon */
+  }
+  /* Style pour les icônes à l'intérieur des boutons */
+  .dropdown-btn i {
+    font-size: 20px; /* Taille de la police de l'icône */
+    vertical-align: middle; /* Alignement vertical au milieu */
+  }
+  
+  /* Ajustement de la marge entre les icônes et le texte */
+  .dropdown-btn i + span {
+    margin-left: 5px; /* Marge à gauche de l'icône */
+  }
+  
+  /* Ajustement de la taille des boutons dropdown */
+  .dropdown-btn {
+    padding: 0.375rem 0.75rem; /* Rembourrage des boutons */
+  }
+  /* Style pour les icônes à l'intérieur des boutons */
+  .dropdown-btn i {
+    font-size: 20px; /* Taille de la police de l'icône */
+    vertical-align: middle; /* Alignement vertical au milieu */
+  }
+  
+  /* Ajustement de la marge entre les icônes et le texte */
+  .dropdown-btn i + span {
+    margin-left: 5px; /* Marge à gauche de l'icône */
+  }
+  
+  /* Ajustement de la taille des boutons dropdown */
+  .dropdown-btn {
+    padding: 0.375rem 0.75rem; /* Rembourrage des boutons */
+  }
+  
+  /* Conteneur des boutons */
+  .button-container {
+    display: flex; /* Utiliser Flexbox */
+    align-items: center; /* Aligner les éléments verticalement */
+  }
+  
+  /* Style pour les boutons */
+  .button-container button {
+    margin-right: 10px; /* Marge entre les boutons */
+  }
+  
+  /* Style pour l'icône des boutons */
+  .button-container i {
+    margin-right: 5px; /* Marge entre l'icône et le texte */
+  }
+  .icon {
+    cursor: pointer;
+    margin-right: 50px; /* Espacement entre les icônes */
+    transition: filter 0.3s ease; /* Animation de transition pour la couleur */
+  }
+  
+  .delete-icon {
+    color: red; /* Couleur initiale de l'icône de suppression */
+  }
+  
+  .update-icon {
+    color: green; /* Couleur initiale de l'icône de mise à jour */
+  }
+  
+  /* Couleur lorsque la souris survole l'icône */
+  .icon:hover {
+    filter: brightness(110%);
+  }
+  
+  /* Couleur lorsque l'icône est cliquée */
+  .active {
+    filter: brightness(120%);
+  }

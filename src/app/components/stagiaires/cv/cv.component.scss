@@ -1,0 +1,784 @@
+body {
+  margin-top: 20px;
+  background: #eee;
+}
+
+/* My Account */
+.payments-item img.mr-3 {
+  width: 47px;
+}
+
+.order-list .btn {
+  border-radius: 2px;
+  min-width: 121px;
+  font-size: 13px;
+  padding: 7px 0 7px 0;
+}
+
+.account-page-left .nav-link {
+  padding: 18px 20px;
+  border: none;
+  font-weight: 600;
+  color: #535665;
+}
+
+.account-page-left .nav-link i {
+  width: 28px;
+  height: 28px;
+  background: #535665;
+  display: inline-block;
+  text-align: center;
+  line-height: 29px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin: 0 7px 0 0px;
+  color: #fff;
+}
+
+.account-page-left .nav-link.active {
+  background: #f3f7f8;
+  color: #282c3f !important;
+}
+
+.account-page-left .nav-link.active i {
+  background: #282c3f !important;
+}
+
+.user-media img {
+  width: 90px;
+}
+
+.card.offer-card h5.card-title {
+  border: 2px dotted #000;
+}
+
+.card.offer-card h5 {
+  border: 1px dotted #daceb7;
+  display: inline-table;
+  color: #17a2b8;
+  margin: 0 0 19px 0;
+  font-size: 15px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 2px;
+  background: #e6e9ff;
+  position: relative;
+}
+
+.card.offer-card h5 img {
+  height: 22px;
+  object-fit: cover;
+  width: 22px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+}
+
+.card.offer-card h5:after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #daceb7;
+  content: "";
+  left: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.card.offer-card h5:before {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #daceb7;
+  content: "";
+  left: 30px;
+  position: absolute;
+  top: 0;
+}
+
+.payments-item .media {
+  align-items: center;
+}
+
+.payments-item .media img {
+  margin: 0 40px 0 11px !important;
+}
+
+.reviews-members .media .mr-3 {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.order-list img.mr-4 {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+  border-radius: 2px;
+}
+
+.osahan-cart-item p.text-gray.float-right {
+  margin: 3px 0 0 0;
+  font-size: 12px;
+}
+
+.osahan-cart-item .food-item {
+  vertical-align: bottom;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000000;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+}
+
+.rounded-pill {
+  border-radius: 50rem!important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Styles pour les onglets */
+.nav-tabs {
+  border-bottom: none;
+}
+
+/* Styles pour chaque onglet */
+.nav-item {
+  margin-bottom: 20px;
+}
+
+/* Styles pour le titre */
+.section-informations-personnelles h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.user-media h5 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Styles pour les labels */
+.section-informations-personnelles label {
+  position: relative;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+/* Styles pour les inputs */
+.section-informations-personnelles input[type="text"],
+.section-informations-personnelles input[type="date"],
+.section-informations-personnelles input[type="radio"] {
+  width: calc(100% - 10px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  opacity: 0;
+  animation: slideIn 0.5s ease forwards, fadeIn 0.5s ease forwards;
+}
+
+/* Styles pour les radios */
+.section-informations-personnelles input[type="radio"] {
+  display: flex;
+  width: auto;
+  margin-right: 5px;
+  order: -1;
+  margin-right: 5px;
+  position: sticky;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Animation pour les inputs */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation delay pour chaque input */
+.section-informations-personnelles input:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.section-informations-personnelles input:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.section-informations-personnelles input:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.section-informations-personnelles input:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.section-informations-personnelles input:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+.section-informations-personnelles input:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+.section-informations-personnelles input:nth-child(9) {
+  animation-delay: 0.9s;
+}
+
+/* Effet de survol sur les labels */
+label:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Animation hop2 */
+@keyframes hop2 {
+  from,
+  to {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-1.5em);
+  }
+}
+
+/* Animation hop3 */
+@keyframes hop3 {
+  from,
+  to {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-1.5em);
+  }
+}
+
+/* Appliquer animation hop2 lorsque le deuxième input radio est coché */
+.gender-input[value="male"]:checked ~ .worm .worm__segment {
+  animation: hop2 0.4s infinite;
+}
+
+/* Appliquer animation hop3 lorsque le troisième input radio est coché */
+.gender-input[value="female"]:checked ~ .worm .worm__segment {
+  animation: hop3 0.4s infinite;
+}
+
+/* Mode sombre */
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background: #17181c;
+    color: #e3e4e8;
+  }
+
+  input:checked + label,
+  input:checked + label span,
+  .worm__segment:before {
+    color: #5583f6;
+  }
+}
+
+.user-media-body label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.user-media-body input[type="tel"],
+.user-media-body input[type="email"] {
+  width: calc(100% - 10px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  opacity: 0;
+  animation: slideIn 0.5s ease forwards, fadeIn 0.5s ease forwards;
+}
+
+.user-media-body p {
+  margin-bottom: 1rem;
+}
+
+.user-media-body a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.user-media-body a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.user-media-body input:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.user-media-body input:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.upload-btn {
+  display: inline-block;
+  position: relative;
+  width: 100px; /* Ajustez la largeur selon vos besoins */
+  height: 100px; /* Ajustez la hauteur selon vos besoins */
+  border: 2px dashed #ccc; /* Style de bordure en pointillé */
+  border-radius: 50%; /* Transforme en cercle */
+  overflow: hidden; /* Cache le débordement de l'image */
+}
+
+.upload-btn input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Cache l'élément input */
+  cursor: pointer; /* Change le curseur au survol */
+}
+
+.upload-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajuste la taille de l'image */
+}
+
+.progress {
+  width: 278px;
+  height: 7px;
+  left: 597px;
+  top: 489px;
+}
+
+.progress-bar {
+  background: #007BFF;
+  border-radius: 100px;
+}
+
+.bg-info {
+  background-color: #17a2b8;
+}
+
+.bg-warning {
+  background-color: #ffc107;
+}
+
+.bg-danger {
+  background-color: #dc3545;
+}
+
+/* Style pour les boutons */
+.btn-primary {
+  width: 120px; /* Largeur du bouton */
+  height: 40px; /* Hauteur du bouton */
+  background-color: #1976d2; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprimer la bordure */
+  padding: 0.5rem 1rem; /* Espace à l'intérieur du bouton */
+  font-size: 16px; /* Taille de la police */
+  cursor: pointer; /* Curseur de la souris */
+  border-radius: 5px; /* Bordure arrondie */
+  transition: background-color 0.3s ease; /* Transition fluide pour le changement de couleur de fond */
+}
+
+/* Style spécifique pour le bouton Download */
+.btn-download {
+  width: 140px; /* Largeur spécifique du bouton Download */
+}
+
+.btn-primary + .btn-primary,
+.btn-download + .btn-primary,
+.btn-primary + .btn-download {
+  margin-left: 10px; /* Espace entre les boutons */
+}
+
+.bg-white.card.addresses-item.mb-4.border.border-primary.shadow {
+  box-shadow: 0 .125rem .25rem rgba(255, 255, 255, .075)!important;
+}
+
+.media-body {
+  box-shadow: 0 .125rem .25rem rgba(255, 255, 255, .075)!important;
+}
+
+input[type=range] {
+  /* Largeur */
+  width: 100%;
+  /* Hauteur */
+  height: 10px; 
+  color:#17a2b8;
+}
+/* Réduire les marges entre les blocs de section */
+.section-informations-personnelles,
+.osahan-account-page-right .addresses-item {
+  margin-bottom: 20px;
+}
+
+/* Ajuster la marge intérieure des éléments de bloc */
+.section-informations-personnelles label,
+.osahan-account-page-right .gold-members {
+  padding: 10px;
+}
+
+/* Ajuster la largeur des boutons */
+.osahan-account-page-right .btn-primary {
+  width: auto;
+  margin-top: 100px; /* Ajouter un espace supplémentaire en haut des boutons */
+}
+
+/* Added animation and shadow */
+.osahan-account-page-right .gold-members {
+  animation: fadeIn 0.8s ease forwards;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Animation to make blocks appear */
+@keyframes slideInBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to blocks */
+.section-informations-personnelles,
+.osahan-account-page-right .addresses-item,
+.osahan-account-page-right .gold-members {
+  animation: slideInBlock 0.8s ease forwards;
+}
+
+/* Add transition for smooth appearance */
+.section-informations-personnelles,
+.osahan-account-page-right .addresses-item,
+.osahan-account-page-right .gold-members {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Added animation and shadow */
+.osahan-account-page-right .gold-members {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Animation to make elements inside block appear */
+@keyframes fadeInElements {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to elements inside the block */
+.section-informations-personnelles label,
+.section-informations-personnelles input {
+  animation: fadeInElements 0.5s ease forwards;
+}
+
+/* Add transition for smooth appearance */
+.section-informations-personnelles label,
+.section-informations-personnelles input {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* Animation for input fields */
+@keyframes slideInInput {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to input fields */
+.section-informations-personnelles input[type="text"],
+.section-informations-personnelles input[type="date"],
+.section-informations-personnelles input[type="radio"] {
+  animation: slideInInput 0.5s ease forwards;
+}
+
+/* Add transition for smooth appearance */
+.section-informations-personnelles input[type="text"],
+.section-informations-personnelles input[type="date"],
+.section-informations-personnelles input[type="radio"] {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+@keyframes slideInBlock {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to blocks */
+.section-informations-personnelles,
+.osahan-account-page-right .addresses-item {
+  animation: slideInBlock 0.8s ease forwards;
+}
+@keyframes fadeInElements {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to elements inside the block */
+.section-informations-personnelles label,
+.section-informations-personnelles input {
+  animation: fadeInElements 0.5s ease forwards;
+}
+@keyframes slideInInput {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to input fields */
+.section-informations-personnelles input[type="text"],
+.section-informations-personnelles input[type="date"],
+.section-informations-personnelles input[type="radio"] {
+  animation: slideInInput 0.5s ease forwards;
+}
+.btn-primary {
+  width: 120px; /* Largeur fixe pour tous les boutons */
+  height: 40px; /* Hauteur des boutons */
+  background-color: #1976d2; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprimer la bordure */
+  padding: 0.5rem 1rem; /* Espace à l'intérieur du bouton */
+  font-size: 16px; /* Taille de la police */
+  cursor: pointer; /* Curseur de la souris */
+  border-radius: 5px; /* Bordure arrondie */
+  transition: background-color 0.3s ease; /* Transition fluide pour le changement de couleur de fond */
+}
+
+/* Si nécessaire, ajustez également la largeur pour les boutons adjacents */
+.btn-primary + .btn-primary {
+  margin-left: 10px; /* Espace entre les boutons */
+}
+
+
+
+
+
+/* Styles généraux */
+.container-fluid {
+  padding: 20px;
+  animation: fadeIn 1s ease; /* Ajout de l'animation fadeIn */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+.card-header ont-weight-bold text-info {
+  color: rgb(12, 12, 15); /* Choisissez la couleur de votre choix */
+}
+
+
+/* Styles pour les cartes */
+.card {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: white;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 15px 20px;
+}
+
+.card-header h6 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: #303f9f;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Styles pour les boutons */
+.btn {
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1976d2;
+  transform: scale(1.05);
+}
+
+/* Styles pour les champs de formulaire */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #343a40;
+}
+
+.form-control {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-control:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* Style pour le bouton "Postuler" centré */
+.center-button {
+  text-align: center;
+}
+
+/* Autres styles spécifiques */
+.reference-dates {
+  margin-bottom: 20px;
+}
+
+.reference,
+.dates {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.reference p,
+.dates p {
+  margin: 0;
+}
+
+.reference,
+.dates {
+  margin-bottom: 10px;
+}
+
+.reference {
+  float: left;
+}
+
+.dates {
+  float: right;
+}
+
+/* Animation pour le bouton "Postuler" */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn-primary.to-apply {
+  animation: pulse 1.5s infinite;
+}
+
+/* Animation pour le texte de la description */
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateY(-50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.description {
+  animation: slideIn 1s ease;
+}
+
+/* Animation pour les éléments du formulaire */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.form-group {
+  animation: fadeInUp 1s ease;
+}
+
+
+.delete-icon {
+  color: red; 
+}

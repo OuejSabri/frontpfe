@@ -1,0 +1,41 @@
+
+<div class="grid flex row grap-3 align-items-start justify-content-around">
+    <div class="col-12 flex row wrap  justify-content-start gap-5 " >
+      <div class="card">
+  <p-carousel
+    [value]="data"
+    [numVisible]="3"
+    [numScroll]="3"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <h2>Liste de mes offres </h2>
+    <ng-template let-item pTemplate="item">
+      
+      <div class="border-1 surface-border border-round m-2 cd text-center py-5 px-3">
+            <div class="card-body  contener" >
+                <h5 class="card-title">{{item.titre}}</h5>
+                <p class="card-text">Lieux : {{item.lieu}}</p>
+                <p class="date-fix"><small class="text-muted">Le {{item.date|date:'shortDate' }}</small></p>
+                <p class="card-text">{{item.description}}</p>
+                
+                <p class="card-text">expired le {{item.date_dexpiration|date:'shortDate'}}</p>
+                
+            </div>
+            <div class="col-12 flex row align-content-end champ">
+                <div class="flex row align-items-center justify-content-start"><p-badge [value]="item.number_candidats"
+                        size="large" severity="success" class="col-1">
+                    </p-badge><span class="col-4">candidat(s)</span></div>
+                    <div class="flex row align-items-start justify-content-end">
+                <button type="button" class="btn btn-primary col-4" (click)="getOffreById(item._id)">Voir plus</button>
+              </div>
+            </div>
+        </div>
+    </ng-template>
+    </p-carousel>
+    </div>
+   
+    </div>
+
+
+

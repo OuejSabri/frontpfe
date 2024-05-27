@@ -1,0 +1,140 @@
+
+
+<div class="container-fluid">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 ">
+      <a type="button" href="javascript:history.go(-1)">retour</a>
+      <h4 class="m-0 font-weight-bold text-primary flex align-items-center justify-content-center">
+        Ajouter une nouvelle offre de stage
+      </h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="addForm" method="post">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label"
+            >Titre de stage</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="titre"
+            required
+            formControlName="titre"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Description de l'offre :</label
+          >
+          <textarea
+            class="form-control"
+            formControlName="description"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="Contenu complet de l'offre telle qu'elle apparaît sur un site d'annonce de stage.
+
+                Exemple: 
+                Présentation de l'entreprise
+                [...]
+                
+                Détails du poste
+                [...]"
+          ></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Technologies</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="technologies"
+              required
+              formControlName="technologies"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Lieux</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="lieux de stage"
+              required
+              formControlName="lieu"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label">Durée de stage</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="en moin(s)"
+                formControlName="duree"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Domaine </label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Domaine"
+              required
+              formControlName="domaine"
+            />
+          </div>
+          <!-- <div class="col-md-6">
+            <h6 class="mb-2 pb-1">status :</h6>
+            <select class="select form-control-lg" formControlName="status">
+              <option value="disponible">Disponible</option>
+              <option value="indisponible">Indisponible</option>
+            </select>
+          </div> -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Nombre stagiaire</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre stagiaire(s)"
+              required
+              formControlName="number_candidats"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="date" class="form-label">Date d'expiration</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="date"
+                formControlName="date_dexpiration"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer flex align-items-center justify-content-center">
+      <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="publierOffre()"
+          formmethod="post"
+        >Publier
+        </button>
+    </div>
+  </div>
+</div>

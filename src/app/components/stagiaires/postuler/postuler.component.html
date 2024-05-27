@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+
+    <div class="card col-md-10" [ngClass]="{
+      'disponible': data?.status == 'disponible',
+      'indisponible': data?.status == 'indisponible'
+    }">
+      <div class="card-body col-12 row align-items-center justify-content-center ">
+        <a type="button" href="javascript:history.go(-1)">retour</a>
+        <div class=" col-12 row align-content-center justify-content-center">
+          <h1 class="card-title col-10 text-center">{{ data?.titre }}</h1>
+        </div>
+        <div class="row">
+          <p class="card-text col-6 ">Publier par: {{ data?.societe?.nom }}</p>
+          <p class="date-fix"><small class="text-muted">Le {{data?.date |date }}</small></p>
+          <p class="card card-text description">{{ data?.description }}</p>
+        </div>
+        <div class="row col-12 align-items-end justify-content-end gap-2">
+          <small class="card card-text col-3  text-muted">
+            Date d'expiration: {{ data?.date_dexpiration | date }}
+          </small>
+          <small class="card card-text col-3 text-muted">
+            Nombre de candidats: {{ data?.number_candidats }}
+          </small>
+          <small class="card card-text col-2 text-muted"> Durée : {{ data?.duree }} mois</small>
+
+        </div>
+        <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop" [disabled]="data?.status=='indisponible'">Postuler</button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">Postuler cette offre de stage</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="addForm" method="post">
+                  <div class="mb-3">
+                    <label class="form-label">Nom Complete</label>
+                    <input type="text" class="form-control" placeholder="Ouej Sabri" formControlName="nom">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Votre email</label>
+                    <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Télécharger votre CV </label>
+                    <input class="form-control" type="file" id="formFile" formControlName="cv">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Lettre de Motivation</label>
+                    <textarea class="form-control" rows="3" formControlName="lettre_motivation"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="date" class="form-label">Date début</label>
+                      <div class="input-group date" id="datepicker">
+                        <input id="startDate" class="form-control" type="date" formControlName="date_debut" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="date" class="form-label">Date fin</label>
+                      <div class="input-group date" id="datepicker">
+                        <input id="startDate" class="form-control" type="date" formControlName="date_fin" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" (click)="postulerOffre()"
+                  formmethod="post">Postuler</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

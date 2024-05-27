@@ -1,0 +1,476 @@
+<section class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 mb-4 mb-sm-5">
+        <div class="card card-style1 border-0">
+          <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+            <div class="row align-items-center">
+              <div class="col-lg-6 mb-4 mb-lg-0">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  alt="..."
+                />
+              </div>
+              <div class="col-lg-6 px-xl-10">
+                <div
+                  class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded"
+                >
+                  <h3 class="h2 text-white mb-0">
+                    {{ currentUser?.nom }} {{ profileDetail?.prenom }}
+                  </h3>
+                  <span class="text-primary">{{ currentUser?.role }}</span>
+                </div>
+                <ul class="list-unstyled mb-1-9">
+                  <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >adresse:</span
+                    >
+                    {{ profileDetail?.adresse }}
+                  </li>
+                  <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >sexe:</span
+                    >
+                    {{ profileDetail?.sexe }}
+                  </li>
+                  <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >date_naissance:</span
+                    >
+                    {{ profileDetail?.date_naissance | date }}
+                  </li>
+                  <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >cin:{{ profileDetail?.cin }}</span
+                    >
+                    {{ profileDetail?.cin }}
+                  </li>
+                  <li class="mb-2 mb-xl-3 display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >Email:</span
+                    >
+                    {{ currentUser?.email }}
+                  </li>
+                  <li class="display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >Telephone:</span
+                    >
+                    {{ profileDetail?.telephone }}
+                  </li>
+                  <li class="display-28">
+                    <span class="display-26 text-secondary me-2 font-weight-600"
+                      >CV:</span
+                    >
+                    {{ profileDetail?.CV }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="flex row justify-content-between">
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Modifier profil"
+                class="p-button-outlined p-button-info col-3"
+              ></button>
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Modifier Mot de passe"
+                class="p-button-outlined p-button-info col-3"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                (click)="modifierPassword()"
+              ></button>
+
+              <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">modifier le mot de passe</button>
+                <div
+                  class="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5">
+                          modifier votre mot de passe ?
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="addFormP" method="post">
+                          <div class="mb-3">
+                            <label class="form-label"
+                              >ancien mot de passe :</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="****"
+                              formControlName="ancienMotDePasse"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label"
+                              >nouveau mot de passe :</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="****"
+                              formControlName="nouveauMotDePasse"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label"
+                              >repeter mot de passe :</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              placeholder="****"
+                              formControlName="repMotDePasse"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Retour
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          formmethod="post"
+                        >
+                          modifier
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="card">
+  <span class="text-900 text-xl font-bold mb-4 block"
+    >Modifier votre profile
+  </span>
+  <div class="grid">
+    <div class="col-12 lg:col-10">
+      <form
+        [formGroup]="profileForm"
+        class="account-page-left shadow-sm bg-white h-100"
+      >
+        <div class="grid formgrid p-fluid">
+          <div class="field mb-4 col-12 md:col-4">
+            <label for="nom" class="font-medium text-900">Nom </label>
+            <input
+              id="nom"
+              type="text"
+              pInputText
+              formControlName="nom"
+              [value]="currentUser?.nom"
+            />
+          </div>
+
+          <div class="field mb-4 col-12 md:col-4">
+            <label class="font-medium text-900">Prenom</label>
+            <input type="text" pInputText formControlName="prenom" />
+          </div>
+          <div class="field mb-4 col-12 md:col-4">
+            <label class="font-medium text-900">Carte Cin</label>
+            <input type="number" pInputText formControlName="cin" />
+          </div>
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="email" class="font-medium text-900">Email</label>
+            <input
+              id="email"
+              type="text"
+              pInputText
+              formControlName="email"
+              [value]="currentUser?.email"
+            />
+          </div>
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="city" class="font-medium text-900">Telephone</label>
+            <input
+              id="city"
+              type="text"
+              pInputText
+              formControlName="telephone"
+              [value]="currentUser?.telephone"
+            />
+          </div>
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="city" class="font-medium text-900"
+              >Date naissance</label
+            >
+            <input
+              id="city"
+              type="date"
+              pInputText
+              formControlName="date_naissance"
+            />
+          </div>
+          <div class="field mb-4 col-12 md:col-6">
+            <label class="font-medium text-900">sexe</label>
+            <select class="form-select" formControlName="sexe">
+              <option selected>sexe</option>
+              <option value="homme">homme</option>
+              <option value="femme">femme</option>
+            </select>
+          </div>
+          <div class="field mb-4 col-12 md:col-4">
+            <label for="city" class="font-medium text-900">Adresse</label>
+            <input id="city" type="text" pInputText formControlName="adresse" />
+          </div>
+          <div class="field mb-4 col-12 md:col-4">
+            <label for="state" class="font-medium text-900">Ville</label>
+            <input id="state" type="text" pInputText />
+          </div>
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="state" class="font-medium text-900"
+              >etablissement</label
+            >
+            <input
+              id="state"
+              type="text"
+              pInputText
+              formControlName="etablissement"
+            />
+          </div>
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="state" class="font-medium text-900">cv</label>
+            <input id="state" type="file" pInputText formControlName="cv" />
+          </div>
+
+          <div class="col-12">
+            <button
+              pButton
+              pRipple
+              label="save profile"
+              class="w-auto mt-3"
+              (click)="enregistrer()"
+            ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+ 
+  <div class=" ml-20 mt-10 flex flex-col md:flex-row" > 
+  <ul class="nav flex-col nav-pills  ml-10 mr-10 mt-20 " id="myTab" role="tablist" >
+    <li class="nav-item ">
+      <a class="nav-link" href="javascript:;" 
+          id="general-tab" data-toggle="tab" role="tab" aria-controls="general"
+        aria-selected="true">
+        <i class="ft-settings mr-1 align-middle"></i>
+        <span class="align-middle">General</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:;"  
+        id="change-password-tab" data-toggle="tab" role="tab"
+        aria-controls="change-password" aria-selected="false">
+        <i class="ft-lock mr-1 align-middle"></i>
+        <span class="align-middle">Change Password</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="mt-[-60px] mb-20">
+
+<section class=" min-md:ml-20 md:ml-25 mt-2">
+  <div class="row">
+    <div class="col-10">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+
+            <ul ngbNav class="nav-tabs justify-content-left">
+              <li>
+                <a ngbNavLink class="nav-link d-flex align-items-center">
+                  <i class="ft-user mr-1"></i>
+                  <span class="d-none d-sm-block  text-[#975AFF] font-semibold mr-2">Profile</span>
+                </a>
+
+
+                <div class="mt-2" id="account">
+
+                  <div class="media  ">
+                    <div class="media  flex ">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user edit avatar"
+                        class="users-avatar-shadow avatar mr-3 rounded-circle" height="84" width="84">
+
+                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                          <h3 class="h2 text-white mb-0">{{currentUser?.nom}} {{profileDetail?.prenom}}</h3>
+                          <span class="text-primary">{{currentUser?.role}}</span>
+                        </div>
+
+                    </div>
+
+
+
+                   
+                    <div class="media-body">
+
+                      <div class="d-flex flex-sm-row flex-column justify-content-start px-0 mt-4 mb-sm-2">
+                        <button class="btn btn-sm btn-primary mb-1 mb-sm-0">Change</button>
+                        <button class="btn btn-sm bg-light-secondary ml-sm-2">Reset</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form [formGroup]="profileForm" >
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="username"> Name</label>
+                            <input type="text" id="username" class="form-control" placeholder=""
+                              value="{{currentUser?.nom}}" required aria-invalid="false" formControlName="nom">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="age">Age</label>
+                            <input type="date" id="age" class="form-control" placeholder="Age"
+                              [value]="profileDetail?.date_naissance | date:'yyyy-MM-dd'" required aria-invalid="false"
+                              formControlName="date_naissance">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="users-edit-email">E-mail</label>
+                            <input type="email" id="email" class="form-control" placeholder="{{curretnUserId.email}}"
+                              formControlName="email" [value]=" profileDetail?.email  " aria-invalid="false">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="cin">CIN</label>
+                            <input id="cin" class="form-control" type="number" pInputText formControlName="cin"
+                              placeholder="cin" [value]="currentUser?.cin" required aria-invalid="false">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="users-edit-company">Ville </label>
+                            <input type="text" id="Etablissement" class="form-control" placeholder="Company Name"
+                              formControlName="ville" value="{{profileDetail?.ville}}">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="adresse">Adress</label>
+                            <input id="city" class="form-control" type="text" pInputText formControlName="adresse"
+                              placeholder="adresse" [value]="currentUser?.adresse" required aria-invalid="false">
+                          </div>
+                        </div>
+
+
+                      </div>
+
+
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="users-edit-role">Genre</label>
+                            <select id="sexe" class="form-control" formControlName="sexe" 
+                            required>
+                              <option value="homme">homme</option>
+                              <option value="femme" >femme</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="telephone"> phone</label>
+                            <input id="telephone" class="form-control" type="number" pInputText
+                              formControlName="telephone" placeholder="{{profileDetail?.telephone}}"
+                              value="{{profileDetail?.telephone}}" required aria-invalid="false">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="users-edit-company">Domaine </label>
+                            <input type="text" id="domaine" class="form-control" placeholder="Company Name"
+                              formControlName="domaine" value="{{profileDetail?.domaine}}">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="users-edit-company">Etablissement </label>
+                            <input type="text" id="Etablissement" class="form-control" placeholder="Company Name"
+                              value="{{profileDetail?.Etablissement}}">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="controls">
+                            <label for="cv">Cv</label>
+                            <input type="file" id="cv" class="form-control" formControlName="cv" placeholder="CV.."
+                              (change)="onFileSelected($event)" value="profileDetail?.cv">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2 mb-30">
+                        <button type="submit" class="btn btn-primary mb-2 mr-3 mb-sm-0 mr-sm-2" (click)="enregistrer()">Save
+                          Changes</button>
+                        <button type="reset" class="btn btn-secondary mb-30" >Cancel</button>
+                      </div>
+                    </div>
+                  </form >
+
+                </div>
+
+
+              </li>
+              <li>
+
+
+              </li>
+            </ul>
+            <div  >
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+  </div></div>

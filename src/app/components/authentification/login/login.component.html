@@ -1,0 +1,62 @@
+<div class="container-fluid flex row mt-5 align-items-center justify-content-center">
+  <div class="card col-6">
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Connexion</p>
+    <form class="mx-1 mx-md-4 row  justify-content-center align-items-center" [formGroup]="addForm">
+
+      <div class="form-outline mb-4 col-10">
+        <label class="form-label">Email *</label>
+        <input type="email" class="form-control form-control-lg" formControlName="email" required />
+
+      </div>
+
+
+      <div class="form-outline mb-4 col-10">
+        <label class="form-label">Password *</label>
+        <input type="password" class="form-control form-control-lg" formControlName="password" required />
+
+      </div>
+
+      <div class="d-flex justify-content-around align-items-center mb-4">
+
+        <div class="form-check">
+        </div>
+        <a href="/auth/fpassword">mot de passe oublié ?</a>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="submit" (click)="login()" class="btn btn-primary btn-block btn-lg gradient-custom-4 ">se
+          connecter</button>
+      </div>
+      <br>
+      <div class="text-center mt-5">
+        <p>si vous n'etez pas inscrit ?<a href="/auth/register">S'inscrire</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <body>
+<div class="ring">
+  <i style="--clr:#00ff0a;"></i>
+  <i style="--clr:#ff0057;"></i>
+  <i style="--clr:#fffd44;"></i>
+  <div class="login" [formGroup]="addForm">
+    <h2>Connexion</h2>
+    <span class="error animated tada" id="msg"></span>
+    <div class="inputBx" >
+      <input type="email" placeholder="email" formControlName="email">
+    </div>
+    <div class="inputBx">
+      
+      <input type="password" placeholder="Password" formControlName="password">
+    </div>
+    <div class="inputBx">
+      <input type="submit" (click)="login()" value="Se Connecter">
+    </div>
+    <div class="links">
+      <a href="/auth/fpassword">mot de passe oublié ?</a>
+      <a href="/auth/register">S'inscrire</a>
+    </div>
+  </div>
+</div>
+</body> -->

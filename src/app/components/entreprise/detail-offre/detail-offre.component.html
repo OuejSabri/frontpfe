@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="row">
+    <div
+      class="card col-md-10"
+      [ngClass]="{
+        disponible: data?.status == 'disponible',
+        indisponible: data?.status == 'indisponible'
+      }"
+    >
+      <div
+        class="card-body col-12 row align-items-center justify-content-center"  
+      >
+        <a type="button" href="javascript:history.go(-1)">retour</a>
+        <div class="col-12 row align-content-center justify-content-center">
+          <h1 class="card-title col-10 text-center">{{ data?.titre }}</h1>
+        </div>
+        <div class="row">
+          <p class="col-8">Lieux: {{ data?.lieu}}</p>
+          <p class="col-4">publier le : {{ data?.date|date}}</p>
+          <p class=" description">Description: {{ data?.description }}</p>
+        </div>
+        <div class="row col-12 align-items-end justify-content-end gap-2">
+          <p class=" col-3 text-muted">
+            Date d'expiration: {{ data?.date_dexpiration | date }}
+          </p>
+          <p class=" col-3 text-muted">
+            Nombre de candidats: {{ data?.number_candidats }}
+          </p>
+          <p class=" col-2 text-500">
+            <b>Durée : {{ data?.duree }} mois</b></p
+          >
+          <p class=" col-2 text-muted">Technologies: {{data?.technologies}}</p>
+          <p class=" col-2 text-muted">Domaine: {{data?.domaine}}</p>
+        </div>
+        <div class="flex row align-items-end justify-content-between">
+          <button
+            type="button"
+            class="btn btn-primary col-3"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Modifier
+          </button>
+          <button type="button" class="btn btn-danger col-3" (click)="deleteOffre(this.idPost)">Supprimer</button>
+        </div>
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">Modifier cette offre de stage</h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="offreForm" method="post">
+                  <div class="mb-3">
+                    <label  class="form-label"
+                      >Titre de stage</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      [value]="data?.titre"
+                      placeholder="titre"
+                      required
+                      formControlName="titre"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"
+                      >Description de l'offre :</label
+                    >
+                    <textarea
+                      class="form-control"
+                      [value]="data?.description"
+                      formControlName="description"
+                      placeholder="description"
+                      rows="3"
+
+                    ></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="exampleFormControlInput1" class="form-label"
+                        >Technologies</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        [value]="data?.technologies"
+                        placeholder="technologies"
+                        required
+                        formControlName="technologies"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="exampleFormControlInput1" class="form-label"
+                        >Lieux</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        [value]="data?.lieu"
+                        placeholder="lieux de stage"
+                        required
+                        formControlName="lieu"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="form-label">Durée de stage</label>
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="en moin(s)"
+                          [value]="data?.duree"
+                          formControlName="duree"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="exampleFormControlInput1" class="form-label"
+                        >Domaine
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Domaine"
+                        [value]="data?.domaine"
+                        required
+                        formControlName="domaine"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <h6 class="mb-2 pb-1">status :</h6>
+                      <select
+                        class="select form-control-lg"
+                        formControlName="status"
+                        [value]="data?.status"
+                      >
+                        <option value="disponible">Disponible</option>
+                        <option value="indisponible">Indisponible</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="exampleFormControlInput1" class="form-label"
+                        >Nombre stagiaire</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre stagiaire(s)"
+                        required
+                        formControlName="number_candidats"
+                        [value]="data?.number_candidats"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="date" class="form-label"
+                        >Date d'expiration</label
+                      >
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          type="date"
+                          formControlName="date_dexpiration"
+                          [value]="data?.date_dexpiration"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" (click)="updateOffre(this.idPost)"
+                  formmethod="post">Modifier</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

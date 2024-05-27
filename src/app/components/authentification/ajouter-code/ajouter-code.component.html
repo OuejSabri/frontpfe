@@ -1,0 +1,45 @@
+<section class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0 min-vh-100">
+      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+        <div class="card shadow">
+          <div class="card-body p-6">
+            <div class="mb-4">
+              <h1 class="mb-1 fw-bold">Réinitialiser le mot de passe</h1>
+              <p>Entrez le code que vous avez reçu par e-mail et votre nouveau mot de passe.</p>
+            </div>
+            <form #resetForm="ngForm" (ngSubmit)="verifyAndResetPassword()">
+              <div class="mb-3">
+                <label class="form-label">Votre email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="Entrez votre email"
+                  [(ngModel)]="email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Code de réinitialisation</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="otpCode"
+                  placeholder="Entrez le code"
+                  [(ngModel)]="otpCode"
+                  required
+                />
+              </div>
+              <div class="mb-3 d-grid">
+                <button type="submit" class="btn btn-primary">
+                  Réinitialiser le mot de passe
+                </button>
+              </div>
+            </form>
+            <div *ngIf="message">{{ message }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
