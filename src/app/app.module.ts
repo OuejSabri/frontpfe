@@ -13,9 +13,25 @@ import { PrimeNgModule } from './modules/shared/shared.module';
 import { MessageService } from 'primeng/api';
 import { ListeEvenementsComponent } from './components/admin/liste-evenements/liste-evenements.component';
 import { AjouterCodeComponent } from './components/authentification/ajouter-code/ajouter-code.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { AddEducationComponent } from './components/stagiaires/add-education/add-education.component';
+import { AddExperienceComponent } from './components/stagiaires/add-experience/add-experience.component';
+import { AddCertificatComponent } from './components/stagiaires/add-certificat/add-certificat.component';
+import { AddProjetComponent } from './components/stagiaires/add-projet/add-projet.component';
+import { AddSkillComponent } from './components/stagiaires/add-skill/add-skill.component';
 
 @NgModule({
-  declarations: [AppComponent, ListeEvenementsComponent, AjouterCodeComponent],
+  declarations: [
+    AppComponent,
+    ListeEvenementsComponent,
+    AjouterCodeComponent,
+    AddSkillComponent,
+    AddEducationComponent,
+    AddExperienceComponent,
+    AddCertificatComponent,
+    AddProjetComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,6 +44,8 @@ import { AjouterCodeComponent } from './components/authentification/ajouter-code
     SplitterModule,
     StyleClassModule,
     PrimeNgModule,
+    MatDialogModule,
+    CommonModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

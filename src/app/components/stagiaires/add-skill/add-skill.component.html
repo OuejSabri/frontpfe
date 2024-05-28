@@ -1,0 +1,15 @@
+<div class="contactFrom">
+    <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+      <h2>Ajouter Skills</h2>
+      <div class="inputBox">
+        <input type="text" name="nom" placeholder="Enter your nom" formControlName="nom" autocomplete="off">
+      </div>
+      <div class="inputBox">
+        <input type="text" name="niveau" placeholder="Enter your niveau" formControlName="niveau" autocomplete="off">
+      </div>
+      <div class="inputBox">
+        <input type="submit" value="Ajouter" [disabled]="educationForm.invalid">
+      </div>
+    </form>
+  </div>
+  

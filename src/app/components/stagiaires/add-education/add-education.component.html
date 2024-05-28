@@ -1,0 +1,20 @@
+<div class="contactFrom">
+  <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+    <h2>Ajouter Education</h2>
+    <div class="inputBox">
+      <input type="text" name="institut" placeholder="Enter your institut" formControlName="institut" autocomplete="off">
+    </div>
+    <div class="inputBox">
+      <input type="text" name="domaineEtude" placeholder="Enter your domaineEtude" formControlName="domaineEtude" autocomplete="off">
+    </div>
+    <div class="inputBox">
+      <input type="date" name="dateDebut" placeholder="Enter your dateDebut" formControlName="dateDebut" autocomplete="off">
+    </div>
+    <div class="inputBox">
+      <input type="date" name="dateFin" placeholder="Enter dateFin" formControlName="dateFin" autocomplete="off">
+    </div>
+    <div class="inputBox">
+      <input type="submit" value="Ajouter" [disabled]="educationForm.invalid">
+    </div>
+  </form>
+</div>

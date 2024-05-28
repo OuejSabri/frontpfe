@@ -10,32 +10,30 @@
 <!-- Ajoutez vos styles personnalisés ici -->
 
 
-<link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css"
-  integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
-<!-- Ajoutez vos styles personnalisés ici -->
-
-
 
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <form [formGroup]="profileForm" class="account-page-left shadow-sm bg-white h-100">
+      <form class="account-page-left shadow-sm bg-white h-100">
         <div class="border-bottom p-4">
           <div class="user text-center">
             <div class="user-media">
               <h5>Please provide a photo of yourself</h5>
               <label class="upload-btn" for="image">
-                <input type="file" id="image" (change)="onFileSelected($event)">
-                <img src="placeholder_image.jpg" alt="" class="upload-icon">
+                <input type="file" id="image" >
+                <img src="assets/images/user.avif" alt="" class="upload-icon">
               </label>
               <div class="user-media-body">
                 <label for="telephone">Phone:</label>
-                <input [value]="currentUser.telephone" disabled="true" type="tel" id="telephone" name="telephone" placeholder="Your number">
+                <input disabled="true" type="tel" id="telephone" name="telephone" placeholder="Your number" [value]="user.telephone">
+                
                 <label for="email">Email:</label>
-                <input [value]="currentUser?.email" type="email" id="email" name="email" placeholder="Your email" disabled="true">
+                <input type="email" id="email" name="email" placeholder="Your email" disabled="true" [value]="user.email">
+                
                 <p class="mb-1"></p>
-                <p class="mb-0 text-black font-weight-bold"><a class="text-primary mr-3" data-toggle="modal"
-                    data-target="#edit-profile-modal" href="#"><i class="icofont-ui-edit"></i> EDIT</a></p>
+                <p class="mb-0 text-black font-weight-bold">
+                  <a class="text-primary mr-3"  href="#"><i class="icofont-ui-edit"></i> EDIT</a>
+                </p>
                 <br>
               </div>
             </div>
@@ -46,23 +44,23 @@
             <div class="section section-informations-personnelles">
               <h2>Personal information</h2>
               <label for="nom">FullName:</label>
-              <input [value]="currentUser?.fullName" type="text" id="nom" name="nom" placeholder=" Your FullName" disabled="true">
+              <input type="text" id="nom" name="nom" placeholder=" Your FullName" disabled="true" [value]="user.nom">
               <label for="pays">Nationality:</label>
-              <input formControlName="nationality" type="text" id="pays" name="pays" placeholder=" Your Nationality ">
+              <input  type="text" id="pays" name="pays" placeholder=" Your Nationality ">
               <label for="date">Date of Birth:</label>
-              <input formControlName="dateOfBirth" type="date" id="date" name="date"
+              <input  type="date" id="date" name="date"
                 placeholder=" Your date of birth"><br>
               <label for="adresse">Adresse:</label>
-              <input formControlName="address" type="text" id="adresse" name="adresse" placeholder="Your adresse">
+              <input  type="text" id="adresse" name="adresse" placeholder="Your adresse">
               <label for="dep">Departement:</label>
-              <input formControlName="department" type="text" id="dep" name="dep" placeholder="Your Departement">
+              <input  type="text" id="dep" name="dep" placeholder="Your Departement">
               <label for="contactChoice2">Gender:</label>
 
               <label for="contactChoice2">Male</label>
-              <input formControlName="gender" type="radio" id="contactChoice3" name="gender" value="MALE"
+              <input type="radio" id="contactChoice3" name="gender" value="MALE"
                 class="gender-input" />
               <label for="contactChoice3">Female</label>
-              <input formControlName="gender" type="radio" id="contactChoice2" name="gender" value="FEMALE"
+              <input  type="radio" id="contactChoice2" name="gender" value="FEMALE"
                 class="gender-input" />
 
               <div class="worm">
@@ -72,7 +70,7 @@
           </li>
         </ul>
 
-        <button type="button" class="btn-primary m-3" (click)="addProfile()" [disabled]="!this.editProfile">save profile</button>
+        <button type="button" class="btn-primary m-3">save profile</button>
       </form>
 
     </div>
@@ -85,8 +83,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Education</h6>
           </div>
           <div class="card-body">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#educationModal"
-              style="float: right; " >Add Education</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#educationModal" style="float: right;"  (click)="openAddDialog()">Add Edu</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -96,39 +93,36 @@
                     <th>Institution:</th>
                     <th>Field of study:</th>
                     <th>Start date:</th>
-                    <th>End date :</th>
-
+                    <th>End date:</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of educations" >
-                    <td>{{item?.institution}}</td>
-                    <td>{{item?.fieldOfStudy}}</td>
-                    <td>{{item?.startDate|date:'shortDate'}}</td>
-                    <td>{{item?.endDate|date:'shortDate'}}</td>
-
+                  <!-- Utilisation de *ngFor pour parcourir les éducations -->
+                  <tr *ngFor="let education of educations">
+                    <td>{{ education.institut }}</td>
+                    <td>{{ education.domaineEtude }}</td>
+                    <td>{{ education.dateDebut }}</td>
+                    <td>{{ education.dateFin }}</td>
                     <td>
-                      <div class="dropdown">
-
-                        <div class="icons-container">
-                          <i class="fas fa-trash icon delete-icon"></i>
-                          
-                        </div>
-
-                      </div>
+                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
+                      <button type="button" class="btn btn-danger" (click)="deleteEducation(education._id)">Delete</button>
                     </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
         </div>
+        
+        
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Experience</h6>
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#experienceModal"
-              style="float: right;" >Add Experience</button>
+              style="float: right;"  (click)="openAddDialogEperience()">Add Experience</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -144,23 +138,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let exp of experiences">
-                    <td>{{exp?.company}}</td>
-                    <td>{{exp?.job}}</td>
-                    <td>{{exp?.startDate|date:'shortDate'}}</td>
-                    <td>{{exp?.endDate|date:'shortDate'}}</td>
-                    <td>{{exp?.description}}</td>
-                    <td>
-                      <div class="dropdown">
-
-                        <div class="icons-container">
-                          <i class="fas fa-trash icon delete-icon"></i>
-                         
-                        </div>
-
-                      </div>
-                    </td>
-                
+                  <tr >
+                    <tr *ngFor="let experiences of experience">
+                      <td>{{ experiences.entreprise }}</td>
+                      <td>{{ experiences.poste }}</td>
+                      <td>{{ experiences.dateDebut }}</td>
+                      <td>{{ experiences.dateFin }}</td>
+                      <td>{{ experiences.description }}</td>
+                      <td>
+                        <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
+                        <button type="button" class="btn btn-danger" (click)="deleteExperience(experiences._id)">Delete</button>
+                      </td>
+                    </tr>
                 </tbody>
               </table>
             </div>
@@ -174,7 +163,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal"
-              style="float: right;" [disabled]="!isEnabled">Add Project </button>
+              style="float: right;"(click)="openAddDialogProjet()" >Add Project </button>
             <br>
             <div class="table-responsive">
               <br>
@@ -183,25 +172,21 @@
                   <tr>
                     <th>Title:</th>
                     <th>Description:</th>
+                    <th>Date:</th>
 
 
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let proj of projects">
-                    <td>{{proj?.title}}</td>
-                    <td>{{proj?.description}}</td>
-
+                  <tr *ngFor="let projet of projet">
+                    <td>{{ projet.titre }}</td>
+                    <td>{{ projet.description }}</td>
+                    <td>{{ projet.date }}</td>
+                 
                     <td>
-                      <div class="dropdown">
-
-                        <div class="icons-container">
-                          <i class="fas fa-trash icon delete-icon"></i>
-                          
-                        </div>
-
-                      </div>
+                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
+                      <button type="button" class="btn btn-danger" (click)="deleteProjet(projet._id)">Delete</button>
                     </td>
               </table>
             </div>
@@ -214,7 +199,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#certificationModal"
-              style="float: right;" >Add Certification</button>
+              style="float: right;" (click)="openAddDialogCertificat()">Add Certification</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -227,17 +212,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let certif of certifications ">
-                    <td>{{certif?.domain}}</td>
-                    <td>{{certif?.date|date:'shortDate'}}</td>
+                  <tr *ngFor="let certificat of certificat">
+                    <td>{{ certificat.domaine }}</td>
+                    <td>{{ certificat.date }}</td>
+                 
                     <td>
-                      <div class="dropdown">
-                        <div class="icons-container">
-                          <i class="fas fa-trash icon delete-icon"></i>
-                         
-                        </div>
-                      </div>
+                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
+                      <button type="button" class="btn btn-danger" (click)="deleteCertificat(certificat._id)">Delete</button>
                     </td>
+                   
                   </tr>
                 </tbody>
               </table>
@@ -250,7 +233,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skillsModal"
-              style="float: right;" >Add </button>
+              style="float: right;" (click)="openAddDialogskill()">Add </button>
             <br>
             <div class="table-responsive">
               <br>
@@ -265,19 +248,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let skil of skills ">
-                    <td>{{skil?.name}}</td>
-                    <td>{{skil?.level}}</td>
-
+                  <tr *ngFor="let skill of skill">
+                    <td>{{ skill.nom }}</td>
+                    <td>{{ skill.niveau }}</td>
+                 
                     <td>
-                      <div class="dropdown">
-
-                        <div class="icons-container">
-                          <i class="fas fa-trash icon delete-icon"></i>
-                         
-                        </div>
-
-                      </div>
+                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
+                      <button type="button" class="btn btn-danger" (click)="deleteSkill(skill._id)">Delete</button>
                     </td>
               </table>
             </div>
@@ -291,102 +268,31 @@
   </div>
 
 </div>
-<!-- <div class="text-right mt-3" style="float:right">
-  <button type="button" class="btn btn-primary mr-2">Send</button>
-  <button type="button" class="btn btn-primary">Save</button>
-</div> -->
+
 <!-- Modal for Experience -->
-<div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="experienceModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+
+<!-- Modal for Education -->
+<div class="modal" [class.show]="isAddModalOpen" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="experienceModalLabel">Add Experience</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <h5 class="modal-title">Add Modal</h5>
+        <button type="button" class="close">
+          <span>&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <!-- Contenu du formulaire d'expérience -->
-        <form [formGroup]="experienceForm" class="media-body">
-          <div class="form-group">
-            <label for="etablissement">Company:</label>
-            <input formControlName="company" type="text" id="etablissement" name="etablissement" class="form-control"
-              placeholder="Your company">
-          </div>
-          <div class="form-group">
-            <label for="domaine">Job:</label>
-            <input formControlName="job" type="text" id="domaine" name="domaine" class="form-control"
-              placeholder="Your job">
-          </div>
-          <div class="form-group">
-            <label for="startDate">Start date:</label>
-            <input formControlName="startDate" type="date" id="startDate" name="startDate" class="form-control"
-              placeholder="Start date">
-          </div>
-          <div class="form-group">
-            <label for="endDate">End date:</label>
-            <input formControlName="endDate" type="date" id="endDate" name="endDate" class="form-control"
-              placeholder="End date">
-          </div>
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <input formControlName="description" type="text" id="description" name="description" class="form-control"
-              placeholder="Description">
-          </div>
-        </form>
+        <!-- Add modal content here -->
+        <p>Add modal content goes here...</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addexperience()">Save changes</button>
+        <button type="button" class="btn btn-secondary" >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal for Education -->
-<div class="modal fade" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="educationModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="educationModalLabel">Add Education</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Contenu du formulaire d'éducation -->
-        <form [formGroup]="educationForm" class="media-body">
-          <div class="form-group">
-            <label for="etablissement">Institution:</label>
-            <input formControlName="institution" type="text" id="etablissement" name="etablissement"
-              class="form-control" placeholder="your institution">
-          </div>
-          <div class="form-group">
-            <label for="domaine">Field of study:</label>
-            <input formControlName="fieldOfStudy" type="text" id="domaine" name="domaine" class="form-control"
-              placeholder="Your field of study">
-          </div>
-          <div class="form-group">
-            <label for="startDate">Start date:</label>
-            <input formControlName="startDate" type="date" id="startDate" name="startDate" class="form-control"
-              placeholder="Start date">
-          </div>
-          <div class="form-group">
-            <label for="endDate">End date:</label>
-            <input formControlName="endDate" type="date" id="endDate" name="endDate" class="form-control"
-              placeholder="End date">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addeducation()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Modal for Certification -->
 <div class="modal fade" id="certificationModal" tabindex="-1" role="dialog" aria-labelledby="certificationModalLabel"
   aria-hidden="true">
@@ -400,21 +306,21 @@
       </div>
       <div class="modal-body">
         <!-- Certification Form -->
-        <form [formGroup]="certificationForm" class="media-body">
+        <form  class="media-body">
           <div class="form-group">
             <label for="Domain">Domain:</label>
-            <input formControlName="domain" type="text" id="Domain" name="Domain" class="form-control"
+            <input  type="text" id="Domain" name="Domain" class="form-control"
               placeholder="Domaine of certification">
           </div>
           <div class="form-group">
             <label for="Date">Date:</label>
-            <input formControlName="date" type="date" id="Date" name="Date" class="form-control" placeholder="Date">
+            <input  type="date" id="Date" name="Date" class="form-control" placeholder="Date">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addcertification()">Save changes</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
       </div>
     </div>
   </div>
@@ -432,19 +338,19 @@
       </div>
       <div class="modal-body">
         <!-- Skills Form -->
-        <form [formGroup]="skilsForm" class="media-body">
+        <form  class="media-body">
           <div class="form-group">
             <label for="Name">Name:</label>
-            <input formControlName="name" type="text" id="Name" name="Name" class="form-control"
+            <input  type="text" id="Name" name="Name" class="form-control"
               placeholder="skils Name ">
           </div>
           <label for="customRange2" class="form-label">Level:</label><br>
-          <input formControlName="level" type="range" class="form-range" min="0" max="5" id="customRange2">
+          <input type="range" class="form-range" min="0" max="5" id="customRange2">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addskils" (click)="addskils()">Save changes</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
       </div>
     </div>
   </div>
@@ -462,26 +368,26 @@
       </div>
       <div class="modal-body">
         <!-- Project Form -->
-        <form [formGroup]="projectForm" class="media-body">
+        <form  class="media-body">
           <div class="form-group">
             <label for="etablissement">Title:</label>
-            <input formControlName="title" type="text" id="etablissement" name="etablissement" class="form-control"
+            <input  type="text" id="etablissement" name="etablissement" class="form-control"
               placeholder="Your project tiltle">
           </div>
           <div class="form-group">
             <label for="domaine">Description:</label>
-            <input formControlName="description" type="text" id="domaine" name="domaine" class="form-control"
+            <input  type="text" id="domaine" name="domaine" class="form-control"
               placeholder="Description">
           </div>
           <div class="form-group">
             <label for="date">date:</label>
-            <input formControlName="date" type="date" id="date" name="date" class="form-control" placeholder="date">
+            <input  type="date" id="date" name="date" class="form-control" placeholder="date">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addproject()">Save changes</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
       </div>
 
     </div>

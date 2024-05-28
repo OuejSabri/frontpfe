@@ -13,8 +13,6 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { AvatarModule } from 'primeng/avatar';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
-import { NosStagiairesComponent } from '../components/admin/liste-stagiaires/nos-stagiaires.component';
-import { NosEntreprisesComponent } from '../components/admin/liste-entreprises/nos-entreprises.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { MenuModule } from 'primeng/menu';

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -10,21 +10,26 @@ export class SkillService {
   constructor(private http: HttpClient) {}
 
   create(data: any) {
-    return this.http.post(`${this.apiURL}/skills/addSkill`, data);
-  }
-  getAll() {
-    return this.http.get(`${this.apiURL}/skills/getAllSkills`);
+    const token = this.getTokenFromLocalStorage();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiURL}/skills/add`, data, { headers });
   }
 
-  update(data: any) {
-    return this.http.put(
-      `${this.apiURL}/skills/updateSkill/${data._id}`,
-      data
-    );
+  getAll() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiURL}/skills/`, { headers });
   }
+  private getTokenFromLocalStorage(): string | null {
+    return localStorage.getItem('accessToken');
+  }
+  update(data: any) {
+    return this.http.put(`${this.apiURL}/skills/updateSkill/${data._id}`, data);
+  }
+
   delete(id: any) {
-    return this.http.delete(
-      `${this.apiURL}/skills/deleteSkill/${id}`
-    );
+    const token = this.getTokenFromLocalStorage();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiURL}/skills/${id}`, { headers });
   }
 }
