@@ -20,6 +20,8 @@ import { AddExperienceComponent } from '../add-experience/add-experience.compone
 import { AddProjetComponent } from '../add-projet/add-projet.component';
 import { AddCertificatComponent } from '../add-certificat/add-certificat.component';
 import { AddSkillComponent } from '../add-skill/add-skill.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ProfilService } from 'src/app/services/profil.service';
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
@@ -38,7 +40,9 @@ export class CVComponent implements OnInit {
   certificat: Certificat[] = [];
   skill: Skill[] = [];
   user: User = {} as User;
+  profileDetail: any;
   isAddModalOpen = false;
+  profileForm: FormGroup;
 
   constructor(
     private educationService: EducationService,
@@ -47,8 +51,22 @@ export class CVComponent implements OnInit {
     private certificatService: CertificationService,
     private SkillService: SkillService,
     private userService: UserService,
-    public dialog: MatDialog
-  ) {}
+    private profileService : ProfilService,
+    public dialog: MatDialog,
+  ) {
+    this.profileForm = new FormGroup({
+      nom: new FormControl(''),
+      prenom: new FormControl(''),
+      email: new FormControl(''),
+      date_naissance: new FormControl(''),
+      sexe: new FormControl(''),
+      adresse: new FormControl(''),
+      ville: new FormControl(''),
+      etablissement: new FormControl(''),
+      telephone: new FormControl(''),
+      domaine: new FormControl(''),
+    });
+  }
   openAddDialog() {
     {
       const dialogRef = this.dialog.open(AddEducationComponent, {
@@ -117,6 +135,23 @@ export class CVComponent implements OnInit {
     this.getEducations(); // Appelez la méthode pour récupérer les éducations lors de l'initialisation du composant
     this.getuser();
   }
+  onSubmit() {
+    if (this.profileForm.valid) {
+      this.profileService.creerProfil(this.profileForm.value).subscribe(
+        (response) => {
+          window.alert('Profile added successfullys');
+          console.log('Profile added successfully', response);
+          // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
+        },
+        (error) => {
+          console.error('Error adding Profile', error);
+          // Vous pouvez ajouter du code ici pour gérer les erreurs
+        }
+      );
+    } else {
+      console.log('Form is invalid');
+    }
+  }
   openAddModal() {
     this.isAddModalOpenSubject.next(true);
     console.log('ad');
@@ -128,7 +163,7 @@ export class CVComponent implements OnInit {
   getEducations() {
     this.educationService.getAll().subscribe(
       (res: any) => {
-        this.educations = res.data; // Stockez les éducations dans la propriété déclarée
+        this.educations = res.data;
       },
       (error) => {
         console.error(
@@ -146,7 +181,7 @@ export class CVComponent implements OnInit {
       },
       (error) => {
         console.error(
-          'Erreur lors de la récupération des éducations : ',
+          'Erreur lors de la récupération des experiences : ',
           error
         );
       }
@@ -159,10 +194,7 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error(
-          'Erreur lors de la récupération des certificat : ',
-          error
-        );
+        console.error('Erreur lors de la récupération des projet : ', error);
       }
     );
   }
@@ -174,7 +206,7 @@ export class CVComponent implements OnInit {
       },
       (error) => {
         console.error(
-          'Erreur lors de la récupération des éducations : ',
+          'Erreur lors de la récupération des certificat : ',
           error
         );
       }
@@ -187,10 +219,7 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error(
-          'Erreur lors de la récupération des éducations : ',
-          error
-        );
+        console.error('Erreur lors de la récupération des skills : ', error);
       }
     );
   }
@@ -201,12 +230,16 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error(
-          'Erreur lors de la récupération des éducations : ',
-          error
-        );
+        console.error('Erreur lors de la récupération des user: ', error);
       }
     );
+  }
+  getById(id: number) {
+    this.userService.getOne(id).subscribe((res: any) => {
+      this.profileDetail = res.data;
+      console.log(this.profileDetail);
+      this.profileForm.patchValue(this.profileDetail);
+    });
   }
   deleteEducation(id: string) {
     this.educationService.delete(id).subscribe(

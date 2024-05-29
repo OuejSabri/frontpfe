@@ -70,13 +70,13 @@ export class SideBarComponent implements OnInit {
           );
         },
       },
-      {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-        command: () => {
-          this.router.navigateByUrl('/dashboard/evenements');
-        },
-      },
+      // {
+      //   label: 'Events',
+      //   icon: 'pi pi-fw pi-calendar',
+      //   command: () => {
+      //     this.router.navigateByUrl('/dashboard/evenements');
+      //   },
+      // },
       {
         label: 'Profil',
         icon: 'pi pi-fw pi-id-card',

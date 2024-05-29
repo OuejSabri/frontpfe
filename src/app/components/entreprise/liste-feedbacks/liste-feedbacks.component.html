@@ -1,55 +1,112 @@
-
 <div class="card">
-    <p-carousel [value]="data" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-        <ng-template let-comment pTemplate="item">
-            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-                <div>
-                    <h4 class="mb-1">{{ comment.nom }}</h4>
-                    <p class="text-900">{{ comment.email }}</p>
-                    <p class="text-900">{{ comment.commentaire }}</p>
-                </div>
-            </div>
-        </ng-template>
-    </p-carousel>
-<button type="button" class="btn btn-primary col-4 flex row align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    envoyer votre feedback
-  </button>
+  <p-carousel
+    [value]="data"
+    [numVisible]="3"
+    [numScroll]="3"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-comment pTemplate="item">
+      <div
+        class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+      >
+        <div>
+          <h4 class="mb-1">{{ comment.nom }}</h4>
+          <p class="text-900">{{ comment.email }}</p>
+          <p class="text-900">{{ comment.commentaire }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+  <div class="row flex justify-content-center">
+    <button
+      type="button"
+      class="btn btn-primary col-3 "
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      Laisser votre feedback
+    </button>
+  </div>
 
-  
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Merci pour votre avis</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            Merci pour votre avis
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="addForm"  method="post">
+          <form [formGroup]="addForm" method="post">
             <div class="mb-3">
-                <i class="bi bi-chat-square-dots-fill"></i>
+              <i class="bi bi-chat-square-dots-fill"></i>
             </div>
             <p>
-                Si vous rencontrez un problème ou avez des suggestions à nous faire, n'hésitez pas à nous contacter, nous vous répondrons dans les plus brefs délais !
+              Si vous rencontrez un problème ou avez des suggestions à nous
+              faire, n'hésitez pas à nous contacter, nous vous répondrons dans
+              les plus brefs délais !
             </p>
             <div class="mb-3">
-                <label class="form-label">nom</label>
-                <input type="text" class="form-control" placeholder="nom" formControlName="nom">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">email</label>
-                <input type="email" class="form-control" placeholder="email" formControlName="email">
-              </div>
-            
-              <div class="mb-3">
-                <label  class="form-label">commentaire</label>
-                <textarea class="form-control" rows="3" placeholder="Composer un commentaire" formControlName="commentaire"></textarea>
-              </div>
-            </form>
+              <label class="form-label">nom</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="nom"
+                formControlName="nom"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="email"
+                formControlName="email"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">commentaire</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="Composer un commentaire"
+                formControlName="commentaire"
+              ></textarea>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" (click)="envoyerFeedback()">Envoyer</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="envoyerFeedback()"
+          >
+            Envoyer
+          </button>
         </div>
       </div>
     </div>
