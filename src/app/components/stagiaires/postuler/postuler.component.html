@@ -51,30 +51,50 @@
                   <div class="mb-3">
                     <label for="formFile" class="form-label">Télécharger votre CV </label>
                     <input class="form-control" type="file" id="formFile" formControlName="cv">
+                     <div *ngIf="addForm.get('cv')?.invalid && (addForm.get('cv')?.touched || addForm.get('cv')?.dirty)" class="text-danger">
+                    <div *ngIf="addForm.get('cv')?.errors?.['required']">
+                      Veuillez télécharger votre CV.
+                    </div>
+                  </div>
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Lettre de Motivation</label>
                     <textarea class="form-control" rows="3" formControlName="lettre_motivation"></textarea>
+                    <div *ngIf="addForm.get('lettre_motivation')?.invalid && (addForm.get('lettre_motivation')?.touched || addForm.get('lettre_motivation')?.dirty)" class="text-danger">
+                    <div *ngIf="addForm.get('lettre_motivation')?.errors?.['required']">
+                          Veuillez saisir une lettre de motivation.
+                          </div>
+                        </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label for="date" class="form-label">Date début</label>
-                      <div class="input-group date" >
+                      <label for="date_debut" class="form-label">Date début</label>
+                      <div class="input-group date">
                         <input id="startDate" class="form-control" type="date" formControlName="date_debut" />
                       </div>
-                      <!-- <div *ngIf="addForm.get('date_debut')?.hasError('minDate') && addForm.get('date_debut')?.touched">
-                               La date de début doit être aujourd'hui ou plus tard.
-                       </div> -->
+                      <div *ngIf="addForm.get('date_debut')?.touched || addForm.get('date_debut')?.dirty" class="text-danger">
+                        <div *ngIf="addForm.get('date_debut')?.errors?.['required']">
+                          La date de début est obligatoire.
+                        </div>
+                        <div *ngIf="addForm.get('date_debut')?.errors?.['futureDateInvalid']">
+                          La date de début doit être aujourd'hui ou plus tard.
+                        </div>
+                      </div>
                     </div>
 
                     <div class="col-md-6">
-                      <label for="date" class="form-label">Date fin</label>
+                      <label for="date_fin" class="form-label">Date fin</label>
                       <div class="input-group date">
                         <input class="form-control" type="date" formControlName="date_fin" />
                       </div>
-                      <!-- <div *ngIf="addForm.hasError('dateRange') && addForm.get('date_fin')?.touched">
-                               La date de fin doit être après la date de début.
-                       </div> -->
+                      <div *ngIf="addForm.get('date_fin')?.touched || addForm.get('date_fin')?.dirty" class="text-danger">
+                        <div *ngIf="addForm.get('date_fin')?.errors?.['required']">
+                          La date de fin est obligatoire.
+                        </div>
+                      </div>
+                      <div *ngIf="addForm.errors?.['dateRangeInvalid'] && (addForm.get('date_debut')?.touched || addForm.get('date_debut')?.dirty)" class="text-danger">
+                        La date de fin doit être après la date de début.
+                      </div>
                     </div>
                   </div>
                 </form>

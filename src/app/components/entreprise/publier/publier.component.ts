@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import {OffreService} from  'src/app/services/offre.service' ;
 import Swal from 'sweetalert2';
+import {futureDateValidator } from './validator';
 
 @Component({
   selector: 'app-publier',
@@ -24,14 +25,17 @@ export class PublierComponent implements OnInit {
     this.curretnUserId = this.authservice.getUserId();
     this.addForm = new FormGroup({
       societe: new FormControl(this.curretnUserId),
-      titre: new FormControl(),
-      description: new FormControl( ),
-      date_dexpiration: new FormControl(),
-      duree: new FormControl(),
-      number_candidats: new FormControl(),
-      domaine: new FormControl(),
-      technologies: new FormControl(),
-      lieu: new FormControl(),
+      titre: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      date_dexpiration: new FormControl('', [
+        Validators.required,
+        futureDateValidator,
+      ]),
+      duree: new FormControl('', Validators.required),
+      number_candidats: new FormControl('', Validators.required),
+      domaine: new FormControl('', Validators.required),
+      technologies: new FormControl('', Validators.required),
+      lieu: new FormControl('', Validators.required),
       date: new FormControl(Date.now()),
     });
   }
@@ -56,7 +60,9 @@ export class PublierComponent implements OnInit {
         (err) => console.error(err)
       );
     } else {
-      console.log('form invalide');
+      this.addForm.markAllAsTouched();
+      console.log('Veuillez vérifier les champs');
+      return;
     }
   }
 

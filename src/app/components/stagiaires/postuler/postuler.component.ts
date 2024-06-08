@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators , FormBuilder} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatureService } from 'src/app/services/candidature.service';
@@ -8,7 +8,7 @@ import { OffreService } from 'src/app/services/offre.service';
 import { PostulerService } from 'src/app/services/postuler.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-
+import { dateRangeValidator, futureDateValidator } from './date_validateur';
 @Component({
   selector: 'app-postuler',
   templateUrl: './postuler.component.html',
@@ -22,6 +22,7 @@ export class PostulerComponent implements OnInit {
   curretnUserId: any;
   curretnUser: any;
   constructor(
+    private fb:FormBuilder,
     private userService: UserService,
     private service: OffreService,
     private acttivatedRoot: ActivatedRoute,
@@ -29,21 +30,24 @@ export class PostulerComponent implements OnInit {
     private candidatureService: CandidatureService
   ) {
     this.curretnUserId = this.authService.getUserId();
-    
+
     this.acttivatedRoot.params.subscribe((param: any) => {
       this.idPost = param.id;
     });
-    this.addForm = new FormGroup({
-      stagiaire: new FormControl(this.curretnUserId),
-      offreStage: new FormControl(this.idPost),
-      nom: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      cv: new FormControl('', Validators.required),
-      lettre_motivation: new FormControl('', Validators.required),
-      datePostulation: new FormControl(Date.now),
-      date_debut: new FormControl(''),
-      date_fin: new FormControl(''),
-    });
+    this.addForm = this.fb.group(
+      {
+        stagiaire: new FormControl(this.curretnUserId),
+        offreStage: new FormControl(this.idPost),
+        nom: new FormControl('', Validators.required),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        cv: new FormControl('', Validators.required),
+        lettre_motivation: new FormControl('', Validators.required),
+        datePostulation: new FormControl(Date.now()),
+        date_debut: new FormControl('',[Validators.required, futureDateValidator()]),
+        date_fin: new FormControl('', Validators.required),
+      },
+      { validators: dateRangeValidator ('date_debut', 'date_fin') }
+    );
   }
 
   ngOnInit(): void {
@@ -77,7 +81,10 @@ export class PostulerComponent implements OnInit {
         window.location.reload();
       });
     } else {
+      this.addForm.markAllAsTouched();
       console.log('Veuillez vérifier les champs');
+      return;
     }
   }
+ 
 }

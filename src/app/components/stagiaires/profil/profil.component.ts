@@ -35,7 +35,7 @@ export class ProfilComponent implements OnInit {
       nom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
-      dateOfBirth: [''],
+      dateOfBirth: ['',],
       gender: [''],
       address: [''],
       department: [''],
