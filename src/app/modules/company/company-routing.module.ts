@@ -9,6 +9,9 @@ import { ListeTachesComponent } from 'src/app/components/entreprise/liste-taches
 import { DetailOffreComponent } from 'src/app/components/entreprise/detail-offre/detail-offre.component';
 import { ListeCandidatureAccepteComponent } from 'src/app/components/entreprise/liste-candidature-accepte/liste-candidature-accepte.component';
 import { ListeStagiaireComponent } from 'src/app/components/entreprise/liste-stagiaire/liste-stagiaire.component';
+import { AttestationComponent } from 'src/app/components/entreprise/attestation/attestation.component';
+import { VoirStagiaireProfilComponent } from 'src/app/components/entreprise/voir-stagiaire-profil/voir-stagiaire-profil.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -28,9 +31,7 @@ const routes: Routes = [
     path: 'liste-candidatures',
     component: ListeCandidaturesComponent,
   },
-  {path:'liste-stagiaires',
-    component: ListeStagiaireComponent 
-  },
+  { path: 'liste-stagiaires', component: ListeStagiaireComponent },
   {
     path: 'liste-candidatures-accepte',
     component: ListeCandidatureAccepteComponent,
@@ -50,6 +51,14 @@ const routes: Routes = [
   {
     path: 'mes-offres',
     component: MesOffresComponent,
+  },
+  {
+    path: 'attestation',
+    component: AttestationComponent,
+  },
+  {
+    path: 'profilStagiaire/:id',
+    component: VoirStagiaireProfilComponent,
   },
 ];
 

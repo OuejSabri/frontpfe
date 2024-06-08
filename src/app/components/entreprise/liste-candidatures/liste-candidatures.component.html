@@ -33,7 +33,7 @@
               {{ item?.status }}
             </td>
             <td>
-              <p-button label="Voir profil" icon="pi pi-user"></p-button>
+              <p-button label="Voir profil" icon="pi pi-user" (onClick)="getProfilById(item?.stagiaire?._id)"></p-button>
             </td>
             <td>
               <button (click)="accepter(item?._id)" class="btn btn-success">accepter</button>

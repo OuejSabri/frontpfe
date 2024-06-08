@@ -24,7 +24,7 @@ export class FeedbackService {
     return this.http.put(`${this.apiURL}/feedback/updateFeedback/${id}`, data)
   };
 
-  async deleteFeedback(id: number) {
-    return this.http.delete(`${this.apiURL}/feedback/supprimerFeedback/${id}`)
+  deleteFeedback(id: any) {
+    return this.http.delete(`${this.apiURL}/feedback/supprimerFeedback/${id}`);
   };
 }

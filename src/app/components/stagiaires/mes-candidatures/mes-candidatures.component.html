@@ -22,13 +22,12 @@
             }">
                 <td>{{item?.offreStage?.societe?.nom}}</td>
                 <td>{{item?.offreStage?.titre}}</td>
-                <td>{{item?.datePostulation|date:'shortDate'}}</td>
+                <td>{{item?.datePostulation|date: 'dd/mm/yyyy'}}</td>
                 <td >
                     {{item?.status}}
                 </td>
                 <td>
                     <p-button icon="pi pi-times" [rounded]="true" severity="danger" (click)="supprimer(item?._id)"></p-button>
-                  <!-- <button pButton pRipple type="button" label="Supprimer" class="p-button-raised p-button-danger" (click)="supprimer(item?._id)"></button> -->
                 </td>
             </tr>
         </ng-template>

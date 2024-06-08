@@ -1,7 +1,7 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <h5>Mes Candidatures</h5>
+      <h5 class="flex align-items-center justify-content-center">Mes Candidatures Acceptées </h5>
       <p-table
         [value]="data"
         [tableStyle]="{ 'min-width': '50rem' }"
@@ -12,9 +12,7 @@
           <tr>
             <th>nom de candidats</th>
             <th>titre d'offre</th>
-            <th>datePostulation</th>
             <th>status du candidature</th>
-            <th>profil</th>
             <th>action</th>
           </tr>
         </ng-template>
@@ -23,17 +21,13 @@
           >
             <td>{{ item?.stagiaire?.nom }}</td>
             <td>{{ item?.offreStage?.titre }}</td>
-            <td>{{ item.datePostulation | date }}</td>
             <td>
               {{ item?.status }}
             </td>
-            <td>
-              <p-button label="Voir profil" icon="pi pi-user"></p-button>
+            <td> 
+              <button (click)="taches(item?._id)" class="btn btn-info">Suivre l'avancement</button>
             </td>
-            <td>
-              <button (click)="taches(item?._id)" class="btn btn-info">Liste taches</button>
 
-            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">

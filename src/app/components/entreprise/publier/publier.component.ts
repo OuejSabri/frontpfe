@@ -46,12 +46,12 @@ export class PublierComponent implements OnInit {
       this.offreSer.createOffre(data).subscribe(
         (res) => {
           console.log(data);
-          this.router.navigateByUrl('/company/mes-offres');
           Swal.fire({
             title: 'succes!',
             text: "L'offre a été ajoutée avec succès",
             icon: 'success',
           });
+          this.router.navigateByUrl('dashboard/company/mes-offres');
         },
         (err) => console.error(err)
       );
@@ -67,19 +67,7 @@ export class PublierComponent implements OnInit {
     this.offreSer.getOffreById(id).subscribe((res) => console.log(res));
   }
 
-  async deleteOffre(id: number) {
-    if (window.confirm('Voulez vous supprimer cette offre ?')) {
-      try {
-        await this.offreSer.deleteOffre(id);
-        alert("La suppression de l'offre a bien eu lieu");
-      } catch (error) {
-        console.error(
-          "Une erreur s'est produite lors de la suppression de l'offre :",
-          error
-        );
-      }
-    }
-  }
+
 
   updateOffre(id: number, data: any) {
     this.offreSer.updateOffre(id, data).subscribe(

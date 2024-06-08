@@ -1,0 +1,26 @@
+  <div class="container">
+<div class="card">
+  <div class="image-crop">
+          <img
+            id="avatar"
+            src="https://img.freepik.com/vecteurs-premium/concept-logo-soins-humains-style-couleur-vert-bleu-3d_364304-628.jpg?w=740"
+          />
+        </div>
+  <img src="" style="width:50%">
+  <h1><small>Societe:</small> {{profil?.user?.nom}}</h1>
+  <p class="title">Domaine: {{profil?.domaine}}</p>
+  <p></p>
+  <div class="row" style="margin: 24px 0;">
+    <p class="col">adresse: {{profil?.adresse}}</p>
+    <p class="col">ville: {{profil?.ville}}</p>
+    <p class="col">Zip: {{profil?.code_postal}}</p>
+  </div>
+  <div class="row">
+    <p class="col">Email: {{profil?.user?.email}}</p>
+    <p class="col">Téléphone: {{profil?.user?.telephone}}</p>
+    <p class="col">Fax: {{profil?.fax}}</p>
+  </div>
+  <p>Site web: {{profil?.site_web}}</p>
+  <p class="col">Description: {{profil?.description}}</p>
+</div>
+  </div>

@@ -1,33 +1,132 @@
-.card {
-    height: 100% !important;
-}
-
-.p-input-icon-left{
-    width: 40% !important;
-}
-
-.champ{
+.container-fluid{
+    background-image: url("https://img.freepik.com/photos-gratuite/fond-elegant-vide-espace-copie_24972-1807.jpg?t=st=1716902951~exp=1716906551~hmac=6ac6c57569a76672f73cc31e6406d2070355bc6d2841eaccd710f7b38eedadcf&w=996");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
     position: relative;
-    button{
-        position: absolute;
-        bottom: -25px;
-        right: 5px;
-        box-shadow: 2px 3px 2px rgb(167, 167, 167) ;
-    }
-  
+ 
+    z-index: -1;
+    
+   
+}
+// body {
+//     margin: 0;
+//     padding: 0;
+// }
+
+.container-header {
+    background-color:#eeeee9;
+    width:100%;
+    height: 600px;
 }
 
-.contener{
-    position: relative;
-    .date-fix{
-        position: absolute !important;
-        right: 15px;
-        top: 5px;
-    }
-    .user-fix{
-        position: absolute !important;
-        right: 15px;
-        top: 30px;
-    }
+.title {
+    text-align: center;
+    line-height: 77px;
+    font-size: 90px;
+    font-family: fjallaoneregular;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -5px;
+    line-height: 85px;
+    margin-bottom: 20px;
 }
 
+.paragraphetitre
+{
+	color: #898989;
+	text-align: center;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 20px;
+}
+.dégradé
+{
+	background: linear-gradient(120deg, #8b0ddf, #df8b26);
+	background-clip: border-box;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+}
+
+body {
+  font: 600 18px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+
+button {
+  position: fixed;
+  top: 600px;
+  right: 0px;
+  margin-right: -30px;
+  z-index: 999;
+  transform: rotate(-90deg);
+  animation: move 2s;
+  font-size: 18px;
+  border: 0;
+  background: #EA4B50;
+  border-radius: 12px;
+  box-shadow: 0 6px 0 rgb(155, 58, 53);
+  color: #fff;
+  cursor: pointer;
+  font: inherint;
+  margin-left: 0;
+  outline: 0;
+  padding: 12px 20px;
+  transition: all .1s linear;
+
+}
+
+@media (max-width: 500px) {
+  button {
+    @keyframes move {
+      to { top: 300px; }
+    }
+  }
+}
+
+button:hover {
+  box-shadow:0 1px 0 rgb(155, 58, 53);
+  margin-right: -33px;
+}
+
+button:focus {
+  box-shadow:0 1px 0 rgb(155, 58, 53);
+  margin-right: -33px;
+}
+h2 {
+  font-family: 'Arial', sans-serif; /* Utilise une police sans serif pour une apparence propre */
+  font-size: 24px; /* Taille de police plus grande pour un titre */
+  font-weight: bold; /* Met le texte en gras */
+  color: #333; /* Couleur de texte sombre pour un bon contraste */
+  margin-top: 20px; /* Espace en haut du titre */
+  margin-bottom: 20px; /* Espace en bas du titre */
+  padding: 10px; /* Espace intérieur autour du texte */
+  text-align: center; /* Centre le texte horizontalement */
+  background-color: #f4f4f4; /* Couleur de fond claire */
+  border: 1px solid #ddd; /* Bordure fine et grise */
+  border-radius: 8px; /* Coins légèrement arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée subtile pour ajouter de la profondeur */
+  transition: background-color 0.3s, color 0.3s; /* Transition douce pour les changements de couleur */
+}
+
+h2:hover {
+  background-color: #eaeaea; /* Change la couleur de fond lors du survol */
+  color: #000; /* Change la couleur du texte lors du survol */
+}
+
+
+    .contener {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .user-fix, .date-fix {
+      margin-bottom: 10px;
+    }
+    .champ {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }

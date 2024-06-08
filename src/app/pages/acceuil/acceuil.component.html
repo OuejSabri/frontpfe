@@ -1,41 +1,171 @@
-<div class="grid flex row grap-3 align-items-start justify-content-around">
-    <div class="col-12 flex row justify-content-center align-items-center">
-        <div class="card col-6 p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText placeholder="rechercher une offre" />
+<div class="container">
+  <div class="row my-4">
+    <div class="col-12 text-center">
+      <h1 class="title">
+        Bienvenue {{ currentuser?.nom }} !<br /><span class="dégradé"
+          >dans notre plateforme</span
+        >
+      </h1>
+      <p class="paragraphetitre">Trouvez une offre de stage sur-mesure</p>
+    </div>
+  </div>
+
+  
+ <div class="card ">
+    <div class="card-body text-center">
+      <h2>Parcourir liste des offres de stage</h2>
+      <p-toast></p-toast>
+      <div class="row">
+    <div class="col-6 offset-1">
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
         </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search ..."
+          aria-label="Search"
+        />
+      </div>
     </div>
-    <div class="card col-2 flex justify-content-center ">
-        <p-toast></p-toast>
-        <p-menu [model]="items" [style]="{width: '100%'}">
-            <ng-template pTemplate="item" let-item>
-                <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
-                    <div>
-                        <span> {{ item.label }}</span>
-                    </div>
-
-                </a>
-            </ng-template>
-        </p-menu>
-    </div>
-
-    <div class="col-8 flex row wrap  justify-content-start gap-5 ">
-        <div class="card col-4 " *ngFor="let item of offres">
+  </div>
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of offres">
+          <div class="card">
             <div class="card-body contener">
-                <h5 class="card-title">{{item.titre}}</h5>
-                <p class="card-text">Lieux : {{item.lieu}}</p>
-                <p class="card-text">{{item.description}}</p>
-                <p class="user-fix"><small class="text-muted"> Par {{item.societe.nom}}</small></p>
-                <p class="card-text">expired le {{item.date_dexpiration|date}}</p>
-                <p class="date-fix"><small class="text-muted">Le {{item.date |date }}</small></p>
+              <h5 class="card-title">{{ item.titre }}</h5>
+              <p class="card-text">Lieu : {{ item.lieu }}</p>
+              <p class="card-text">{{ item.description }}</p>
+              <p class="user-fix">
+                <small class="text-muted">Par {{ item.societe.nom }}</small>
+              </p>
+              <p class="card-text">
+                <i class="bi bi-calendar"></i> Expire le
+                {{ item.date_dexpiration | date : "yyyy-MM-dd HH:mm" }}
+              </p>
+              <p class="date-fix">
+                <small class="text-muted"
+                  ><i class="bi bi-calendar"></i> Le
+                  {{ item.date | date : "yyyy-MM-dd HH:mm" }}</small
+                >
+              </p>
             </div>
-            <div class="col-12 flex row align-content-end champ">
-                <div class="flex row align-items-center justify-content-start"><p-badge [value]="item.number_candidats"
-                        size="large" severity="success" class="col-1">
-                    </p-badge><span class="col-6">candidat(s)</span></div>
-                <button type="button" class="btn btn-primary col-5" (click)="getOffreById(item._id)">Voir plus</button>
+            <div class="champ">
+              <div>
+                <p-badge
+                  [value]="item.number_candidats"
+                  severity="success"
+                ></p-badge>
+                <span style="margin-left: 10px">candidat(s)</span>
+              </div>
+              <p-button (click)="getOffreById(item._id)">
+                <i class="bi bi-eye"></i> Voir plus
+              </p-button>
             </div>
-
+          </div>
         </div>
-
+      </div>
     </div>
+  </div></div></div>
+  
+
+  <div class="card mt-4">
+    <div class="card-body text-center">
+      <h2>Parcourir la liste des feedbacks</h2>
+      <p-toast></p-toast>
+      <app-liste-feedbacks></app-liste-feedbacks>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary mt-4"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    Feedback
+  </button>
+
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            Merci pour votre avis
+          </h1>
+          <p-button
+            icon="pi pi-times"
+            data-bs-dismiss="modal"
+            [rounded]="true" [text]="true"
+          ></p-button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addForm" method="post">
+            <div class="mb-3">
+              <i class="bi bi-chat-square-dots-fill"></i>
+            </div>
+            <p>
+              Si vous rencontrez un problème ou avez des suggestions à nous
+              faire, n'hésitez pas à nous contacter, nous vous répondrons dans
+              les plus brefs délais !
+            </p>
+            <div class="mb-3">
+              <label class="form-label">Nom</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom"
+                formControlName="nom"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Email"
+                formControlName="email"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Commentaire</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="Composer un commentaire"
+                formControlName="commentaire"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p-button
+            type="button"
+            [raised]="true" severity="secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </p-button>
+          <p-button
+            type="submit"
+            
+            (click)="envoyerFeedback()"
+          >
+            Envoyer
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@
         <td>{{ item.email }}</td>
         <td>{{ item.telephone }}</td>
         <td>
-          <button pButton pRipple label="profil" icon="pi pi-user"></button>
+          <button pButton pRipple label="profil" icon="pi pi-user" (click)="getProfilById(item?._id)"></button>
           <p-button
             pRipple
             label="supprimer"

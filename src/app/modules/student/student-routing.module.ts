@@ -8,6 +8,8 @@ import { SuiviCandidatureComponent } from 'src/app/components/stagiaires/suivi-c
 import { AcceuilComponent } from 'src/app/pages/acceuil/acceuil.component';
 import { PostulerComponent } from 'src/app/components/stagiaires/postuler/postuler.component';
 import { ParcourDeStageComponent } from 'src/app/components/stagiaires/parcour-de-stage/parcour-de-stage.component';
+import { VoirSocieteProfilComponent } from 'src/app/components/stagiaires/voir-societe-profil/voir-societe-profil.component';
+import { ListeSocieteComponent } from 'src/app/components/stagiaires/liste-societe/liste-societe.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,7 @@ const routes: Routes = [
     component: PostulerComponent,
   },
   {
-    path : 'parcoursStage',
+    path: 'parcoursStage',
     component: ParcourDeStageComponent,
   },
   {
@@ -51,8 +53,16 @@ const routes: Routes = [
     path: 'feedback',
     component: FeedbackComponent,
   },
+  {
+    path: 'listeSocietes',
+    component: ListeSocieteComponent,
+  },
+  {
+    path: 'societeProfil/:id',
+    component: VoirSocieteProfilComponent,
+  },
 ];
-
+;
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

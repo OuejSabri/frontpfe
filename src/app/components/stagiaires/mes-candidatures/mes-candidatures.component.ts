@@ -21,7 +21,6 @@ export class MesCandidaturesComponent implements OnInit {
         this.data = res.data
         console.log(this.data)
       });
-   
   }
   ngOnInit(): void {
     this.getAllCandidatures();
@@ -29,6 +28,7 @@ export class MesCandidaturesComponent implements OnInit {
   supprimer(id:any){
     this.candidatureService.deleteCandidature(id).subscribe((res:any)=>{
       console.log(res)
+      window.location.reload();
     })
   }
 

@@ -62,7 +62,7 @@ export class DetailOffreComponent implements OnInit {
     this.service.deleteOffre(this.idPost).subscribe((res) => {
       console.log(res);
     });
-    this.router.navigateByUrl('/dashboard/company');
+    this.router.navigateByUrl('/dashboard/company/mes-offres');
     Swal.fire({
       title: 'succes!',
       text: "L'offre supprimé avec success",
@@ -75,7 +75,7 @@ export class DetailOffreComponent implements OnInit {
     try {
       this.service.updateOffre(id, data).subscribe((res:any) => {
         console.log(res);
-        
+        window.location.reload();
       });
     } catch (error) {
       console.log(error);

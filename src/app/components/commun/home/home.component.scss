@@ -1,8 +1,11 @@
 
 body {
-  background-image: url('https://lintermediaire.ma/blog/wp-content/uploads/2018/05/8-etapes-pour-trouver-un-stage-lg-289-720x340.jpg');
+  background-image: //url('https://img.freepik.com/photos-gratuite/heureux-jeunes-hommes-affaires-femme-affaires-asie-reunis-pour-reflechir-nouvelles-idees-projet_7861-2775.jpg?t=st=1716764875~exp=1716768475~hmac=bd4c7b00e9fc786bbcc7fd834c5d16e7a5851ebd8abfd001f64488f3a0dc3b5a&w=1060');
+  linear-gradient(rgba(66, 69, 72, 0.5), rgba(255, 255, 255, 0.5)),
+  url('https://img.freepik.com/photos-gratuite/heureux-jeunes-hommes-affaires-femme-affaires-asie-reunis-pour-reflechir-nouvelles-idees-projet_7861-2775.jpg?t=st=1716764875~exp=1716768475~hmac=bd4c7b00e9fc786bbcc7fd834c5d16e7a5851ebd8abfd001f64488f3a0dc3b5a&w=1060');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   .container1 {
     position: relative;
 
@@ -18,29 +21,195 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: rgb(69, 68, 90); /* Couleur du texte */
-     font-size: 1.5em;
+    
+    color: rgb(40, 40, 41); /* Couleur du texte */
 }
 
+
 .content h1 {
+    font-size: 100px;
     margin-top: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .content p {
+    font-size: 30px;
     margin-top: 10px;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .content button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #0068d6; /* Couleur de fond du bouton */
-    color: rgb(0, 0, 0); /* Couleur du texte du bouton */
-    border: none;
-    border-radius: 5px;
+    
+    
+}
+.bb{
+
+    color: white;
     cursor: pointer;
+    border-width: 0;
+    box-shadow: none;
+    border-radius: 50px;
+    background-color: #222;
+    font-size: large;
+
+}
+.btn{
+    
+    
+
+}
+nav{
+    height: 90px;
+    background-color: #222;
+}
+.btn:hover {
+    
+    background-color: #65676a; /* Couleur de fond du bouton au survol */
 }
 
-.content button:hover {
-    background-color: #0056b3; /* Couleur de fond du bouton au survol */
+
+
+
+
+
+
+.row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
+
+.row .col50{
+    position: relative;
+    width: 48%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.row .col50 h2{
+    margin-bottom: 20px;
+}
+
+.titre-texte{
+    margin-top: 20px;
+    color: #000;
+    font-size: 5em;
+    font-weight: 300px;
+    text-transform: capitalize;
+}
+
+
+.row .col50 img{
+    height: 300px;
+    width: 1100px;
+    position: relative;
+    float: right;
+}
+.img{margin-right: 0;
+padding-right: 0;
+
+}
+.contact{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvzQHmkdLX9n7qv1h_T0wY96lvk2gbNGA2-g&usqp=CAU");
+    background-size: cover;
+    box-shadow: 2px 2px 12px rgba(0,0,0, 0.8);
+    width: 50%;
+    background-position:inherit;
+    align-items: center;
+    
+}
+
+.contactform{
+    width: 100%;
+}
+
+.contactform .inputboite{
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.contactform h3{
+    color: #111;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.contactform .inputboite input,
+.contactform .inputboite textarea{
+    width: 100%;
+    border: 1px solid #555;
+    padding: 10px;
+    color: #111;
+    outline: none;
+    font-size: 16px;
+    font-weight: 300;
+    resize: none;
+}
+
+.contactform .inputboite input[type="submit"]{
+    font-size: 1em;
+    font-weight: 700;
+    color: #ffff;
+    background: #2a4963;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    max-width: 120px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.copyright{
+    padding: 20px 40px;
+    border-top: 2px solid rgba(0,0,0, 0.1);
+    background: rgba(228,222,222,);
+    text-align: center;
+}
+
+.copyright p:nth-child(1){
+    color: #333;
+}
+
+.copyright a {
+    color: #fb911f;
+    text-decoration: none;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.contact .titre-text span{
+    color: #2a4963;
+    font-size: 2em;
+}
+
+header.sticky{
+    background: #fff;
+    padding: 10px 10px;
+    box-shadow: 0px 5px 20px rgba(0,0,0, 0.05);
+}
+
+header.sticky .logo{
+    color: #000;
+}
+
+header.sticky .navbar li a {
+    color: #000;
+}
+
+header.sticky li a:hover{
+    color: #fb911f;
+    border-bottom: 2px solid #fb911f;
+}
+
 

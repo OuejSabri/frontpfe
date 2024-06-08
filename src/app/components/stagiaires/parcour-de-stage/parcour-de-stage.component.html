@@ -1,51 +1,146 @@
-<div class="container-fluid">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Parcours de stage</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <div class="container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>pour faire</th>
-                                <th>Encore</th>
-                                <th>Terminer</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngIf="candidature?._id">
-                            <tr>
-                                <td>Upload lettre affectation</td>
-                                <td>
-                                    <input type="file" placeholder="Lettre affectation" (change)="onChangeFileLettre($event)" [multiple]="false">
-                                    <button  (click)="uploadAffectation()" class="action-button" [disabled]="lettreAffectation!=null">Add Lettre</button>
-                                </td>
-                                <td><input type="checkbox" id="step1Checkbox" [checked]="lettreAffectation!=null"></td>
-                                <!-- Cellule pour la case à cocher -->
-                            </tr>
-                            <tr class="details" >
-                                <td>Upload rapport</td>
-                                <td>
-                                    <input type="file" placeholder="Lettre affectation" (change)="onChangeFileRapport($event)">
-                                    <button   (click)="uploadRapport()" class="action-button" [disabled]="rapport!=null">Add rapport</button>
-                                </td>
-                                <td><input type="checkbox" id="step2Checkbox" [checked]="rapport!=null">
-                                </td>
-                            </tr>
-                            <tr class="details">
-                                <td>Training certificate</td>
-                                <td>
-                                    <button  [routerLink]="attestation?.filePath" class="action-button" [disabled]="attestation==null">Download</button>
-                                </td>
-                                <td><input type="checkbox" id="step4Checkbox" [checked]="attestation!=null"></td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+<!-- <div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Parcours de stage</h6>
     </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div class="container">
+          <table>
+            <thead>
+              <tr>
+                <th>Steps</th>
+                <th>Action</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="candidature?._id">
+              <tr>
+                <td>Upload lettre affectation</td>
+                <td>
+                  <input
+                    type="file"
+                    placeholder="Lettre affectation"
+                    (change)="onChangeFileLettre($event)"
+                    [multiple]="false"
+                  />
+                  <button
+                    (click)="uploadAffectation()"
+                    class="action-button"
+                    [disabled]="lettreAffectation != null"
+                  >
+                    Add Lettre
+                  </button>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="step1Checkbox"
+                    [checked]="lettreAffectation != null"
+                  />
+                </td>
+              </tr>
+              <tr class="details">
+                <td>Upload rapport</td>
+                <td>
+                  <input
+                    type="file"
+                    placeholder="Lettre affectation"
+                    (change)="onChangeFileRapport($event)"
+                  />
+                  <button
+                    (click)="uploadRapport()"
+                    class="action-button"
+                    [disabled]="rapport != null"
+                  >
+                    Add rapport
+                  </button>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="step2Checkbox"
+                    [checked]="rapport != null"
+                  />
+                </td>
+              </tr>
+              <tr class="details">
+                <td>Training certificate</td>
+                <td>
+                  <button
+                    [routerLink]="attestation?.filePath"
+                    class="action-button"
+                    [disabled]="attestation == null"
+                    (click)="getDownloadAttestation()"
+                  >
+                    Download
+                  </button>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="step4Checkbox"
+                    [checked]="attestation != null"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header">
+      <h2 class="text-primary flex align-items-center justify-content-center  ">Parcours de stage</h2>
+    </div>
+    <div class="card">
+      <p-timeline
+        [value]="events"
+        align="alternate"
+        styleClass="customized-timeline"
+      >
+        <ng-template pTemplate="marker" let-event>
+          <span
+            class="custom-marker shadow-2"
+            [style.backgroundColor]="event.color"
+          >
+            <i [ngClass]="event.icon"></i>
+          </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event>
+          <p-card [header]="event.status">
+            <p>{{ event.descrip }}</p>
+            <p *ngIf="event.isUploadRapport">
+              <input
+                type="file"
+                placeholder="Rapport de stage"
+                (change)="event.uploadCommand($event)"
+              />
+            </p>
+            <button
+              pButton
+              class="p-button-text"
+              (click)="event.command()"
+              *ngIf="!event.isUploadRapport"
+            >
+              {{ event.button }}
+            </button>
+            <button
+              pButton
+              class="p-button-text"
+              (click)="event.command()"
+              [disabled]="rapport != null"
+              *ngIf="event.isUploadRapport"
+            >
+              Ajouter rapport
+            </button>
+          </p-card>
+        </ng-template>
+      </p-timeline>
+    </div>
+  </div>
 </div>

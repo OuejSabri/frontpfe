@@ -13,7 +13,8 @@ import { DetailOffreComponent } from 'src/app/components/entreprise/detail-offre
 import { ListeCandidatureAccepteComponent } from 'src/app/components/entreprise/liste-candidature-accepte/liste-candidature-accepte.component';
 import { ListeStagiaireComponent } from 'src/app/components/entreprise/liste-stagiaire/liste-stagiaire.component';
 import { ListeFeedbacksComponent } from 'src/app/components/entreprise/liste-feedbacks/liste-feedbacks.component';
-
+import { AttestationComponent } from 'src/app/components/entreprise/attestation/attestation.component';
+import { VoirStagiaireProfilComponent } from 'src/app/components/entreprise/voir-stagiaire-profil/voir-stagiaire-profil.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ListeFeedbacksComponent } from 'src/app/components/entreprise/liste-fee
     DetailOffreComponent,
     ListeCandidatureAccepteComponent,
     ListeStagiaireComponent,
-    ListeFeedbacksComponent
+    ListeFeedbacksComponent,
+    AttestationComponent,
+    VoirStagiaireProfilComponent,
   ],
   imports: [
     CommonModule,

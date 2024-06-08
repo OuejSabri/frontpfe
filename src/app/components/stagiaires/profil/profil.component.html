@@ -1,4 +1,4 @@
-<!-- <section class="bg-light">
+<section class="bg-light">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 mb-4 mb-sm-5">
@@ -12,56 +12,34 @@
                 />
               </div>
               <div class="col-lg-6 px-xl-10">
-                <div
-                  class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded"
-                >
-                  <h3 class="h2 text-white mb-0">
-                    {{ currentUser?.nom }} {{ profileDetail?.prenom }}
-                  </h3>
-                  <span class="text-primary">{{ currentUser?.role }}</span>
+                <div *ngIf="profil" class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded" >
+                  <h3 class="h2 text-white mb-0">{{ profil.user.nom }}</h3>
+                  <span class="text-primary">{{ profil.department }}</span>
                 </div>
-                <ul class="list-unstyled mb-1-9">
+                <ul  *ngIf="profil" class="list-unstyled mb-1-9">
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >adresse:</span
-                    >
-                    {{ profileDetail?.adresse }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Adresse:</span>
+                    {{ profil.address }}
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >sexe:</span
-                    >
-                    {{ profileDetail?.sexe }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Sexe:</span>
+                    {{ profil.gender }}
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >date_naissance:</span
-                    >
-                    {{ profileDetail?.date_naissance | date }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Date de naissance:</span>
+                    {{ profil.dateOfBirth | date }}
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >cin:{{ profileDetail?.cin }}</span
-                    >
-                    {{ profileDetail?.cin }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Nationality:</span>
+                    {{ profil.nationality}}
                   </li>
                   <li class="mb-2 mb-xl-3 display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >Email:</span
-                    >
-                    {{ currentUser?.email }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+                    {{ profil.user.email}}
                   </li>
                   <li class="display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >Telephone:</span
-                    >
-                    {{ profileDetail?.telephone }}
-                  </li>
-                  <li class="display-28">
-                    <span class="display-26 text-secondary me-2 font-weight-600"
-                      >CV:</span
-                    >
-                    {{ profileDetail?.CV }}
+                    <span class="display-26 text-secondary me-2 font-weight-600">Téléphone:</span>
+                    {{ profil.user.telephone}}
                   </li>
                 </ul>
               </div>
@@ -71,138 +49,57 @@
                 pButton
                 pRipple
                 type="button"
-                label="Modifier profil"
+                label="Upload Votre CV"
                 class="p-button-outlined p-button-info col-3"
+                (click)="getDownloadCV()"
               ></button>
               <button
                 pButton
                 pRipple
                 type="button"
-                label="Modifier Mot de passe"
+                label="Generate Resume"
                 class="p-button-outlined p-button-info col-3"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-                (click)="modifierPassword()"
+                (click)="getGeneratedCV()"
               ></button>
 
-              <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">modifier le mot de passe</button>
-                <div
-                  class="modal fade"
-                  id="staticBackdrop"
-                  data-bs-backdrop="static"
-                  data-bs-keyboard="false"
-                  tabindex="-1"
-                  aria-labelledby="staticBackdropLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5">
-                          modifier votre mot de passe ?
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <form [formGroup]="addFormP" method="post">
-                          <div class="mb-3">
-                            <label class="form-label"
-                              >ancien mot de passe :</label
-                            >
-                            <input
-                              type="password"
-                              class="form-control"
-                              placeholder="****"
-                              formControlName="ancienMotDePasse"
-                            />
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label"
-                              >nouveau mot de passe :</label
-                            >
-                            <input
-                              type="password"
-                              class="form-control"
-                              placeholder="****"
-                              formControlName="nouveauMotDePasse"
-                            />
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label"
-                              >repeter mot de passe :</label
-                            >
-                            <input
-                              type="password"
-                              class="form-control"
-                              placeholder="****"
-                              formControlName="repMotDePasse"
-                            />
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Retour
-                        </button>
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          formmethod="post"
-                        >
-                          modifier
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
 </section>
 
-<div class="card">
-  <span class="text-900 text-xl font-bold mb-4 block"
-    >Modifier votre profile
-  </span>
+<div class="card col-12 flex align-items-center justify-content-center">
+  <div class="text-container">
+    <span class="text-900 text-xl font-bold mb-4 block">Modifier de votre profile</span>
+</div>
+
   <div class="grid">
     <div class="col-12 lg:col-10">
-      <form
-        [formGroup]="profileForm"
-        class="account-page-left shadow-sm bg-white h-100"
+      <form class="account-page-left shadow-sm bg-white h-100" [formGroup]="profilForm" (ngSubmit)="updateProfil()"
       >
-        <div class="grid formgrid p-fluid">
+        <div class="grid formgrid p-fluid" *ngIf="profil">
           <div class="field mb-4 col-12 md:col-4">
             <label for="nom" class="font-medium text-900">Nom </label>
             <input
               id="nom"
               type="text"
               pInputText
-              formControlName="nom"
-              [value]="currentUser?.nom"
+              [value]="profil.user.nom"
+              formControlName="fullName"
             />
           </div>
-
+      
           <div class="field mb-4 col-12 md:col-4">
             <label class="font-medium text-900">Prenom</label>
-            <input type="text" pInputText formControlName="prenom" />
+            <input type="text" pInputText  [value]="profil.user.nom" formControlName="fullName"/>
           </div>
           <div class="field mb-4 col-12 md:col-4">
-            <label class="font-medium text-900">Carte Cin</label>
-            <input type="number" pInputText formControlName="cin" />
+            <label class="font-medium text-900">nationality </label>
+            <input type="text" pInputText  [value]="profil.nationality" formControlName="nationality"/>
           </div>
           <div class="field mb-4 col-12 md:col-6">
             <label for="email" class="font-medium text-900">Email</label>
@@ -210,8 +107,8 @@
               id="email"
               type="text"
               pInputText
+              [value]="profil.user.email"
               formControlName="email"
-              [value]="currentUser?.email"
             />
           </div>
 
@@ -221,8 +118,8 @@
               id="city"
               type="text"
               pInputText
+              [value]="profil.user.telephone"
               formControlName="telephone"
-              [value]="currentUser?.telephone"
             />
           </div>
 
@@ -234,25 +131,23 @@
               id="city"
               type="date"
               pInputText
-              formControlName="date_naissance"
+              [value]="profil.dateOfBirth | date"
+              formControlName="dateOfBirth"
             />
           </div>
           <div class="field mb-4 col-12 md:col-6">
             <label class="font-medium text-900">sexe</label>
-            <select class="form-select" formControlName="sexe">
+            <select class="form-select" formControlName="gender">
               <option selected>sexe</option>
-              <option value="homme">homme</option>
-              <option value="femme">femme</option>
+              <option value="homme" [selected]="profil.gender === 'Male'"  [value]="profil.gender">homme</option>
+              <option value="femme"  [selected]="profil.gender === 'Female'" [value]="profil.gender">femme</option>
             </select>
           </div>
           <div class="field mb-4 col-12 md:col-4">
             <label for="city" class="font-medium text-900">Adresse</label>
-            <input id="city" type="text" pInputText formControlName="adresse" />
+            <input id="city" type="text" pInputText formControlName="address"  [value]="profil.address"/>
           </div>
-          <div class="field mb-4 col-12 md:col-4">
-            <label for="state" class="font-medium text-900">Ville</label>
-            <input id="state" type="text" pInputText />
-          </div>
+
           <div class="field mb-4 col-12 md:col-6">
             <label for="state" class="font-medium text-900"
               >etablissement</label
@@ -261,248 +156,71 @@
               id="state"
               type="text"
               pInputText
-              formControlName="etablissement"
+              [value]="profil.department"
+              formControlName="department"
             />
           </div>
-          <div class="field mb-4 col-12 md:col-6">
-            <label for="state" class="font-medium text-900">cv</label>
-            <input id="state" type="file" pInputText formControlName="cv" />
-          </div>
+          <!-- <div class="card flex justify-content-center field mb-4 col-12 md:col-6">
+             <label for="state" class="font-medium text-900">cv</label>
+            <input id="state" type="file" pInputText  /> -->
+            <!-- <p-toast></p-toast> -->
+    <!-- <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" maxFileSize="1000000">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+            </ul>
+        </ng-template>
+    </p-fileUpload> 
+          </div> -->
 
-          <div class="col-12">
+          <div class="col-12 text-center">
             <button
               pButton
               pRipple
-              label="save profile"
+              label="Update profile"
               class="w-auto mt-3"
-              (click)="enregistrer()"
+           
             ></button>
           </div>
         </div>
       </form>
     </div>
+    <div>            
   </div>
-</div> -->
- 
-  
-  <div class=" ml-20 mt-10 flex flex-col md:flex-row" > 
-  <ul class="nav flex-col nav-pills  ml-10 mr-10 mt-20 " id="myTab" role="tablist" >
-    <li class="nav-item ">
-      <a class="nav-link" href="javascript:;" 
-          id="general-tab" data-toggle="tab" role="tab" aria-controls="general"
-        aria-selected="true">
-        <i class="ft-settings mr-1 align-middle"></i>
-        <span class="align-middle">General</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="javascript:;"  
-        id="change-password-tab" data-toggle="tab" role="tab"
-        aria-controls="change-password" aria-selected="false">
-        <i class="ft-lock mr-1 align-middle"></i>
-        <span class="align-middle">Change Password</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="javascript:;"  
-        id="info-tab" data-toggle="tab" role="tab" aria-controls="info" aria-selected="false">
-        <i class="ft-info mr-1 align-middle"></i>
-        <span class="align-middle">Info</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="javascript:;"  
-         id="social-links-tab" data-toggle="tab" role="tab"
-        aria-controls="social-links" aria-selected="false">
-        <i class="ft-twitter mr-1 align-middle"></i>
-        <span class="align-middle">Social Links</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="javascript:;"  
-          id="connections-tab" data-toggle="tab" role="tab"
-        aria-controls="connections" aria-selected="false">
-        <i class="ft-link mr-1 align-middle"></i>
-        <span class="align-middle">Connections</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="javascript:;" 
-     id="notifications-tab" data-toggle="tab" role="tab"
-        aria-controls="notifications" aria-selected="false">
-        <i class="ft-bell mr-1 align-middle"></i>
-        <span class="align-middle">Notifications</span>
-      </a>
-    </li>
-  </ul>
+</div>
+<div class="b">
+        <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <i class="bi bi-key"></i> modifier le mot de passe</button>
+        
 
-  <div class="mt-[-60px] mb-20">
-
-<section class=" min-md:ml-20 md:ml-25 mt-2">
-  <div class="row">
-    <div class="col-10">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-
-            <ul ngbNav class="nav-tabs justify-content-left">
-              <li>
-                <a ngbNavLink class="nav-link d-flex align-items-center">
-                  <i class="ft-user mr-1"></i>
-                  <span class="d-none d-sm-block  text-[#975AFF] font-semibold mr-2">Account</span>
-                </a>
-
-
-                <div class="mt-2" id="account">
-
-                  <div class="media  ">
-                    <div class="media  flex ">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user edit avatar"
-                        class="users-avatar-shadow avatar mr-3 rounded-circle" height="84" width="84">
-
-                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                          <h3 class="h2 text-white mb-0">{{currentUser?.nom}} {{profileDetail?.prenom}}</h3>
-                          <span class="text-primary">{{currentUser?.role}}</span>
-                        </div>
-
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mod">modifier votre mot  de passe <i class="bi bi-file-earmark-lock2"></i></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="addFormP" method="post">
+                  <div class="mb-3">
+                      <label class="form-label">ancien mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="ancien mot de passe" formControlName="ancienMotDePasse" >
                     </div>
-
-
-
-                   
-                    <div class="media-body">
-
-                      <div class="d-flex flex-sm-row flex-column justify-content-start px-0 mt-4 mb-sm-2">
-                        <button class="btn btn-sm btn-primary mb-1 mb-sm-0">Change</button>
-                        <button class="btn btn-sm bg-light-secondary ml-sm-2">Reset</button>
-                      </div>
+                    <div class="mb-3">
+                      <label class="form-label">nouveau mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="nouveau mot de passe" formControlName="nouveauMotDePasse" >
                     </div>
-                  </div>
-
-                  <form [formGroup]="profileForm" >
-                    <div class="row">
-                      <div class="col-12 col-md-6">
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="username"> Name</label>
-                            <input type="text" id="username" class="form-control" placeholder=""
-                              value="{{currentUser?.prenom}}" required aria-invalid="false" formControlName="nom">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="age">Age</label>
-                            <input type="date" id="age" class="form-control" placeholder="Age"
-                              [value]="profileDetail?.date_naissance | date:'yyyy-MM-dd'" required aria-invalid="false"
-                              formControlName="date_naissance">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="users-edit-email">E-mail</label>
-                            <input type="email" id="email" class="form-control" placeholder="{{curretnUserId.email}}"
-                              formControlName="email" [value]=" profileDetail?.email  " aria-invalid="false">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="cin">CIN</label>
-                            <input id="cin" class="form-control" type="number" pInputText formControlName="cin"
-                              placeholder="cin" [value]="currentUser?.cin" required aria-invalid="false">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="users-edit-company">Ville </label>
-                            <input type="text" id="Etablissement" class="form-control" placeholder="Company Name"
-                              formControlName="ville" value="{{profileDetail?.ville}}">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="adresse">Adress</label>
-                            <input id="city" class="form-control" type="text" pInputText formControlName="adresse"
-                              placeholder="adresse" [value]="currentUser?.adresse" required aria-invalid="false">
-                          </div>
-                        </div>
-
-
-                      </div>
-
-
-
-                      <div class="col-12 col-md-6">
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="users-edit-role">Genre</label>
-                            <select id="sexe" class="form-control" formControlName="sexe" 
-                            required>
-                              <option value="homme">homme</option>
-                              <option value="femme" >femme</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="telephone"> phone</label>
-                            <input id="telephone" class="form-control" type="number" pInputText
-                              formControlName="telephone" placeholder="{{profileDetail?.telephone}}"
-                              value="{{profileDetail?.telephone}}" required aria-invalid="false">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="users-edit-company">Domaine </label>
-                            <input type="text" id="domaine" class="form-control" placeholder="Company Name"
-                              formControlName="domaine" value="{{profileDetail?.domaine}}">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="users-edit-company">Etablissement </label>
-                            <input type="text" id="Etablissement" class="form-control" placeholder="Company Name"
-                              value="{{profileDetail?.Etablissement}}">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <div class="controls">
-                            <label for="cv">Cv</label>
-                            <input type="file" id="cv" class="form-control" formControlName="cv" placeholder="CV.."
-                              (change)="onFileSelected($event)" value="profileDetail?.cv">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2 mb-30">
-                        <button type="submit" class="btn btn-primary mb-2 mr-3 mb-sm-0 mr-sm-2" (click)="enregistrer()">Save
-                          Changes</button>
-                        <button type="reset" class="btn btn-secondary mb-30" >Cancel</button>
-                      </div>
+                    <div class="mb-3">
+                      <label class="form-label">repeter mot de passe :</label>
+                      <input type="password" class="form-control" placeholder="confirm mot de passe" formControlName="repMotDePasse" >
                     </div>
-                  </form >
-
-                </div>
-
-
-              </li>
-              <li>
-
-
-              </li>
-            </ul>
-            <div  >
-
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn bb" (click)="modifierPassword()" formmethod="post">modifier</button>
+                <button type="button" class="btn bb" data-bs-dismiss="modal">Retour</button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-  </div></div>
+        </div>   
+      </div> 

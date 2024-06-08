@@ -28,10 +28,7 @@ export class EducationService {
     return localStorage.getItem('accessToken');
   }
   update(data: any) {
-    return this.http.put(
-      `${this.apiURL}/educations/updateEducation/${data._id}`,
-      data
-    );
+    return this.http.put(`${this.apiURL}/educations/updateEducation/${data._id}`,data);
   }
   delete(id: any) {
     const token = this.getTokenFromLocalStorage();

@@ -1,13 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FeedbackService } from 'src/app/services/feedback.service';
+import Swal from 'sweetalert2';
 
-export interface Comment {
-  image?: string;
-  nom?: string;
-  email?: string;
-  date?: string;
-  commentaire?: string;
-}
 @Component({
   selector: 'app-liste-feedbacks',
   templateUrl: './liste-feedbacks.component.html',
@@ -15,41 +10,27 @@ export interface Comment {
 })
 export class ListeFeedbacksComponent implements OnInit {
   data: any;
-  responsiveOptions: any[] | undefined;
-  @Input() comments: Comment[] = [];
 
-  rowCount = 3;
-
-  constructor(private feedbackS: FeedbackService) {}
+  constructor(private feedbackS: FeedbackService, private router: Router) {}
   ngOnInit() {
     this.getAllfeedbacks();
-
-     this.responsiveOptions = [
-            {
-                breakpoint: '1199px',
-                numVisible: 1,
-                numScroll: 1
-            },
-            {
-                breakpoint: '991px',
-                numVisible: 2,
-                numScroll: 1
-            },
-            {
-                breakpoint: '767px',
-                numVisible: 1,
-                numScroll: 1
-            }
-        ];
-    }
-
-    
-  
+  }
   getAllfeedbacks() {
     this.feedbackS.getAllFeedback().subscribe((res: any) => {
       this.data = res.data;
       console.log(this.data);
     });
   }
-  
+
+  deleteItem(id: any) {
+    this.feedbackS.deleteFeedback(id).subscribe((res: any) => {
+      console.log(res)
+      Swal.fire({
+            title: 'succes!',
+            text: "L'offre a été ajoutée avec succès",
+            icon: 'success',
+          });
+          this.router.navigateByUrl('dashboard/admin/liste-feedbacks');
+        })
+      }
 }

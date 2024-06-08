@@ -15,8 +15,17 @@ body{margin-top:20px;}
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0.25rem;
+    margin-top: -8%;
 }
-
+.text-container {
+    text-align: center;
+}
+.grid{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; 
+ }
 section {
     padding: 120px 0;
     overflow: hidden;
@@ -103,7 +112,41 @@ section {
     border-radius: 0.25rem!important;
 }
 
+.b{
+    background-color: transparent;
+    border:1.5px solid rgb(66, 66, 67);
+ 
+    justify-content: center;
+    border-radius: 30px;
+    
+    display: flex;
+    flex-direction: row;
+}
 
- .ft-twitter:before {
-    content: "\e8e0";
+label{
+    text-transform: capitalize;
+    margin-top: 7px;
+    
+}
+
+// .modal{
+//      background-image: linear-gradient(to bottom right, rgb(163, 194, 227), rgb(189, 190, 199),rgb(83, 83, 143));
+
+// }
+.modal-content{
+    background-image: linear-gradient(to bottom right, rgb(117, 153, 192), rgb(143, 144, 155),rgb(65, 65, 118));
+    justify-content: center;
+    align-items: center;
+}
+.bb{
+    background-color: transparent;
+    color:white;
+    border:1.5px solid black ;
+    align-items: center;
+    width: 100%;
+}
+
+#mod{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(88, 90, 91);
 }

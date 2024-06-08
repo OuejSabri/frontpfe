@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProfilService } from 'src/app/services/profil.service';
+import { Router } from '@angular/router';
+
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -12,11 +12,7 @@ import Swal from 'sweetalert2';
 export class NosEntreprisesComponent implements OnInit {
   data: any[] = [];
   index: any;
-  constructor(
-    private service: ProfilService,
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService, private router : Router) {}
   ngOnInit(): void {
     this.getAllSociete();
   }
@@ -28,7 +24,7 @@ export class NosEntreprisesComponent implements OnInit {
   }
   deleteItem(id: any) {
     this.userService.deleteUser(id).subscribe((res: any) => {
-      console.log(res.status)
+      window.location.reload();
       Swal.fire({
         title: 'succes!',
         text: 'Profile deleted',
@@ -36,9 +32,7 @@ export class NosEntreprisesComponent implements OnInit {
       });
     });
   }
-  getProfilById(id:any){
-    this.userService.getOne(id).subscribe((res:any)=>{
-      console.log(res.data)
-      })
+  getProfilById(id: any) {
+    this.router.navigateByUrl(`/dashboard/student/societeProfil/${id}`);
   }
 }

@@ -1,5 +1,17 @@
+<body>
+  <div class="col-11">
+<h1 style="text-align: center; margin-top:7%; text-transform:uppercase; font-size:xx-large">
+  Creer votre compte 
+</h1>
 <div class="container-fluid flex row mt-5 align-items-center justify-content-center">
-  <div class="card col-6 p-5 align-items-center justify-content-center gap-2">
+  <div class="col-3 " >
+    <img src="https://cdn.icon-icons.com/icons2/2104/PNG/512/startup_icon_129421.png" alt="">
+  </div>
+  <div class="card col-5 p-5 align-items-center justify-content-center gap-2" style="
+  border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);">
     <h1>Inscription</h1>
     <form class="gap-2 d-flex row justify-content-between" [formGroup]="addForm">
 
@@ -19,7 +31,7 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <h6 class="mb-2 pb-1">Role: </h6>
+          <h6 class="mb-2 pb-1" style="color: white;">Role: </h6>
           <select class="select form-control" formControlName="role">
             <option selected value="stagiaire">stagiaire</option>
             <option value="societe">societe</option>
@@ -50,12 +62,15 @@
 
 
       <div class="d-flex justify-content-center align-items-center mt-3">
-        <button type="submit" (click)="register()" class="btn btn-primary btn-lg">s'inscrire</button>
+        <button type="submit" (click)="register()" class="btn btn-primary btn-lg" id="b">s'inscrire</button>
       </div>
       <div>
-        <p class="text-center text-muted mt-5 mb-0">Avez-vous déjà un compte ? <a href="/auth"
+        <p class="text-center text-muted mt-5 mb-0" style="color: white;">Avez-vous déjà un compte ? <a href="/auth"
             class="fw-bold text-body" redirectTo="app-register"><u>connectez-vous</u></a> ici</p>
       </div>
     </form>
   </div>
 </div>
+
+</div>
+</body>

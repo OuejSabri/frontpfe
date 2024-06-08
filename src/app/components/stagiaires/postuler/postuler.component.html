@@ -42,7 +42,7 @@
                 <form [formGroup]="addForm" method="post">
                   <div class="mb-3">
                     <label class="form-label">Nom Complete</label>
-                    <input type="text" class="form-control" placeholder="Ouej Sabri" formControlName="nom">
+                    <input type="text" class="form-control" placeholder="nom" formControlName="nom">
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Votre email</label>
@@ -59,16 +59,22 @@
                   <div class="row">
                     <div class="col-md-6">
                       <label for="date" class="form-label">Date début</label>
-                      <div class="input-group date" id="datepicker">
+                      <div class="input-group date" >
                         <input id="startDate" class="form-control" type="date" formControlName="date_debut" />
                       </div>
+                      <!-- <div *ngIf="addForm.get('date_debut')?.hasError('minDate') && addForm.get('date_debut')?.touched">
+                               La date de début doit être aujourd'hui ou plus tard.
+                       </div> -->
                     </div>
 
                     <div class="col-md-6">
                       <label for="date" class="form-label">Date fin</label>
-                      <div class="input-group date" id="datepicker">
-                        <input id="startDate" class="form-control" type="date" formControlName="date_fin" />
+                      <div class="input-group date">
+                        <input class="form-control" type="date" formControlName="date_fin" />
                       </div>
+                      <!-- <div *ngIf="addForm.hasError('dateRange') && addForm.get('date_fin')?.touched">
+                               La date de fin doit être après la date de début.
+                       </div> -->
                     </div>
                   </div>
                 </form>

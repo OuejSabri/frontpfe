@@ -31,7 +31,7 @@ export class ListeCandidatureAccepteComponent implements OnInit {
   getAllPostulations() {
     const currentIdUser = this.authService.getUserId();
     this.candidatureService
-      .getMesCandidatures(currentIdUser)
+      .getAll()
       .subscribe((res: any) => {
         this.data = this.filterCandidature(res.data);
         console.log(this.data);

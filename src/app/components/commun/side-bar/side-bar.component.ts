@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,6 +12,8 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 })
 export class SideBarComponent implements OnInit {
   sidebarVisible: boolean = false;
+  currentuser:any;
+  user: any;
   items: MenuItem[] = [];
   items1: MenuItem[] = [];
   items2: MenuItem[] = [];
@@ -19,8 +22,12 @@ export class SideBarComponent implements OnInit {
   constructor(
     private sAuth: AuthService,
     private router: Router,
-    private sideService: SidebarService
+    private sideService: SidebarService,
+    private userservice : UserService
   ) {
+    this.currentuser= this.userservice.getuser().subscribe((res:any)=>{
+      this.user = res.data
+    })
     this.role = sAuth.getRole();
     this.sideService.getSideBar().subscribe((res) => {
       this.sidebarVisible = res;
@@ -29,9 +36,9 @@ export class SideBarComponent implements OnInit {
       {
         label: 'Home',
         icon: 'pi pi-fw pi-home',
-        command:()=>{
-          this.router.navigate(['/dashboard/company'])
-        }
+        command: () => {
+          this.router.navigate(['/dashboard/company']);
+        },
       },
       {
         label: 'Liste de mes offres',
@@ -70,13 +77,13 @@ export class SideBarComponent implements OnInit {
           );
         },
       },
-      // {
-      //   label: 'Events',
-      //   icon: 'pi pi-fw pi-calendar',
-      //   command: () => {
-      //     this.router.navigateByUrl('/dashboard/evenements');
-      //   },
-      // },
+      {
+        label: 'Espace téléchargement',
+        icon: 'pi pi-fw pi-calendar',
+        command: () => {
+          this.router.navigateByUrl('/dashboard/company/attestation');
+        },
+      },
       {
         label: 'Profil',
         icon: 'pi pi-fw pi-id-card',
@@ -94,6 +101,13 @@ export class SideBarComponent implements OnInit {
         },
       },
       {
+        label: 'Liste des sociétés',
+        icon: 'pi pi-fw pi-users',
+        command: () => {
+          this.router.navigateByUrl('/dashboard/student/listeSocietes');
+        },
+      },
+      {
         label: 'mes candidatures',
         icon: 'pi pi-fw pi-file',
         command: () => {
@@ -102,7 +116,7 @@ export class SideBarComponent implements OnInit {
       },
       {
         label: 'Creer CV',
-        icon: 'pi pi-fw pi-users',
+        icon: 'pi pi-id-card',
         command: () => {
           this.router.navigateByUrl('/dashboard/student/cv');
         },
@@ -121,13 +135,7 @@ export class SideBarComponent implements OnInit {
           this.router.navigateByUrl('/dashboard/student/parcoursStage');
         },
       },
-      {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-        command: () => {
-          this.router.navigateByUrl('/dashboard/evenements');
-        },
-      },
+
       {
         label: 'Profil',
         icon: 'pi pi-fw pi-id-card',

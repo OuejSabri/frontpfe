@@ -1,0 +1,29 @@
+<div class="card">
+  <p-carousel
+    [value]="data"
+    [numVisible]="4"
+    [numScroll]="3"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-user pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-2 px-2">
+        <div class="card-head"></div>
+        <div class="image-crop">
+          <img
+            id="avatar"
+            src="https://img.freepik.com/vecteurs-premium/concept-logo-soins-humains-style-couleur-vert-bleu-3d_364304-628.jpg?w=740"
+          />
+        </div>
+        <h1>{{ user.nom }}</h1>
+        <div class="row">
+          <p class="col">Email: {{ user.email }}</p> 
+          <p class="col">Téléphone: {{ user.telephone }}</p>
+        </div>
+        <div id="buttons">
+          <a class="button" (click)="getProfilById(user._id)">Profil</a>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

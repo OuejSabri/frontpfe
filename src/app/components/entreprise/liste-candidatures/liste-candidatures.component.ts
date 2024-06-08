@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService, PrimeIcons } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatureService } from 'src/app/services/candidature.service';
-import { PostulerService } from 'src/app/services/postuler.service';
 
 
 @Component({
@@ -13,54 +11,41 @@ import { PostulerService } from 'src/app/services/postuler.service';
 })
 export class ListeCandidaturesComponent implements OnInit {
   data: any;
-  currentIdUser:any;
-
+  currentIdUser: any;
   selectedCandidat: any;
-
+  candidaturesTriees:any;
   constructor(
-    private messageService: MessageService,
     private candidatureService: CandidatureService,
-    private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.currentIdUser = this.authService.getUserId();
   }
 
-  getAllPostulations() {
-    const currentIdUser = this.authService.getUserId();
-    this.candidatureService
-      .getMesCandidatures(currentIdUser)
-      .subscribe((res: any) => {
-        this.data = this.filterCandidature(res.data);
-        console.log(this.data);
-      });
-  }
   ngOnInit(): void {
     this.getAllPostulations();
   }
 
-  // save(severity: string) {
-  //   this.messageService.add({
-  //     severity: severity,
-  //     summary: 'Success',
-  //     detail: 'Candidature accepté',
-  //   });
-  // }
-
+  getAllPostulations() {
+    const currentIdUser = this.authService.getUserId();
+    this.candidatureService.getAll().subscribe((res: any) => {
+      this.data = this.filterCandidature(res.data);
+      console.log(this.data);
+      this.candidaturesTriees = this.trierCandidatures(this.data);
+    });
+  }
   refuser(id: any) {
     this.candidatureService.refuserCandidature(id).subscribe((res: any) => {
       this.data = res.data;
+      window.location.reload();
     });
   }
 
   accepter(id: any) {
     this.candidatureService.accepterCandidature(id).subscribe((res: any) => {
       this.data = res.data;
+      window.location.reload();
     });
-  }
-
-  selectCandidat(item: any) {
-    this.selectedCandidat = item;
   }
 
   filterCandidature(data: any[]) {
@@ -68,5 +53,15 @@ export class ListeCandidaturesComponent implements OnInit {
     return data.filter(
       (item: any) => item?.offreStage?.societe._id === this.currentIdUser
     );
+  }
+  trierCandidatures(candidatures: any[]) {
+    const ordreStatuts = ['en_attente', 'accepter', 'refuser'];
+    return candidatures.sort((a, b) => {
+      return ordreStatuts.indexOf(a.statut) - ordreStatuts.indexOf(b.statut);
+    });
+  }
+
+  getProfilById(id: any) {
+    this.router.navigateByUrl(`/dashboard/company/profilStagiaire/${id}`);
   }
 }

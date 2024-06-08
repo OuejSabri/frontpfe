@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfilService } from 'src/app/services/profil.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -39,8 +40,6 @@ export class ListeStagiaireComponent {
     });
   }
   getProfilById(id: any) {
-    this.serviceUser.getOne(id).subscribe((res: any) => {
-      console.log(res.data);
-    });
+    this.router.navigateByUrl(`/dashboard/company/profilStagiaire/${id}`);
   }
 }

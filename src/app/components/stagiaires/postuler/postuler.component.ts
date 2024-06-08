@@ -7,6 +7,7 @@ import { CandidatureService } from 'src/app/services/candidature.service';
 import { OffreService } from 'src/app/services/offre.service';
 import { PostulerService } from 'src/app/services/postuler.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-postuler',
@@ -47,7 +48,7 @@ export class PostulerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.curretnUser = this.userService.getOne(this.curretnUserId).subscribe((res:any)=>{
+    this.curretnUser = this.userService.getuser().subscribe((res:any)=>{
       this.postDetail = res.data;
       this.addForm.patchValue(this.postDetail)
     })
@@ -55,11 +56,10 @@ export class PostulerComponent implements OnInit {
       console.log(res);
       this.data = res;
     });
+    console.log(this.curretnUser)
   }
 
   getOffreById(id: number) {
-    id: this.data.id;
-    console.log("l'id est " + id);
     this.service.getOffreById(id).subscribe((data) => {
       this.data = Object.values(data);
     });
@@ -69,8 +69,12 @@ export class PostulerComponent implements OnInit {
     let formData = this.addForm.getRawValue();
     if (this.addForm.valid) {
       this.candidatureService.create(formData).subscribe((res) => {
-        alert("L'offre a été postulé avec succès");
-        console.log(formData);
+        Swal.fire({
+          title: 'succes!',
+          text: "L'offre a été postulé avec succès",
+          icon: 'success',
+        });
+        window.location.reload();
       });
     } else {
       console.log('Veuillez vérifier les champs');

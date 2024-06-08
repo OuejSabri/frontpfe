@@ -10,78 +10,68 @@
 <!-- Ajoutez vos styles personnalisés ici -->
 
 
-
-
-
+<link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css"
+  integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
 
 
 
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <form class="account-page-left shadow-sm bg-white h-100" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <form class="account-page-left shadow-sm bg-white h-100" [formGroup]="profilForm" (ngSubmit)="onSubmit()">
         <div class="border-bottom p-4">
           <div class="user text-center">
             <div class="user-media">
               <h5>Please provide a photo of yourself</h5>
               <label class="upload-btn" for="image">
-                <input type="file" id="image" >
+                <input type="file" id="image">
                 <img src="assets/images/user.avif" alt="" class="upload-icon">
               </label>
               <div class="user-media-body">
+                <label for="nom">FullName:</label>
+              <input type="text" id="nom" name="nom" placeholder=" Your FullName" disabled="true" [value]="user.nom"/>
                 <label for="telephone">Phone:</label>
                 <input disabled="true" type="tel" id="telephone" name="telephone" placeholder="Your number" [value]="user.telephone">
-                
+    
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Your email" disabled="true" [value]="user.email">
                 
                 <p class="mb-1"></p>
                 <p class="mb-0 text-black font-weight-bold">
-                  <a class="text-primary mr-3"  href="#"><i class="icofont-ui-edit"></i> EDIT</a>
+                  <!-- <a class="text-primary mr-3" href="#"><i class="icofont-ui-edit"></i> EDIT</a> -->
                 </p>
                 <br>
               </div>
             </div>
           </div>
         </div>
+    
         <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
           <li class="nav-item">
-            <div class="section section-informations-personnelles">
-              
+            <div class="section section-informations-personnelles" >
               <h2>Personal information</h2>
-              <label for="nom">FullName:</label>
-              <input type="text" id="nom" name="nom" placeholder=" Your FullName" disabled="true" [value]="user.nom">
-              <label for="pays">Nationality:</label>
-              <input  type="text" id="pays" name="pays" placeholder=" Your Nationality ">
-              <label for="date">Date of Birth:</label>
-              <input  type="date" id="date" name="date"
-                placeholder=" Your date of birth"><br>
-              <label for="adresse">Adresse:</label>
-              <input  type="text" id="adresse" name="adresse" placeholder="Your adresse">
-              <label for="dep">Departement:</label>
-              <input  type="text" id="dep" name="dep" placeholder="Your Departement">
-              <label for="contactChoice2">Gender:</label>
-
-              <label for="contactChoice2">Male</label>
-              <input type="radio" id="contactChoice3" name="gender" value="MALE"
-                class="gender-input" />
-              <label for="contactChoice3">Female</label>
-              <input  type="radio" id="contactChoice2" name="gender" value="FEMALE"
-                class="gender-input" />
-
-              <div class="worm">
-                <div class="worm__segment"></div>
-              </div>
               
+              <label for="pays">Nationality:</label>
+              <input type="text" id="pays" name="pays" placeholder=" Your Nationality " formControlName="nationality"[value]="profil?.nationality">
+              <label for="date">Date of Birth:</label>
+              <input type="date" id="date" name="date" placeholder=" Your date of birth" formControlName="dateOfBirth"[value]="profil?.dateOfBirth"><br>
+              <label for="adresse">Address:</label>
+              <input type="text" id="adresse" name="adresse" placeholder="Your address" formControlName="address" [value]="profil?.address">
+              <label for="dep">Department:</label>
+              <input type="text" id="dep" name="dep" placeholder="Your Department" formControlName="department"[value]="profil?.department">
+              <label for="gender">Gender:</label>
+    
+              <label for="contactChoice2">Male</label>
+              <input type="radio" id="contactChoice3" name="gender" value="Male" class="gender-input" formControlName="gender" [checked]="profil?.gender === 'Male'"/>
+              <label for="contactChoice3">Female</label>
+              <input type="radio" id="contactChoice2" name="gender" value="Female" class="gender-input" formControlName="gender" [checked]="profil?.gender === 'Female'"/>
             </div>
+            <button type="submit" class="btn-primary m-3">Save Profile</button> 
           </li>
         </ul>
-
-        <button type="submit" class="btn-primary m-3">save profile</button>
       </form>
-
     </div>
-
+    
     <div class="col-md-8">
       <div class="table table-bordered" width="100%" cellspacing="0">
 
@@ -109,8 +99,8 @@
                   <tr *ngFor="let education of educations">
                     <td>{{ education.institut }}</td>
                     <td>{{ education.domaineEtude }}</td>
-                    <td>{{ education.dateDebut }}</td>
-                    <td>{{ education.dateFin }}</td>
+                    <td>{{ education.dateDebut | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{ education.dateFin | date: 'yyyy-MM-dd'}}</td>
                     <td>
                       <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                       <button type="button" class="btn btn-danger" (click)="deleteEducation(education._id)">Delete</button>
@@ -149,8 +139,8 @@
                     <tr *ngFor="let experiences of experience">
                       <td>{{ experiences.entreprise }}</td>
                       <td>{{ experiences.poste }}</td>
-                      <td>{{ experiences.dateDebut }}</td>
-                      <td>{{ experiences.dateFin }}</td>
+                      <td>{{ experiences.dateDebut| date: 'yyyy-MM-dd' }}</td>
+                      <td>{{ experiences.dateFin| date: 'yyyy-MM-dd' }}</td>
                       <td>{{ experiences.description }}</td>
                       <td>
                         <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
@@ -189,7 +179,7 @@
                   <tr *ngFor="let projet of projet">
                     <td>{{ projet.titre }}</td>
                     <td>{{ projet.description }}</td>
-                    <td>{{ projet.date }}</td>
+                    <td>{{ projet.date | date: 'yyyy-MM-dd'}}</td>
                  
                     <td>
                       <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
@@ -220,8 +210,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let certificat of certificat">
-                    <td>{{ certificat.domaine }}</td>
-                    <td>{{ certificat.date }}</td>
+                    <td>{{ certificat.domain}}</td>
+                    <td>{{ certificat.date | date: 'yyyy-MM-dd'}}</td>
                  
                     <td>
                       <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">    
+   <div class="card-header py-3">
+            <h6 class="flex align-items-center justify-content-center text-primary">Espace téléchargement</h6>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <div class="container">
+                <div class="header">
+                    
+                    <h1>imprimer lettre d'affectation</h1>
+                </div>
+                <div class="form-container">
+                    <form (ngSubmit)="downloadAffectation()">
+                        <label for="stagiaire">Stagiaire:</label>
+                        <select id="stagiaire" name="stagiaire" [value]="data" [(ngModel)]="item">
+                            <option value="">Choisir un stagiaire...</option>
+                            <option *ngFor="let item of data" [value]="item._id" >{{ item?.stagiaire?.nom }}</option>
+                        </select>
+                        <button type="submit" class="btn-print">Imprimer</button>
+                    </form>
+                </div>
+            </div>
+            <div><br></div>
+            <div class="container">
+                <div class="header">
+                    
+                    <h1>imprimer l'attestation</h1>
+                </div>
+                
+                <div class="form-container">
+                    <form (ngSubmit)="downloadAttestation()">
+                        <label for="stagiaire">Stagiaire:</label>
+                        <select id="stagiaire" name="stagiaire" [value]="data" [(ngModel)]="item">
+                            <option value="">Choisir un stagiaire...</option>
+                            <option *ngFor="let item of data" [value]="item._id" >{{ item?.stagiaire?.nom }}</option>
+                        </select>
+                        <button type="submit" class="btn-print">Imprimer</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+

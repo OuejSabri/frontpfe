@@ -1,12 +1,30 @@
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+
+
+body {
+	margin:0;
+	color:#edf3ff;
+	background:#c8c8c8;
+	background:url("https://img.freepik.com/photos-gratuite/fond-texture-abstrait_1258-30506.jpg?t=st=1716806927~exp=1716810527~hmac=d3e4f90e3b24d22ded3e6b3275ddf7f598ae600023e180035889325d66197678&w=740") fixed;
+	background-size: cover;
+	font:600 16px/18px 'Open Sans',sans-serif;
+    height: 100vh;
+    margin-top: 0;
 }
-
-
+a{color:white;text-decoration:none,
+}
+label,p,h1{
+    color : white;
+    font-size: large;
+    
+}
+#b{
+    background-color: rgb(103, 109, 115);
+    text-transform:uppercase;
+    color: white;
+    background-color: transparent;
+    border: 2px solid ;
+    border-radius: 30px;
+}
 
 // @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
 // * {

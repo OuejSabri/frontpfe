@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <p-button (click)="toggleSideBar()" icon="pi pi-bars" class="p-3"></p-button>
-    <a class="navbar-brand">Mon Stage </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: rgb(43, 81, 152);">
+  <div class="container-fluid">
+    <button (click)="toggleSideBar()"  pButton style="border-radius:  50%; width : 40px; height : 40px;"s icon="pi pi-bars" class="p-3"></button>
+    <a class="navbar-brand" style="margin-left: 20px; color:azure">Mon Stage </a>
+    <button class="navbar-toggler" style="border-radius:  50px;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,7 +22,7 @@
         </li> -->
       </ul>
       <ul class="navbar-nav">
-        <a class="nav-link" type="button" (click)="logOut()">Se déconnecter</a>
+        <a class="nav-link" type="button" (click)="logOut()" style="color:azure"> Se déconnecter <i class="bi bi-box-arrow-right"></i></a>
       </ul>
     </div>
   </div>

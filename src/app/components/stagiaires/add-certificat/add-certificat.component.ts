@@ -24,6 +24,7 @@ export class AddCertificatComponent {
         response => {
           window.alert('Certificat added successfullys')
           console.log('Certificat added successfully', response);
+          window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
         },
         error => {

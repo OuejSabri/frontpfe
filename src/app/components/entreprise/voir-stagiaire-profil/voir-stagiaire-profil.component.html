@@ -1,0 +1,38 @@
+      <div class="border-1 surface-border border-round m-2 text-center py-2 px-2">
+        <div class="card-head flex  align-items-center justify-content-star">
+          <a type="button" href="javascript:history.go(-1)" style="font-size:medium;text-transform:uppercase;
+         color:rgb(62, 60, 60);
+         text-decoration:underline black">retour</a>
+        </div>
+        <div class="image-crop" >
+          <img
+            id="avatar"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQeiaHbUGJugv5Q5BmOeL5E34atimV6HZ0Knw&usqp=CAU"
+          />
+        </div>
+        <div *ngIf="profil">
+        <h1>{{ profil?.user?.nom }}</h1>
+        <div class="row">
+          <p class="col">Email: {{ profil?.user?.email }}</p> 
+          <p class="col">Téléphone: {{ profil?.user?.telephone }}</p>
+        </div>
+        <div class="row">
+          <p class="col">gender: {{profil?.gender}}</p>
+          <p class="col">date Naissance: {{profil?.dateOfBirth |date}}</p>
+        </div>
+        <div class="row">
+          <p class="col">Nationalité: {{profil?.nationality}}</p>
+          <p class="col">Adresse: {{profil.address}}</p>
+          <p class="col">Department: {{profil?.department}}</p>
+        </div>
+        <div class="row">
+          <p-button  (click)="getDownloadCV(profil.user._id)">get CV</p-button>
+        </div>
+        </div>
+      </div>
+
+
+      
+
+
+

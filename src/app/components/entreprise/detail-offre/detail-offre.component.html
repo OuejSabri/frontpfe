@@ -1,47 +1,56 @@
-<div class="container">
-  <div class="row">
+<div class="container " style="margin-top: 150px;
+">
+  
+  <div class="row" >
     <div
       class="card col-md-10"
       [ngClass]="{
         disponible: data?.status == 'disponible',
         indisponible: data?.status == 'indisponible'
-      }"
+      }"  style="box-shadow: 10px 5px 5px rgb(183, 189, 213);"
     >
       <div
         class="card-body col-12 row align-items-center justify-content-center"  
       >
-        <a type="button" href="javascript:history.go(-1)">retour</a>
+        <a type="button" href="javascript:history.go(-1)" style="font-size:medium;text-transform:uppercase;
+         color:rgb(62, 60, 60);
+         text-decoration:underline black">retour</a>
         <div class="col-12 row align-content-center justify-content-center">
           <h1 class="card-title col-10 text-center">{{ data?.titre }}</h1>
         </div>
         <div class="row">
           <p class="col-8">Lieux: {{ data?.lieu}}</p>
           <p class="col-4">publier le : {{ data?.date|date}}</p>
-          <p class=" description">Description: {{ data?.description }}</p>
+           <div class="row align-content-center justify-content-center">
+            <p class=" col-2 text-muted">Technologies: {{data?.technologies}}</p>
+          <p class=" col-2 text-muted">Domaine: {{data?.domaine}}</p>
+          </div>
+          
         </div>
         <div class="row col-12 align-items-end justify-content-end gap-2">
-          <p class=" col-3 text-muted">
+          <p class="col-3 text-muted">Status: {{data?.status}}</p>
+          <p class=" col-3">
             Date d'expiration: {{ data?.date_dexpiration | date }}
           </p>
           <p class=" col-3 text-muted">
             Nombre de candidats: {{ data?.number_candidats }}
           </p>
-          <p class=" col-2 text-500">
-            <b>Durée : {{ data?.duree }} mois</b></p
-          >
-          <p class=" col-2 text-muted">Technologies: {{data?.technologies}}</p>
-          <p class=" col-2 text-muted">Domaine: {{data?.domaine}}</p>
+          <p class=" col-2 text-muted">
+            Durée : {{ data?.duree }} mois</p>
+         
+          <p class=" description">Description: {{ data?.description }}</p>
         </div>
-        <div class="flex row align-items-end justify-content-between">
+        <div class="flex  align-items-center justify-content-between" style="display:table-column;">
+          
           <button
             type="button"
             class="btn btn-primary col-3"
             data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
+            data-bs-target="#staticBackdrop" style="background-color: cornflowerblue; margin-right:5px"
           >
             Modifier
-          </button>
-          <button type="button" class="btn btn-danger col-3" (click)="deleteOffre(this.idPost)">Supprimer</button>
+          </button><br>
+          <button type="button" class="btn btn-danger col-3" (click)="deleteOffre(this.idPost)" >Supprimer</button>
         </div>
         <div
           class="modal fade"

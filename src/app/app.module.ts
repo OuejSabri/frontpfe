@@ -15,22 +15,15 @@ import { ListeEvenementsComponent } from './components/admin/liste-evenements/li
 import { AjouterCodeComponent } from './components/authentification/ajouter-code/ajouter-code.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { AddEducationComponent } from './components/stagiaires/add-education/add-education.component';
-import { AddExperienceComponent } from './components/stagiaires/add-experience/add-experience.component';
-import { AddCertificatComponent } from './components/stagiaires/add-certificat/add-certificat.component';
-import { AddProjetComponent } from './components/stagiaires/add-projet/add-projet.component';
-import { AddSkillComponent } from './components/stagiaires/add-skill/add-skill.component';
+import { ListeSocieteComponent } from './components/stagiaires/liste-societe/liste-societe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListeEvenementsComponent,
     AjouterCodeComponent,
-    AddSkillComponent,
-    AddEducationComponent,
-    AddExperienceComponent,
-    AddCertificatComponent,
-    AddProjetComponent,
+
+
   ],
   imports: [
     BrowserModule,

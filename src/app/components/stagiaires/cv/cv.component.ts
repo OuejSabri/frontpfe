@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CertificationService } from 'src/app/services/certification.service';
 import { EducationService } from 'src/app/services/education.service';
 import { ExperienceService } from 'src/app/services/experience.service';
+import { ProfilService } from 'src/app/services/profil.service';
 import { ProjetService } from 'src/app/services/projet.service';
 import { SkillService } from 'src/app/services/skill.service';
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -20,9 +27,8 @@ import { AddExperienceComponent } from '../add-experience/add-experience.compone
 import { AddProjetComponent } from '../add-projet/add-projet.component';
 import { AddCertificatComponent } from '../add-certificat/add-certificat.component';
 import { AddSkillComponent } from '../add-skill/add-skill.component';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ProfilService } from 'src/app/services/profil.service';
-
+import { Profil } from 'src/app/Interface/Profil';
+import { JwtHelperService } from '@auth0/angular-jwt';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -40,33 +46,42 @@ export class CVComponent implements OnInit {
   certificat: Certificat[] = [];
   skill: Skill[] = [];
   user: User = {} as User;
-  profileDetail: any;
+  @Input() profil: Profil | undefined;
   isAddModalOpen = false;
-  profileForm: FormGroup;
-
+  profilForm!: FormGroup;
   constructor(
+    private formBuilder: FormBuilder,
     private educationService: EducationService,
     private experienceService: ExperienceService,
     private projetService: ProjetService,
     private certificatService: CertificationService,
     private SkillService: SkillService,
     private userService: UserService,
-    private profileService : ProfilService,
     public dialog: MatDialog,
+    private profilService: ProfilService,
+    private fb: FormBuilder
   ) {
-    this.profileForm = new FormGroup({
-      nom: new FormControl(''),
-      prenom: new FormControl(''),
-      email: new FormControl(''),
-      date_naissance: new FormControl(''),
-      sexe: new FormControl(''),
-      adresse: new FormControl(''),
-      ville: new FormControl(''),
-      etablissement: new FormControl(''),
-      telephone: new FormControl(''),
-      domaine: new FormControl(''),
-    });
   }
+
+  onSubmit() {
+    if (this.profilForm.valid) {
+      this.profilService.creerProfil(this.profilForm.value).subscribe(
+        (response) => {
+          window.alert('Profil ajouté avec succès');
+          console.log('Profil ajouté avec succès', response);
+          // Réinitialiser le formulaire ou afficher un message de succès
+          this.profilForm.reset(); // Réinitialiser le formulaire après l'ajout réussi
+        },
+        (error) => {
+          console.error("Erreur lors de l'ajout du profil", error);
+          // Gérer les erreurs
+        }
+      );
+    } else {
+      console.log('Le formulaire est invalide');
+    }
+  }
+
   openAddDialog() {
     {
       const dialogRef = this.dialog.open(AddEducationComponent, {
@@ -128,29 +143,22 @@ export class CVComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.profilForm = this.formBuilder.group({
+      fullName: [''],
+      nationality: [''],
+      dateOfBirth: [''],
+      address: [''],
+      department: [''],
+      gender: [''],
+    });
+    this.getProfil();
     this.getCertificat();
     this.getSkill();
     this.getProjet();
     this.getExperience();
     this.getEducations(); // Appelez la méthode pour récupérer les éducations lors de l'initialisation du composant
     this.getuser();
-  }
-  onSubmit() {
-    if (this.profileForm.valid) {
-      this.profileService.creerProfil(this.profileForm.value).subscribe(
-        (response) => {
-          window.alert('Profile added successfullys');
-          console.log('Profile added successfully', response);
-          // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
-        },
-        (error) => {
-          console.error('Error adding Profile', error);
-          // Vous pouvez ajouter du code ici pour gérer les erreurs
-        }
-      );
-    } else {
-      console.log('Form is invalid');
-    }
+    this.onSubmit();
   }
   openAddModal() {
     this.isAddModalOpenSubject.next(true);
@@ -159,11 +167,10 @@ export class CVComponent implements OnInit {
   closeAddModal() {
     this.isAddModalOpenSubject.next(false);
   }
-
   getEducations() {
     this.educationService.getAll().subscribe(
       (res: any) => {
-        this.educations = res.data;
+        this.educations = res.data; // Stockez les éducations dans la propriété déclarée
       },
       (error) => {
         console.error(
@@ -181,7 +188,7 @@ export class CVComponent implements OnInit {
       },
       (error) => {
         console.error(
-          'Erreur lors de la récupération des experiences : ',
+          'Erreur lors de la récupération des éducations : ',
           error
         );
       }
@@ -194,7 +201,10 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error('Erreur lors de la récupération des projet : ', error);
+        console.error(
+          'Erreur lors de la récupération des certificat : ',
+          error
+        );
       }
     );
   }
@@ -206,7 +216,7 @@ export class CVComponent implements OnInit {
       },
       (error) => {
         console.error(
-          'Erreur lors de la récupération des certificat : ',
+          'Erreur lors de la récupération des éducations : ',
           error
         );
       }
@@ -219,7 +229,10 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error('Erreur lors de la récupération des skills : ', error);
+        console.error(
+          'Erreur lors de la récupération des éducations : ',
+          error
+        );
       }
     );
   }
@@ -230,16 +243,32 @@ export class CVComponent implements OnInit {
         console.log(res.data);
       },
       (error) => {
-        console.error('Erreur lors de la récupération des user: ', error);
+        console.error('Erreur lors de la récupération des user : ', error);
       }
     );
   }
-  getById(id: number) {
-    this.userService.getOne(id).subscribe((res: any) => {
-      this.profileDetail = res.data;
-      console.log(this.profileDetail);
-      this.profileForm.patchValue(this.profileDetail);
-    });
+  private getUserIdFromToken(): number | undefined {
+    let token = sessionStorage.getItem('accessToken') || '';
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    console.log(decodedToken, token);
+    return decodedToken?.id;
+  }
+  getProfil() {
+    const userId = this.getUserIdFromToken();
+    if (userId !== undefined) {
+      this.profilService.getById(userId).subscribe(
+        (res: any) => {
+          this.profil = res.data; // Access the first element of the data array
+          console.log(res.data);
+        },
+        (error) => {
+          console.error('Error fetching profile:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not defined');
+    }
   }
   deleteEducation(id: string) {
     this.educationService.delete(id).subscribe(

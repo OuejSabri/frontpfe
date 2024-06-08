@@ -28,13 +28,11 @@ export class NosStagiairesComponent implements OnInit {
     this.serviceUser.deleteUser(id).subscribe((res: any) => {
       if (res) {
         Swal.fire('Suppression', 'Suppression effectué avec succès', 'success');
-        this.router.navigateByUrl('/dashboard/admin/liste-stagiaires');
+        window.location.reload();
       }
     });
   }
   getProfilById(id: any) {
-    this.serviceUser.getOne(id).subscribe((res: any) => {
-      console.log(res.data);
-    });
+    this.router.navigateByUrl(`/dashboard/company/profilStagiaire/${id}`);
   }
 }
