@@ -5,7 +5,9 @@
 <h2>Relisez, modifier et organisez les sections par ordre d'importance si nécessaire.</h2>
 <h3>Téléchargez votre CV et commencez à envoyez vos candidatures !</h3>
 <div class="row ">
-  <button class="btn-primary col-6 mr-5">Generate PDF</button> <button class="btn-primary col-4">Telecharger en PDF</button>
+  <button class="btn-primary col-6 mr-5" (click)="getGeneratedCV()">Generate PDF</button> <button class="btn-primary col-4" (click)="getDownloadCV()">Telecharger en PDF</button>
+  <!-- <button pButton type="button" label="Generate PDF" [loading]="loading" (onClick)="load()" (click)="getGeneratedCV()" style="margin-right: 10px;"></button> -->
+  <!-- <button pButton type="button" label="Telecharger en PDF" [loading]="loading" loadingIcon="pi pi-bell" (onClick)="load()" (click)="getDownloadCV()"></button> -->
 </div>
 </div>
 
@@ -23,17 +25,14 @@
                 <img src="assets/images/user.avif" alt="" class="upload-icon">
               </label>
               <div class="user-media-body">
-                <label for="nom">FullName:</label>
-              <input type="text" id="nom" name="nom" placeholder=" Your FullName" disabled="true" [value]="user.nom"/>
-                <label for="telephone">Phone:</label>
-                <input disabled="true" type="tel" id="telephone" name="telephone" placeholder="Your number" [value]="user.telephone">
-    
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Your email" disabled="true" [value]="user.email">
-                
+                <label >Nom:</label>
+                <input type="text" placeholder="Nom" disabled="true" [value]="user.nom">
+                <label >Email:</label>
+                <input type="email" placeholder="Your email" disabled="true" [value]="user.email">
+                <label >Phone:</label>
+                <input disabled="true" type="tel"  placeholder="Your number" [value]="user.telephone">
                 <p class="mb-1"></p>
                 <p class="mb-0 text-black font-weight-bold">
-                  <!-- <a class="text-primary mr-3" href="#"><i class="icofont-ui-edit"></i> EDIT</a> -->
                 </p>
                 <br>
               </div>
@@ -55,7 +54,6 @@
               <label for="dep">Department:</label>
               <input type="text" id="dep" name="dep" placeholder="Your Department" formControlName="department"[value]="profil?.department">
               <label for="gender">Gender:</label>
-    
               <label for="contactChoice2">Male</label>
               <input type="radio" id="contactChoice3" name="gender" value="Male" class="gender-input" formControlName="gender" [checked]="profil?.gender === 'Male'"/>
               <label for="contactChoice3">Female</label>
@@ -69,13 +67,12 @@
     
     <div class="col-md-8">
       <div class="table table-bordered" width="100%" cellspacing="0">
-
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Education</h6>
           </div>
           <div class="card-body">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#educationModal" style="float: right;"  (click)="openAddDialog()">Add Edu</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#educationModal" style="float: right;"  (click)="openAddDialog()">Add</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -90,14 +87,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Utilisation de *ngFor pour parcourir les éducations -->
                   <tr *ngFor="let education of educations">
                     <td>{{ education.institut }}</td>
                     <td>{{ education.domaineEtude }}</td>
                     <td>{{ education.dateDebut | date: 'yyyy-MM-dd'}}</td>
                     <td>{{ education.dateFin | date: 'yyyy-MM-dd'}}</td>
                     <td>
-                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                       <button type="button" class="btn btn-danger" (click)="deleteEducation(education._id)">Delete</button>
                     </td>
                   </tr>
@@ -106,15 +101,13 @@
             </div>
           </div>
         </div>
-        
-        
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Experience</h6>
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#experienceModal"
-              style="float: right;"  (click)="openAddDialogEperience()">Add Experience</button>
+              style="float: right;"  (click)="openAddDialogEperience()">Add</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -125,7 +118,6 @@
                     <th>Job</th>
                     <th>StartDate</th>
                     <th>EndDate</th>
-                    <th>Description</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -136,9 +128,7 @@
                       <td>{{ experiences.poste }}</td>
                       <td>{{ experiences.dateDebut| date: 'yyyy-MM-dd' }}</td>
                       <td>{{ experiences.dateFin| date: 'yyyy-MM-dd' }}</td>
-                      <td>{{ experiences.description }}</td>
                       <td>
-                        <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                         <button type="button" class="btn btn-danger" (click)="deleteExperience(experiences._id)">Delete</button>
                       </td>
                     </tr>
@@ -155,7 +145,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal"
-              style="float: right;"(click)="openAddDialogProjet()" >Add Project </button>
+              style="float: right;"(click)="openAddDialogProjet()" >Add </button>
             <br>
             <div class="table-responsive">
               <br>
@@ -165,8 +155,6 @@
                     <th>Title:</th>
                     <th>Description:</th>
                     <th>Date:</th>
-
-
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -174,10 +162,8 @@
                   <tr *ngFor="let projet of projet">
                     <td>{{ projet.titre }}</td>
                     <td>{{ projet.description }}</td>
-                    <td>{{ projet.date | date: 'yyyy-MM-dd'}}</td>
-                 
+                    <td>{{ projet.date | date: 'yyyy-MM-dd'}}</td>          
                     <td>
-                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                       <button type="button" class="btn btn-danger" (click)="deleteProjet(projet._id)">Delete</button>
                     </td>
               </table>
@@ -191,7 +177,7 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#certificationModal"
-              style="float: right;" (click)="openAddDialogCertificat()">Add Certification</button>
+              style="float: right;" (click)="openAddDialogCertificat()">Add</button>
             <br>
             <div class="table-responsive">
               <br>
@@ -207,12 +193,9 @@
                   <tr *ngFor="let certificat of certificat">
                     <td>{{ certificat.domain}}</td>
                     <td>{{ certificat.date | date: 'yyyy-MM-dd'}}</td>
-                 
                     <td>
-                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                       <button type="button" class="btn btn-danger" (click)="deleteCertificat(certificat._id)">Delete</button>
-                    </td>
-                   
+                    </td>                   
                   </tr>
                 </tbody>
               </table>
@@ -234,160 +217,21 @@
                   <tr>
                     <th>Name:</th>
                     <th>level:</th>
-
-
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let skill of skill">
                     <td>{{ skill.nom }}</td>
-                    <td>{{ skill.niveau }}</td>
-                 
+                    <td>{{ skill.niveau }}</td>           
                     <td>
-                      <!-- Ajoutez ici votre logique d'action, comme un bouton de suppression -->
                       <button type="button" class="btn btn-danger" (click)="deleteSkill(skill._id)">Delete</button>
                     </td>
               </table>
             </div>
           </div>
         </div>
-
-
-      </div>
-    </div>
-
-  </div>
-
-</div>
-<!-- <div class="text-right mt-3" style="float:right">
-  <button type="button" class="btn btn-primary mr-2">Send</button>
-  <button type="button" class="btn btn-primary">Save</button>
-</div> -->
-<!-- Modal for Experience -->
-
-<!-- Modal for Education -->
-<div class="modal" [class.show]="isAddModalOpen" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Modal</h5>
-        <button type="button" class="close">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Add modal content here -->
-        <p>Add modal content goes here...</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" >Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-</div>
-
-<!-- Modal for Certification -->
-<div class="modal fade" id="certificationModal" tabindex="-1" role="dialog" aria-labelledby="certificationModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="certificationModalLabel">Add Certification</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Certification Form -->
-        <form  class="media-body">
-          <div class="form-group">
-            <label for="Domain">Domain:</label>
-            <input  type="text" id="Domain" name="Domain" class="form-control"
-              placeholder="Domaine of certification">
-          </div>
-          <div class="form-group">
-            <label for="Date">Date:</label>
-            <input  type="date" id="Date" name="Date" class="form-control" placeholder="Date">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal for Skills -->
-<div class="modal fade" id="skillsModal" tabindex="-1" role="dialog" aria-labelledby="skillsModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="skillsModalLabel">Add Skills</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Skills Form -->
-        <form  class="media-body">
-          <div class="form-group">
-            <label for="Name">Name:</label>
-            <input  type="text" id="Name" name="Name" class="form-control"
-              placeholder="skils Name ">
-          </div>
-          <label for="customRange2" class="form-label">Level:</label><br>
-          <input type="range" class="form-range" min="0" max="5" id="customRange2">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal for Project -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="projectModalLabel">Add Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Project Form -->
-        <form  class="media-body">
-          <div class="form-group">
-            <label for="etablissement">Title:</label>
-            <input  type="text" id="etablissement" name="etablissement" class="form-control"
-              placeholder="Your project tiltle">
-          </div>
-          <div class="form-group">
-            <label for="domaine">Description:</label>
-            <input  type="text" id="domaine" name="domaine" class="form-control"
-              placeholder="Description">
-          </div>
-          <div class="form-group">
-            <label for="date">date:</label>
-            <input  type="date" id="date" name="date" class="form-control" placeholder="date">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
-      </div>
-
-    </div>
-
-  </div>
-
-
 </div>

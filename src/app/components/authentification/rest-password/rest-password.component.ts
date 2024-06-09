@@ -17,7 +17,7 @@ export class RestPasswordComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +27,10 @@ export class RestPasswordComponent implements OnInit {
 
     this.addForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      newPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       confirmNewPassword: new FormControl('', Validators.required),
     });
   }
@@ -49,7 +52,9 @@ export class RestPasswordComponent implements OnInit {
         },
         (error) => {
           console.error('Password reset failed:', error);
-          this.error = error.error.message || 'Password reset failed. Please try again later.';
+          this.error =
+            error.error.message ||
+            'Password reset failed. Please try again later.';
         }
       );
     } else {

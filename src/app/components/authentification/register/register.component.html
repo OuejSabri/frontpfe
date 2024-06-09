@@ -4,7 +4,7 @@
   Creer votre compte 
 </h1>
 <div class="container-fluid flex row mt-5 align-items-center justify-content-center">
-  <div class="col-3 " >
+  <div class="col-3 " style="margin-right: 10%;" >
     <img src="https://cdn.icon-icons.com/icons2/2104/PNG/512/startup_icon_129421.png" alt="">
   </div>
   <div class="card col-5 p-5 align-items-center justify-content-center gap-2" style="
@@ -20,28 +20,41 @@
           <div class="form-outline">
             <label class="form-label">Nom</label>
             <input type="text" class="form-control form-control" formControlName="nom" />
+            <div *ngIf="addForm.get('nom')?.touched && addForm.get('nom')?.hasError('required')" class="text-danger">
+              <small> Ce champ est requis</small>
+            </div>
           </div>
         </div>
         <div class="col-md-6 ">
           <div class="form-outline">
             <label class="form-label">Email</label>
             <input type="email" class="form-control form-control" formControlName="email" />
+            <div *ngIf="addForm.get('email')?.touched && addForm.get('email')?.hasError('required')" class="text-danger">
+              <small> Ce champ est requis</small>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <h6 class="mb-2 pb-1" style="color: white;">Role: </h6>
+          <label class="form-label">Role</label>
           <select class="select form-control" formControlName="role">
             <option selected value="stagiaire">stagiaire</option>
             <option value="societe">societe</option>
             <option value="admin">admin</option>
           </select>
+          <div *ngIf="addForm.get('role')?.touched && addForm.get('role')?.hasError('required')" class="text-danger">
+            <small> Ce champ est requis</small>
+          </div>
         </div>
         <div class="col-md-6">
           <div class="form-outline">
             <label class="form-label">Téléphone</label>
             <input type="tel" class="form-control form-control" formControlName="telephone" />
+            <div *ngIf="addForm.get('email')?.touched && addForm.get('email')?.hasError('required')" class="text-danger">
+              <small> Ce champ est requis</small>
+            </div>
+          
           </div>
         </div>
       </div>
@@ -50,12 +63,18 @@
           <div class="form-outline">
             <label class="form-label">password</label>
             <input type="password" class="form-control form-control" formControlName="password" />
+            <div *ngIf="addForm.get('password')?.touched && addForm.get('password')?.hasError('required')" class="text-danger">
+              <small> Ce champ est requis</small>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-outline">
             <label class="form-label">confirm password</label>
             <input type="password" class="form-control form-control" formControlName="rep_password" />
+            <div *ngIf="addForm.get('rep_password')?.touched && addForm.get('rep_password')?.hasError('required')" class="text-danger">
+              <small> Ce champ est requis</small>
+            </div>
           </div>
         </div>
       </div>

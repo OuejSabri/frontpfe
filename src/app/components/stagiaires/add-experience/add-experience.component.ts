@@ -25,6 +25,7 @@ export class AddExperienceComponent {
         response => {
           window.alert('Experience added successfullys')
           console.log('Experience added successfully', response);
+          window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
         },
         error => {

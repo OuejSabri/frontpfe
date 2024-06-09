@@ -29,6 +29,7 @@ import { AddCertificatComponent } from '../add-certificat/add-certificat.compone
 import { AddSkillComponent } from '../add-skill/add-skill.component';
 import { Profil } from 'src/app/Interface/Profil';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CvService } from 'src/app/services/cv.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -37,6 +38,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./cv.component.scss'],
 })
 export class CVComponent implements OnInit {
+  loading: boolean = false;
   private isAddModalOpenSubject = new BehaviorSubject<boolean>(false);
   isAddModalOpen$: Observable<boolean> =
     this.isAddModalOpenSubject.asObservable();
@@ -50,6 +52,7 @@ export class CVComponent implements OnInit {
   isAddModalOpen = false;
   profilForm!: FormGroup;
   constructor(
+    private cvService: CvService,
     private formBuilder: FormBuilder,
     private educationService: EducationService,
     private experienceService: ExperienceService,
@@ -58,36 +61,41 @@ export class CVComponent implements OnInit {
     private SkillService: SkillService,
     private userService: UserService,
     public dialog: MatDialog,
-    private profilService: ProfilService,
-  ) {
-  }
+    private profilService: ProfilService
+  ) {}
 
   onSubmit() {
     if (this.profilForm.valid) {
-          const userId = this.getUserIdFromToken();
-          const authToken = localStorage.getItem('accessToken'); // Obtenez le token depuis le stockage
+      const userId = this.getUserIdFromToken();
+      const authToken = localStorage.getItem('accessToken'); // Obtenez le token depuis le stockage
 
-          if (userId !== undefined && authToken !== null) {
-            this.profilService
-              .updateProfil(userId, this.profilForm.value)
-              .subscribe(
-                (res: any) => {
-                  window.alert('Profile updated successfully');
-                  console.log(res);
-                  window.location.reload();
-                },
-                (error) => {
-                  console.error('Error updating profile:', error);
-                }
-              );
-          } else {
-            console.error('User ID or auth token is not defined');
-          }
+      if (userId !== undefined && authToken !== null) {
+        this.profilService
+          .updateProfil(userId, this.profilForm.value)
+          .subscribe(
+            (res: any) => {
+              window.alert('Profile updated successfully');
+              console.log(res);
+              window.location.reload();
+            },
+            (error) => {
+              console.error('Error updating profile:', error);
+            }
+          );
+      } else {
+        console.error('User ID or auth token is not defined');
+      }
     } else {
       console.log('Le formulaire est invalide');
     }
   }
+  load() {
+    this.loading = true;
 
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  } 
   openAddDialog() {
     {
       const dialogRef = this.dialog.open(AddEducationComponent, {
@@ -164,7 +172,6 @@ export class CVComponent implements OnInit {
     this.getExperience();
     this.getEducations(); // Appelez la méthode pour récupérer les éducations lors de l'initialisation du composant
     this.getuser();
-
   }
   openAddModal() {
     this.isAddModalOpenSubject.next(true);
@@ -349,6 +356,37 @@ export class CVComponent implements OnInit {
       },
       (error) => {
         console.error("Erreur lors de la suppression de l'Skill : ", error);
+      }
+    );
+  }
+  getGeneratedCV() {
+    this.cvService.generateresume().subscribe(
+      (res: any) => {
+        window.alert('Your CV has been successfully generated');
+        console.log(res.data);
+      },
+      (error) => {
+        console.error('Error generating CV:', error);
+      }
+    );
+  }
+
+  getDownloadCV() {
+    this.cvService.downloadresume().subscribe(
+      (res: Blob) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'cv.pdf'; // Name of the downloaded file
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        window.alert('Your CV has been successfully downloaded.');
+      },
+      (error) => {
+        console.error('Error downloading CV:', error);
+        window.alert('An error occurred while downloading the CV.');
       }
     );
   }

@@ -1,11 +1,13 @@
 <section class="container d-flex flex-column">
     <div class="row align-items-center justify-content-center g-0 min-vh-100">
-      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
-        <div class="card shadow">
-          <div class="card-body p-6">
+      <div  class="col-lg-5 col-md-8 py-6 py-xl-0">
+       <div class="card shadow " style="background-repeat: no-repeat; height: 45vh; 
+				background:url('https://media.istockphoto.com/id/1960952508/photo/dark-blue-gradient-soft-background.jpg?b=1&s=612x612&w=0&k=20&c=EBIpDSGaimw9Ci3v8nsNMC_A6kTZeiqF9EWWcf8TMkQ=') ;">
+					
+          <div class="card-body p-4 text-light">
             <div class="mb-4">
               <h1 class="mb-1 fw-bold">Réinitialiser le mot de passe</h1>
-              <p>Entrez le code que vous avez reçu par e-mail et votre nouveau mot de passe.</p>
+              <p>Entrez le code que vous avez reçu par e-mail.</p>
             </div>
             <form #resetForm="ngForm" (ngSubmit)="verifyAndResetPassword()">
               <div class="mb-3">

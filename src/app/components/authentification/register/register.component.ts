@@ -11,17 +11,14 @@ import swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   addForm: FormGroup;
   idUser: any;
-  constructor(
-    private sAuth: AuthService,
-    private router: Router,
-  ) {
+  constructor(private sAuth: AuthService, private router: Router) {
     this.addForm = new FormGroup({
       nom: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      role: new FormControl(''),
+      role: new FormControl('', [Validators.required]),
       telephone: new FormControl('', [Validators.pattern('^[0-9]')]),
-      password: new FormControl(''),
-      rep_password: new FormControl(''),
+      password: new FormControl('', [Validators.required]),
+      rep_password: new FormControl('', [Validators.required]),
       user: new FormControl(this.idUser),
     });
   }

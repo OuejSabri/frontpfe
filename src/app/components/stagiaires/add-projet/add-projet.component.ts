@@ -25,6 +25,7 @@ export class AddProjetComponent {
         response => {
           window.alert('Projet added successfullys')
           console.log('Projet added successfully', response);
+          window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
         },
         error => {

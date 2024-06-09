@@ -26,6 +26,7 @@ export class AddSkillComponent {
         (response) => {
           window.alert('Skills added successfullys');
           console.log('Skills added successfully', response);
+          window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès
         },
         (error) => {
