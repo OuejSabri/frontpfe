@@ -83,13 +83,13 @@
       >
         <div class="grid formgrid p-fluid" *ngIf="profil">
           <div class="field mb-4 col-12 md:col-4">
-            <label for="nom" class="font-medium text-900">Nom </label>
+            <label  class="font-medium text-900">Nom </label>
             <input
-              id="nom"
+             
               type="text"
               pInputText
               [value]="profil.user.nom"
-              formControlName="fullName"
+              formControlName="nom"
             />
           </div>
       
@@ -113,9 +113,8 @@
           </div>
 
           <div class="field mb-4 col-12 md:col-6">
-            <label for="city" class="font-medium text-900">Telephone</label>
+            <label class="font-medium text-900">Telephone</label>
             <input
-              id="city"
               type="text"
               pInputText
               [value]="profil.user.telephone"
@@ -124,11 +123,10 @@
           </div>
 
           <div class="field mb-4 col-12 md:col-6">
-            <label for="city" class="font-medium text-900"
+            <label class="font-medium text-900"
               >Date naissance</label
             >
             <input
-              id="city"
               type="date"
               pInputText
               [value]="profil.dateOfBirth | date"
@@ -139,21 +137,20 @@
             <label class="font-medium text-900">sexe</label>
             <select class="form-select" formControlName="gender">
               <option selected>sexe</option>
-              <option value="homme" [selected]="profil.gender === 'Male'"  [value]="profil.gender">homme</option>
-              <option value="femme"  [selected]="profil.gender === 'Female'" [value]="profil.gender">femme</option>
+              <option value="Male">homme</option>
+              <option value="Female">femme</option>
             </select>
           </div>
           <div class="field mb-4 col-12 md:col-4">
-            <label for="city" class="font-medium text-900">Adresse</label>
-            <input id="city" type="text" pInputText formControlName="address"  [value]="profil.address"/>
+            <label class="font-medium text-900">Adresse</label>
+            <input type="text" pInputText formControlName="address"  [value]="profil.address"/>
           </div>
 
           <div class="field mb-4 col-12 md:col-6">
-            <label for="state" class="font-medium text-900"
+            <label class="font-medium text-900"
               >etablissement</label
             >
             <input
-              id="state"
               type="text"
               pInputText
               [value]="profil.department"

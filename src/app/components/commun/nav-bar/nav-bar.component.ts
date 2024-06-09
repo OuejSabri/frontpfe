@@ -8,26 +8,19 @@ import { SidebarService } from 'src/app/services/sidebar.service';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(
-    private sAuth: AuthService,
-    private sideService:SidebarService
-  ) {
-
+  showLogoutModal: boolean = false;
+  constructor(private sAuth: AuthService, private sideService: SidebarService) {
     // let role = sessionStorage.getItem('role');
-    
   }
   ngOnInit() {}
 
   logOut() {
     this.sAuth.logOut();
-    alert('Logged out');
+    this.showLogoutModal = false;
+    // alert('Logged out');
   }
 
-  toggleSideBar(){
-    this.sideService.changeSideBar()
+  toggleSideBar() {
+    this.sideService.changeSideBar();
   }
-
-
-  
 }

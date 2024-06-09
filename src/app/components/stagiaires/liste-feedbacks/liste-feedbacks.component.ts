@@ -63,7 +63,6 @@ export class ListeFeedbacksComponent implements OnInit {
   getAllfeedbacks() {
     this.feedbackS.getAllFeedback().subscribe((res: any) => {
       this.data = res.data;
-      console.log(this.data);
     });
   }
   envoyerFeedback() {

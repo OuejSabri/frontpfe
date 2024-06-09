@@ -10,7 +10,7 @@ export interface Profil {
   dateOfBirth: Date;
   address: string;
   department: string;
-  gender: string;
+  gender: string , enum:["Male", "Female"];
   user: {
     nom: string;
     email: string;

@@ -28,7 +28,69 @@
           aria-label="Search"
         />
       </div>
+          <!-- <div class="search-form">
+  <h2>Rechercher des Offres</h2>
+  <form (ngSubmit)="searchOffers()">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text" id="titre" [(ngModel)]="searchCriteria.titre" name="titre" class="form-control">
     </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" [(ngModel)]="searchCriteria.description" name="description" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="technologies">Technologies</label>
+      <input type="text" id="technologies" [(ngModel)]="searchCriteria.technologies" name="technologies" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="lieu">Lieu</label>
+      <input type="text" id="lieu" [(ngModel)]="searchCriteria.lieu" name="lieu" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="domaine">Domaine</label>
+      <input type="text" id="domaine" [(ngModel)]="searchCriteria.domaine" name="domaine" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="date_dexpiration">Date d'expiration</label>
+      <input type="date" id="date_dexpiration" [(ngModel)]="searchCriteria.date_dexpiration" name="date_dexpiration" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="duree">Durée</label>
+      <input type="text" id="duree" [(ngModel)]="searchCriteria.duree" name="duree" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="number_candidats">Nombre de Candidats</label>
+      <input type="number" id="number_candidats" [(ngModel)]="searchCriteria.number_candidats" name="number_candidats" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" [(ngModel)]="searchCriteria.status" name="status" class="form-control">
+        <option value="">Tous</option>
+        <option value="disponible">Disponible</option>
+        <option value="indisponible">Indisponible</option>
+      </select>
+    </div>
+    <p-button type="submit" class="btn btn-primary">Rechercher</p-button>
+  </form>
+
+  <div class="results">
+    <h2>Résultats de la recherche</h2>
+    <div *ngFor="let offer of offers">
+      <h3>{{ offer.titre }}</h3>
+      <p>{{ offer.description }}</p>
+      <p>{{ offer.lieu }}</p>
+      <p>{{ offer.domaine }}</p>
+      <p>{{ offer.duree }}</p>
+      <p>Nombre de candidats: {{ offer.number_candidats }}</p>
+      <p>Status: {{ offer.status }}</p>
+      <p>Date d'expiration: {{ offer.date_dexpiration | date }}</p>
+    </div>
+  </div>
+</div> -->
+
+    </div>
+
   </div>
   <div class="row">
     <div class="col-10 offset-1">

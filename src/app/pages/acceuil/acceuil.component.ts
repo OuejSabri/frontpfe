@@ -12,6 +12,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./acceuil.component.scss'],
 })
 export class AcceuilComponent implements OnInit {
+  searchCriteria: any = {
+    societe: '',
+    titre: '',
+    description: '',
+    technologies: [],
+    lieu: '',
+    domaine: '',
+    date_dexpiration: '',
+    duree: '',
+    number_candidats: '',
+    status: '',
+  };
+  offers: any[] = [];
 
   items: MenuItem[] = [
     {
@@ -97,26 +110,35 @@ export class AcceuilComponent implements OnInit {
       this.currentuser = res.data;
       this.addForm.patchValue(this.currentuser);
     });
-      this.addForm = new FormGroup({
-        nom: new FormControl('' , Validators.required),
-        email: new FormControl('', Validators.required),
-        commentaire: new FormControl('', Validators.required),
-      });
+    this.addForm = new FormGroup({
+      nom: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      commentaire: new FormControl('', Validators.required),
+    });
   }
 
   ngOnInit() {
     this.getAllOffres();
-    
   }
   getAllOffres() {
     this.OffreService.getAllOffre().subscribe((res: any) => {
       this.offres = res;
     });
   }
+
+  searchOffers(): void {
+    this.OffreService.searchOffers(this.searchCriteria).subscribe(
+      (res:any) => {
+        this.offers = res.data;
+      },
+      (error) => {
+        console.error('Error searching offers', error);
+      }
+    );
+  }
+
   getOffreById(id: any) {
     this.route.navigateByUrl(`/dashboard/student/offre/${id}`);
-
-    
   }
   getAllfeedbacks() {
     this.feedbackS.getAllFeedback().subscribe((res: any) => {

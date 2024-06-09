@@ -59,24 +59,30 @@ export class CVComponent implements OnInit {
     private userService: UserService,
     public dialog: MatDialog,
     private profilService: ProfilService,
-    private fb: FormBuilder
   ) {
   }
 
   onSubmit() {
     if (this.profilForm.valid) {
-      this.profilService.creerProfil(this.profilForm.value).subscribe(
-        (response) => {
-          window.alert('Profil ajouté avec succès');
-          console.log('Profil ajouté avec succès', response);
-          // Réinitialiser le formulaire ou afficher un message de succès
-          this.profilForm.reset(); // Réinitialiser le formulaire après l'ajout réussi
-        },
-        (error) => {
-          console.error("Erreur lors de l'ajout du profil", error);
-          // Gérer les erreurs
-        }
-      );
+          const userId = this.getUserIdFromToken();
+          const authToken = localStorage.getItem('accessToken'); // Obtenez le token depuis le stockage
+
+          if (userId !== undefined && authToken !== null) {
+            this.profilService
+              .updateProfil(userId, this.profilForm.value)
+              .subscribe(
+                (res: any) => {
+                  window.alert('Profile updated successfully');
+                  console.log(res);
+                  window.location.reload();
+                },
+                (error) => {
+                  console.error('Error updating profile:', error);
+                }
+              );
+          } else {
+            console.error('User ID or auth token is not defined');
+          }
     } else {
       console.log('Le formulaire est invalide');
     }
@@ -158,7 +164,7 @@ export class CVComponent implements OnInit {
     this.getExperience();
     this.getEducations(); // Appelez la méthode pour récupérer les éducations lors de l'initialisation du composant
     this.getuser();
-    this.onSubmit();
+
   }
   openAddModal() {
     this.isAddModalOpenSubject.next(true);
@@ -259,8 +265,18 @@ export class CVComponent implements OnInit {
     if (userId !== undefined) {
       this.profilService.getById(userId).subscribe(
         (res: any) => {
-          this.profil = res.data; // Access the first element of the data array
+          this.profil = res.data;
           console.log(res.data);
+          this.profilForm.patchValue({
+            nom: this.profil?.user?.nom,
+            email: this.profil?.user?.email,
+            telephone: this.profil?.user?.telephone,
+            dateOfBirth: this.profil?.dateOfBirth,
+            gender: this.profil?.gender,
+            address: this.profil?.address,
+            department: this.profil?.department,
+            nationality: this.profil?.nationality,
+          });
         },
         (error) => {
           console.error('Error fetching profile:', error);
