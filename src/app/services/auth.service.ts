@@ -15,46 +15,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(data: any): void {
-    this.http.post(`${this.apiURL}/auth/login`, data).subscribe(
-      (res: any) => {
-        if (res && res.accessToken) {
-          // Vérification de la présence du token dans la réponse
-          this.setSession(res.accessToken);
-          const helper = new JwtHelperService();
-          const decodedToken = helper.decodeToken(res.accessToken);
-          console.log(decodedToken);
-          localStorage.setItem('accessToken', res.accessToken);
-
-          Swal.fire({
-            title: 'Succès!',
-            text: 'Merci pour votre connexion',
-            icon: 'success',
-          });
-
-          switch (decodedToken?.role) {
-            case 'societe':
-              this.router.navigateByUrl('/dashboard/company');
-              break;
-            case 'stagiaire':
-              this.router.navigateByUrl('/dashboard/student');
-              break;
-            case 'admin':
-              this.router.navigateByUrl('/dashboard/admin');
-              break;
-            default:
-              this.router.navigateByUrl('/');
-              break;
-          }
-        } else {
-          alert('Une erreur est survenue lors de la connexion.');
-        }
-      },
-      (err) => {
-        console.error('Login error:', err);
-        alert('Vérifiez vos données !!');
-      }
-    );
+  login(data: any) {
+    return this.http.post(`${this.apiURL}/auth/login`, data)
   }
 
   register(data: any) {
@@ -124,7 +86,7 @@ export class AuthService {
     return this.http.put(`${this.apiURL}/auth/modifierPassword/${id}`, data);
   }
 
-  private setSession(authResult: any) {
+  setSession(authResult: any) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
     sessionStorage.setItem('accessToken', authResult);
     console.log(authResult)

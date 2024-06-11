@@ -9,10 +9,7 @@
     
    
 }
-// body {
-//     margin: 0;
-//     padding: 0;
-// }
+
 
 .container-header {
     background-color:#eeeee9;
@@ -75,6 +72,20 @@ button {
 
 }
 
+ .has-search {
+    position: relative;
+  }
+  
+  .has-search input {
+    padding-right: 35px;
+  }
+  
+  // .has-search .fa-search {
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 10px;
+  // }
+
 @media (max-width: 500px) {
   button {
     @keyframes move {
@@ -97,7 +108,7 @@ h2 {
   font-size: 24px; /* Taille de police plus grande pour un titre */
   font-weight: bold; /* Met le texte en gras */
   color: #333; /* Couleur de texte sombre pour un bon contraste */
-  margin-top: 20px; /* Espace en haut du titre */
+  margin-top: -10px; /* Espace en haut du titre */
   margin-bottom: 20px; /* Espace en bas du titre */
   padding: 10px; /* Espace intérieur autour du texte */
   text-align: center; /* Centre le texte horizontalement */

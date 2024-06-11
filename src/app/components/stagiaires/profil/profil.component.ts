@@ -94,7 +94,11 @@ export class ProfilComponent implements OnInit {
     if (userId !== undefined && authToken !== null) {
       this.profilService.updateProfil(userId, this.profilForm.value).subscribe(
         (res: any) => {
-          window.alert('Profile updated successfully');
+          Swal.fire({
+            title: 'succes!',
+            text: 'Profile updated successfully',
+            icon: 'success',
+          });
           console.log(res);
           window.location.reload();
         },

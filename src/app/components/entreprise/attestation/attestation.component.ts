@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { UploadService } from 'src/app/services/upload.service';
-
+import { saveAs } from 'file-saver'; 
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-attestation',
@@ -14,14 +15,15 @@ export class AttestationComponent implements OnInit {
   currentIdUser: any;
   item!: String;
   Candidats: any[] = [];
+  selectedStagiaire!: string;
 
   constructor(
     private candidatureService: CandidatureService,
     private authService: AuthService,
-    private upd: UploadService
+    private upd: UploadService,
+    private messageService: MessageService
   ) {
     this.currentIdUser = this.authService.getUserId();
-
   }
 
   ngOnInit(): void {
@@ -54,11 +56,20 @@ export class AttestationComponent implements OnInit {
           document.body.appendChild(a);
           a.click();
           window.URL.revokeObjectURL(url);
-          window.alert('Your attestation has been successfully downloaded.');
+         this.messageService.add({
+           severity: 'success',
+           summary: 'Success',
+           detail: 'Votre lettre d\'attestation a été téléchargée avec succès.',
+         });
         },
         (error) => {
           console.error('Error downloading attestation:', error);
-          window.alert('An error occurred while downloading the attestation.');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail:
+              'Une erreur est survenue lors du téléchargement de la lettre d\'attestation.',
+          });
         }
       );
     });
@@ -77,13 +88,59 @@ export class AttestationComponent implements OnInit {
           document.body.appendChild(a);
           a.click();
           window.URL.revokeObjectURL(url);
-          window.alert('Your affectation has been successfully downloaded.');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre lettre d\'affectaion a été téléchargée avec succès.',
+          });
         },
         (error) => {
           console.error('Error downloading affectation:', error);
-          window.alert('An error occurred while downloading the affectation.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail:
+            'Une erreur est survenue lors du téléchargement de la lettre d\'affictation.',
+        });
         }
       );
     });
+  }
+
+  downloadReport() {
+    // Logic to download the report
+    if (this.isReportAvailable()) {
+      console.log('Report downloaded for', this.selectedStagiaire);
+      this.upd.downloadRapport(this.selectedStagiaire).subscribe(
+        (res: Blob) => {
+          const blob = new Blob([res], { type: 'application/pdf' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'rapport_${this.selectedStagiaire}.pdf'; // Name of the downloaded file
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre rapport a été téléchargée avec succès.',
+          });
+        },
+        (error) => {
+          console.error('Erreur lors du téléchargement du rapport', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Une erreur est survenue lors du téléchargement de la lettre du rapport.',
+          });
+        }
+      );
+    }
+  }
+
+  isReportAvailable(): boolean {
+    // Replace with your logic to check if the report is available
+    return !!this.selectedStagiaire; // Example: check if a stagiaire is selected
   }
 }

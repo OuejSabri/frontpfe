@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { ExperienceService } from 'src/app/services/experience.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ExperienceService } from 'src/app/services/experience.service';
 export class AddExperienceComponent {
   educationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private educationService: ExperienceService) {
+  constructor(private formBuilder: FormBuilder, private educationService: ExperienceService, private messageService : MessageService) {
     this.educationForm = this.formBuilder.group({
       entreprise: ['', Validators.required],
       poste: ['', Validators.required],
@@ -23,7 +24,11 @@ export class AddExperienceComponent {
     if (this.educationForm.valid) {
       this.educationService.create(this.educationForm.value).subscribe(
         response => {
-          window.alert('Experience added successfullys')
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre Experience a été ajouté avec succès.',
+          });
           console.log('Experience added successfully', response);
           window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès

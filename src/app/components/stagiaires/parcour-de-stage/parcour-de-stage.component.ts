@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { UploadService } from 'src/app/services/upload.service';
@@ -31,7 +32,8 @@ export class ParcourDeStageComponent implements OnInit {
   constructor(
     private candidaService: CandidatureService,
     private uploadService: UploadService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     this.idUser = this.authService.getUserId();
     this.events = [
@@ -117,6 +119,11 @@ export class ParcourDeStageComponent implements OnInit {
     data.append('candidature', this.candidature._id);
     this.uploadService.createRapport(data).subscribe((res) => {
       console.log(res);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Votre rapport a été ajouté avec succès.',
+      });
     });
   }
   getDownloadAttestation() {
@@ -130,11 +137,20 @@ export class ParcourDeStageComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
-        window.alert('Your attestation has been successfully downloaded.');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: "Votre lettre d'attestation a été téléchargée avec succès.",
+        });
       },
       (error) => {
         console.error('Error downloading attestation:', error);
-        window.alert('An error occurred while downloading the attestation.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail:
+            "Une erreur est survenue lors du téléchargement de la lettre d'attestation.",
+        });
       }
     );
   }
@@ -149,11 +165,20 @@ export class ParcourDeStageComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
-        window.alert('Your affectation has been successfully downloaded.');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: "Votre lettre d'affectaion a été téléchargée avec succès.",
+        });
       },
       (error) => {
         console.error('Error downloading affectation:', error);
-        window.alert('An error occurred while downloading the affectation.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail:
+            "Une erreur est survenue lors du téléchargement de la lettre d'affictation.",
+        });
       }
     );
   }

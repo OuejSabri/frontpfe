@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { CvService } from 'src/app/services/cv.service';
 import { ProfilService } from 'src/app/services/profil.service';
 @Component({
@@ -13,7 +14,8 @@ export class VoirStagiaireProfilComponent implements OnInit {
   constructor(
     private acttivatedRoot: ActivatedRoute,
     private profilService: ProfilService,
-    private cvService: CvService
+    private cvService: CvService,
+    private messageService: MessageService,
   ) {
     this.acttivatedRoot.params.subscribe((param: any) => {
       this.userId = param.id;
@@ -29,7 +31,7 @@ export class VoirStagiaireProfilComponent implements OnInit {
     });
   }
 
-  getDownloadCV(id:any) {
+  getDownloadCV(id: any) {
     this.cvService.downloadthisresume(id).subscribe(
       (res: Blob) => {
         const blob = new Blob([res], { type: 'application/pdf' });
@@ -40,11 +42,22 @@ export class VoirStagiaireProfilComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
-        window.alert('Your CV has been successfully downloaded.');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Votre CV a été téléchargé avec succès.',
+        });
       },
       (error) => {
         console.error('Error downloading CV:', error);
-        window.alert('An error occurred while downloading the CV.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail:
+            "Une erreur est survenue lors du téléchargement de CV.",
+        });
+        
+        
       }
     );
   }

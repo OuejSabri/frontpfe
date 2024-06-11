@@ -1,17 +1,27 @@
-
-
-<div class="container-fluid " style="height:100vh">
+<div class="container-fluid" style="height: 100vh">
   <!-- DataTales Example -->
-  <div class="card shadow mb-4 " style="margin-top: 100px;
-  border:none;
-	padding:15px 20px;
-	border-radius:25px;
-	background:rgba(255,255,255,.1);
-  box-shadow: 20px 5px 5px rgb(91, 105, 158);">
-    <div class="card-header py-3 ">
+  <div
+    class="card shadow mb-4"
+    style="
+      margin-top: 100px;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 20px 5px 5px rgb(91, 105, 158);
+    "
+  >
+    <div class="card-header py-3">
       <a type="button" href="javascript:history.go(-1)">retour</a>
-      <h4 class="m-0 font-weight-bold  flex align-items-center justify-content-center"
-      style="text-align: center;font-size:xx-large;font-weight:700;font-family:Georgia, 'Times New Roman', Times, serif">
+      <h4
+        class="m-0 font-weight-bold flex align-items-center justify-content-center"
+        style="
+          text-align: center;
+          font-size: xx-large;
+          font-weight: 700;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+        "
+      >
         Ajouter une nouvelle offre de stage
       </h4>
     </div>
@@ -28,11 +38,17 @@
             required
             formControlName="titre"
           />
-          <div *ngIf="addForm.get('titre')?.invalid && (addForm.get('titre')?.touched || addForm.get('titre')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('titre')?.errors?.['required']">
-                      Veuillez 
-                    </div>
-                  </div>
+          <div
+            *ngIf="
+              addForm.get('titre')?.invalid &&
+              (addForm.get('titre')?.touched || addForm.get('titre')?.dirty)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="addForm.get('titre')?.errors?.['required']">
+              Veuillez saisir le titre de stage 
+            </div>
+          </div>
         </div>
 
         <div class="mb-3">
@@ -53,13 +69,20 @@
                 Détails du poste
                 [...]"
           ></textarea>
-                      <div *ngIf="addForm.get('description')?.invalid && (addForm.get('description')?.touched || addForm.get('description')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('description')?.errors?.['required']">
-                          Veuillez saisir une lettre de description.
-                          </div>
-                        </div>
-   
+          <div
+            *ngIf="
+              addForm.get('description')?.invalid &&
+              (addForm.get('description')?.touched ||
+                addForm.get('description')?.dirty)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="addForm.get('description')?.errors?.['required']">
+              Veuillez saisir une lettre de description.
+            </div>
+          </div>
         </div>
+        <div class="row">
           <div class="col-md-6">
             <label for="exampleFormControlInput1" class="form-label"
               >Technologies</label
@@ -71,11 +94,18 @@
               required
               formControlName="technologies"
             />
-             <div *ngIf="addForm.get('technologies')?.invalid && (addForm.get('technologies')?.touched || addForm.get('technologies')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('technologies')?.errors?.['required']">
-                          Veuillez saisir technologies
-                          </div>
-                        </div>
+            <div
+              *ngIf="
+                addForm.get('technologies')?.invalid &&
+                (addForm.get('technologies')?.touched ||
+                  addForm.get('technologies')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="addForm.get('technologies')?.errors?.['required']">
+                Veuillez saisir technologies
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="exampleFormControlInput1" class="form-label"
@@ -88,10 +118,17 @@
               required
               formControlName="lieu"
             />
-            <div *ngIf="addForm.get('lieu')?.invalid && (addForm.get('lieu')?.touched || addForm.get('lieu')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('lieu')?.errors?.['required']">
-                          Veuillez saisir lieu
-                          </div>
+            <div
+              *ngIf="
+                addForm.get('lieu')?.invalid &&
+                (addForm.get('lieu')?.touched || addForm.get('lieu')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="addForm.get('lieu')?.errors?.['required']">
+                Veuillez saisir lieu
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -104,18 +141,23 @@
                 placeholder="en moin(s)"
                 formControlName="duree"
               />
-             
             </div>
-             <div *ngIf="addForm.get('lieu')?.invalid && (addForm.get('lieu')?.touched || addForm.get('lieu')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('lieu')?.errors?.['required']">
-                         Veuillez saisir Durée de stage
-                          </div>
-          </div>
+            <div
+              *ngIf="
+                addForm.get('lieu')?.invalid &&
+                (addForm.get('lieu')?.touched || addForm.get('lieu')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="addForm.get('lieu')?.errors?.['required']">
+                Veuillez saisir Durée de stage
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="exampleFormControlInput1" class="form-label"
-              >Domaine </label
-            >
+              >Domaine
+            </label>
             <input
               type="text"
               class="form-control"
@@ -123,19 +165,19 @@
               required
               formControlName="domaine"
             />
-            <div *ngIf="addForm.get('domaine')?.invalid && (addForm.get('domaine')?.touched || addForm.get('domaine')?.dirty)"class="text-danger">
-                    <div *ngIf="addForm.get('domaine')?.errors?.['required']">
-                          Veuillez saisir domaine
-                          </div>
+            <div
+              *ngIf="
+                addForm.get('domaine')?.invalid &&
+                (addForm.get('domaine')?.touched ||
+                  addForm.get('domaine')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="addForm.get('domaine')?.errors?.['required']">
+                Veuillez saisir domaine
+              </div>
+            </div>
           </div>
-          </div>
-          <!-- <div class="col-md-6">
-            <h6 class="mb-2 pb-1">status :</h6>
-            <select class="select form-control-lg" formControlName="status">
-              <option value="disponible">Disponible</option>
-              <option value="indisponible">Indisponible</option>
-            </select>
-          </div> -->
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -149,11 +191,20 @@
               required
               formControlName="number_candidats"
             />
-            <div *ngIf="addForm.get('number_candidats')?.invalid && (addForm.get('number_candidats')?.touched || addForm.get('number_candidats')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('number_candidats')?.errors?.['required']">
-                         Veuillez saisir Nombre stagiaire
-                          </div>
-          </div>
+            <div
+              *ngIf="
+                addForm.get('number_candidats')?.invalid &&
+                (addForm.get('number_candidats')?.touched ||
+                  addForm.get('number_candidats')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div
+                *ngIf="addForm.get('number_candidats')?.errors?.['required']"
+              >
+                Veuillez saisir Nombre stagiaire
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="date" class="form-label">Date d'expiration</label>
@@ -162,35 +213,49 @@
                 class="form-control"
                 type="date"
                 formControlName="date_dexpiration"
-              /> 
+              />
             </div>
-            <div *ngIf="addForm.get('date_dexpiration')?.invalid && (addForm.get('date_dexpiration')?.touched || addForm.get('date_dexpiration')?.dirty)" class="text-danger">
-                    <div *ngIf="addForm.get('date_dexpiration')?.errors?.['required']">
-                          Veuillez saisir Date d'expiration
-                          </div>
-                           <div *ngIf="addForm.get('date_dexpiration')?.errors?.['futureDateInvalid']">
-                          La Date d'expiration doit être dans le futur.
-                              </div>
-          </div>
+            <div
+              *ngIf="
+                addForm.get('date_dexpiration')?.invalid &&
+                (addForm.get('date_dexpiration')?.touched ||
+                  addForm.get('date_dexpiration')?.dirty)
+              "
+              class="text-danger"
+            >
+              <div
+                *ngIf="addForm.get('date_dexpiration')?.errors?.['required']"
+              >
+                Veuillez saisir Date d'expiration
+              </div>
+              <div
+                *ngIf="addForm.get('date_dexpiration')?.errors?.['futureDateInvalid']"
+              >
+                La Date d'expiration doit être dans le futur.
+              </div>
+            </div>
           </div>
         </div>
       </form>
     </div>
     <div class="card-footer flex align-items-center justify-content-center">
       <button
-          type="submit"
-          class="btn "
-          (click)="publierOffre()"
-          formmethod="post" 
-          style="background-color: rgb(41, 91, 140);
-          text-transform:uppercase;
+        type="submit"
+        class="btn"
+        (click)="publierOffre()"
+        formmethod="post"
+        style="
+          background-color: rgb(41, 91, 140);
+          text-transform: uppercase;
           color: white;
-          width:20%;
-          height:6%;
-          border: 2px solid ;
-          border-radius: 30px;"
-        >Publier
-        </button>
+          width: 20%;
+          height: 6%;
+          border: 2px solid;
+          border-radius: 30px;
+        "
+      >
+        Publier
+      </button>
     </div>
   </div>
 </div>

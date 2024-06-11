@@ -15,7 +15,6 @@ import { ListeEvenementsComponent } from './components/admin/liste-evenements/li
 import { AjouterCodeComponent } from './components/authentification/ajouter-code/ajouter-code.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { ListeSocieteComponent } from './components/stagiaires/liste-societe/liste-societe.component';
 
 @NgModule({
   declarations: [

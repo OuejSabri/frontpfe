@@ -18,13 +18,7 @@ export class RestPasswordComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((param: any) => {
-      this.token = param.resetToken;
-    });
-
+  ) {
     this.addForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       newPassword: new FormControl('', [
@@ -35,15 +29,22 @@ export class RestPasswordComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((param: any) => {
+      this.token = param.resetToken;
+    });
+  }
+
   resetPassword() {
     if (this.addForm.valid) {
-      const formData = this.addForm.value;
+      // const formData = this.addForm.value;
+      let formData = this.addForm.getRawValue();
       this.authService.resetPassword(formData).subscribe(
         (res: any) => {
           Swal.fire({
             icon: 'success',
-            title: 'Password Reset Successful',
-            text: 'Your password has been reset successfully.',
+            title: 'Réinitialisation du mot de passe réussie',
+            text: 'Votre mot de passe a été réinitialisé avec succès.',
           }).then((result) => {
             if (result.isConfirmed) {
               this.router.navigate(['/auth']);
@@ -51,14 +52,14 @@ export class RestPasswordComponent implements OnInit {
           });
         },
         (error) => {
-          console.error('Password reset failed:', error);
+          console.error('Échec de la réinitialisation du mot de passe:', error);
           this.error =
             error.error.message ||
-            'Password reset failed. Please try again later.';
+            'Échec de la réinitialisation du mot de passe. Veuillez réessayer plus tard.';
         }
       );
     } else {
-      this.error = 'Please fill out all fields correctly.';
+      this.error = 'Veuillez remplir tous les champs correctement.';
     }
   }
 }

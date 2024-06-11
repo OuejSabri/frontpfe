@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row flex justify-content-center"> 
 
     <div class="card col-md-10" [ngClass]="{
       'disponible': data?.status == 'disponible',
@@ -8,22 +8,26 @@
       <div class="card-body col-12 row align-items-center justify-content-center ">
         <a type="button" href="javascript:history.go(-1)">retour</a>
         <div class=" col-12 row align-content-center justify-content-center">
-          <h1 class="card-title col-10 text-center">{{ data?.titre }}</h1>
+          <h2 class="card-title col-4 text-center">{{ data?.titre }}</h2>
         </div>
-        <div class="row">
-          <p class="card-text col-6 ">Publier par: {{ data?.societe?.nom }}</p>
-          <p class="date-fix"><small class="text-muted">Le {{data?.date |date }}</small></p>
-          <p class="card card-text description">{{ data?.description }}</p>
+        <div class=" row flex justify-content-between">
+          <p class=" col-10">Publier par: {{ data?.societe?.nom }}</p>
+          <p class=" col"><small class="text-muted">à {{data?.lieu}} , Le {{data?.date |date }}</small></p>
         </div>
-        <div class="row col-12 align-items-end justify-content-end gap-2">
-          <small class="card card-text col-3  text-muted">
-            Date d'expiration: {{ data?.date_dexpiration | date }}
-          </small>
+        <div class=" row flex  justify-content-between">
+          <p class="col-10">Domaine: {{data.domaine}}</p>
+          <p class="col">Technologies: {{data.technologies}}</p>
+        </div>
+        <p class="card card-text description">{{ data?.description }}</p>
+        <div class=" row flex col-12 align-items-start justify-content-between">
+          
           <small class="card card-text col-3 text-muted">
-            Nombre de candidats: {{ data?.number_candidats }}
+            Nombre demmandé: {{ data?.number_candidats }}
           </small>
-          <small class="card card-text col-2 text-muted"> Durée : {{ data?.duree }} mois</small>
-
+          <small class=" card dd col-2 text-muted"> Durée : {{ data?.duree }} mois</small>
+          <small class="card card-text col-3  text-muted">
+              Date d'expiration: {{ data?.date_dexpiration | date }}
+          </small>
         </div>
         <button type="button" class="btn btn-primary col-3" data-bs-toggle="modal"
           data-bs-target="#staticBackdrop" [disabled]="data?.status=='indisponible'">Postuler</button>
@@ -49,8 +53,11 @@
                     <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
                   </div>
                   <div class="mb-3">
-                    <label for="formFile" class="form-label">Télécharger votre CV </label>
+                    <label for="formFile" class="form-label col-4">Télécharger votre CV </label>
+                     <p-button icon="pi pi-info-circle" [rounded]="true" severity="info" [outlined]="true" class="justify-content-end ms-2" data-bs-toggle="modal" data-bs-target="#infoModal"></p-button>
+                    
                     <input class="form-control" type="file" id="formFile" formControlName="cv">
+                    
                      <div *ngIf="addForm.get('cv')?.invalid && (addForm.get('cv')?.touched || addForm.get('cv')?.dirty)" class="text-danger">
                     <div *ngIf="addForm.get('cv')?.errors?.['required']">
                       Veuillez télécharger votre CV.
@@ -110,5 +117,22 @@
       </div>
     </div>
   </div>
-
+  <!-- Modal pour l'information -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="infoModalLabel">Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Si vous n'avez pas de CV, souhaitez-vous naviguer vers l'interface de création de CV ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+          <button type="button" class="btn btn-primary" (click)="navigateToCvCreation()">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

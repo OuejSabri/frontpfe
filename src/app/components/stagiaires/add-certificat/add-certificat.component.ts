@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { CertificationService } from 'src/app/services/certification.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddCertificatComponent {
 
   educationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private educationService: CertificationService) {
+  constructor(private formBuilder: FormBuilder, private educationService: CertificationService, private messageService : MessageService) {
     this.educationForm = this.formBuilder.group({
       domain: ['', Validators.required],
       date: ['', Validators.required]
@@ -22,7 +23,12 @@ export class AddCertificatComponent {
     if (this.educationForm.valid) {
       this.educationService.create(this.educationForm.value).subscribe(
         response => {
-          window.alert('Certificat added successfullys')
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre Certificat a été ajouté avec succès.',
+          });
+          window.alert(' added successfullys')
           console.log('Certificat added successfully', response);
           window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès

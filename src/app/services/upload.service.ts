@@ -54,4 +54,11 @@ export class UploadService {
       { responseType: 'blob' }
     );
   }
+  downloadRapport(id: any): Observable<Blob> {
+    const headers = new HttpHeaders().set('Accept', 'application/pdf');
+    return this.http.get(
+      `${this.apiURL}/rapports/rapport/${id}`,
+      { responseType: 'blob' }
+    );
+  }
 }

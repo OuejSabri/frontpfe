@@ -1,6 +1,7 @@
 
 a{
   text-decoration: none;
+  font-size:2em;
 }
 .indisponible{
 background-color: #db6e6e; 
@@ -11,4 +12,28 @@ button{
 
 .disponible{
   background-color: #cdf58c;
+}
+h2 {
+  font-family: 'Arial', sans-serif; /* Utilise une police sans serif pour une apparence propre */
+  font-size: 24px; /* Taille de police plus grande pour un titre */
+  font-weight: bold; /* Met le texte en gras */
+  color: #333; /* Couleur de texte sombre pour un bon contraste */
+  margin-top: 20px; /* Espace en haut du titre */
+  margin-bottom: 20px; /* Espace en bas du titre */
+  padding: 10px; /* Espace intérieur autour du texte */
+  text-align: center; /* Centre le texte horizontalement */
+  background-color: #f4f4f4; /* Couleur de fond claire */
+  border: 1px solid #ddd; /* Bordure fine et grise */
+  border-radius: 8px; /* Coins légèrement arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée subtile pour ajouter de la profondeur */
+  transition: background-color 0.3s, color 0.3s; /* Transition douce pour les changements de couleur */
+}
+
+h2:hover {
+  background-color: #eaeaea; /* Change la couleur de fond lors du survol */
+  color: #000; /* Change la couleur du texte lors du survol */
+}
+
+.container{
+  margin-top: 120px;
 }

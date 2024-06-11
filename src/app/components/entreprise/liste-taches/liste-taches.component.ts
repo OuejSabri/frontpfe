@@ -68,6 +68,7 @@ export class ListeTachesComponent implements OnInit {
     this.taskService.createTask(data).subscribe((res:any)=>{
       this.pendingTask.push(res.data)
       this.addForm.reset()
+      
     })
 
   }

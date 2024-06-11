@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class AddSkillComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private educationService: SkillService
+    private educationService: SkillService,
+    private messageService: MessageService
   ) {
     this.educationForm = this.formBuilder.group({
       nom: ['', Validators.required],
@@ -24,7 +26,12 @@ export class AddSkillComponent {
     if (this.educationForm.valid) {
       this.educationService.create(this.educationForm.value).subscribe(
         (response) => {
-          window.alert('Skills added successfullys');
+          
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre skill ajouter avec succès.',
+          });
           console.log('Skills added successfully', response);
           window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès

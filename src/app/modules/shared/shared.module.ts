@@ -50,6 +50,7 @@ import { ChipModule } from 'primeng/chip';
 import { CarouselModule } from 'primeng/carousel';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [],
@@ -73,6 +74,7 @@ import { ContextMenuModule } from 'primeng/contextmenu';
     SliderModule,
     TableModule,
     ChipsModule,
+    PaginatorModule ,
     AutoCompleteModule,
     CalendarModule,
     CascadeSelectModule,
@@ -128,6 +130,7 @@ import { ContextMenuModule } from 'primeng/contextmenu';
     SliderModule,
     TableModule,
     ChipsModule,
+    PaginatorModule ,
     AutoCompleteModule,
     CalendarModule,
     CascadeSelectModule,

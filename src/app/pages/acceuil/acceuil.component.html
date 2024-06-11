@@ -2,137 +2,60 @@
   <div class="row my-4">
     <div class="col-12 text-center">
       <h1 class="title">
-        Bienvenue {{ currentuser?.nom }} !<br /><span class="dégradé"
-          >dans notre plateforme</span
-        >
+        Bienvenue {{ currentuser?.nom }} !<br /><span class="dégradé">dans notre plateforme</span>
       </h1>
       <p class="paragraphetitre">Trouvez une offre de stage sur-mesure</p>
     </div>
   </div>
 
-  
- <div class="card ">
+  <div class="card">
     <div class="card-body text-center">
       <h2>Parcourir liste des offres de stage</h2>
       <p-toast></p-toast>
       <div class="row">
-    <div class="col-6 offset-1">
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="bi bi-search"></i></span>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search ..."
-          aria-label="Search"
-        />
+        <div class="form-group has-search container col-md-6 mt-1">
+					<input type="text" class="form-control fa fa-search " placeholder="Search" [(ngModel)]="searchTerm" (input)="getAll(searchTerm)">
+				</div>
       </div>
-          <!-- <div class="search-form">
-  <h2>Rechercher des Offres</h2>
-  <form (ngSubmit)="searchOffers()">
-    <div class="form-group">
-      <label for="titre">Titre</label>
-      <input type="text" id="titre" [(ngModel)]="searchCriteria.titre" name="titre" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <input type="text" id="description" [(ngModel)]="searchCriteria.description" name="description" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="technologies">Technologies</label>
-      <input type="text" id="technologies" [(ngModel)]="searchCriteria.technologies" name="technologies" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="lieu">Lieu</label>
-      <input type="text" id="lieu" [(ngModel)]="searchCriteria.lieu" name="lieu" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="domaine">Domaine</label>
-      <input type="text" id="domaine" [(ngModel)]="searchCriteria.domaine" name="domaine" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="date_dexpiration">Date d'expiration</label>
-      <input type="date" id="date_dexpiration" [(ngModel)]="searchCriteria.date_dexpiration" name="date_dexpiration" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="duree">Durée</label>
-      <input type="text" id="duree" [(ngModel)]="searchCriteria.duree" name="duree" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="number_candidats">Nombre de Candidats</label>
-      <input type="number" id="number_candidats" [(ngModel)]="searchCriteria.number_candidats" name="number_candidats" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="status">Status</label>
-      <select id="status" [(ngModel)]="searchCriteria.status" name="status" class="form-control">
-        <option value="">Tous</option>
-        <option value="disponible">Disponible</option>
-        <option value="indisponible">Indisponible</option>
-      </select>
-    </div>
-    <p-button type="submit" class="btn btn-primary">Rechercher</p-button>
-  </form>
-
-  <div class="results">
-    <h2>Résultats de la recherche</h2>
-    <div *ngFor="let offer of offers">
-      <h3>{{ offer.titre }}</h3>
-      <p>{{ offer.description }}</p>
-      <p>{{ offer.lieu }}</p>
-      <p>{{ offer.domaine }}</p>
-      <p>{{ offer.duree }}</p>
-      <p>Nombre de candidats: {{ offer.number_candidats }}</p>
-      <p>Status: {{ offer.status }}</p>
-      <p>Date d'expiration: {{ offer.date_dexpiration | date }}</p>
-    </div>
-  </div>
-</div> -->
-
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-10 offset-1">
       <div class="row">
-        <div class="col-md-4" *ngFor="let item of offres">
-          <div class="card">
-            <div class="card-body contener">
-              <h5 class="card-title">{{ item.titre }}</h5>
-              <p class="card-text">Lieu : {{ item.lieu }}</p>
-              <p class="card-text">{{ item.description }}</p>
-              <p class="user-fix">
-                <small class="text-muted">Par {{ item.societe.nom }}</small>
-              </p>
-              <p class="card-text">
-                <i class="bi bi-calendar"></i> Expire le
-                {{ item.date_dexpiration | date : "yyyy-MM-dd HH:mm" }}
-              </p>
-              <p class="date-fix">
-                <small class="text-muted"
-                  ><i class="bi bi-calendar"></i> Le
-                  {{ item.date | date : "yyyy-MM-dd HH:mm" }}</small
-                >
-              </p>
-            </div>
-            <div class="champ">
-              <div>
-                <p-badge
-                  [value]="item.number_candidats"
-                  severity="success"
-                ></p-badge>
-                <span style="margin-left: 10px">candidat(s)</span>
+        <div class="col-10 offset-1">
+          <div class="row">
+            <div class="col-md-6" *ngFor="let item of pagedOffres">
+              <div class="card">
+                <div class="card-body contener">
+                  <h2 class="card-title">{{ item?.titre }}</h2>
+                  <div class="row flex justify-content-between">
+                   <p class="user-fix col">
+                    <small class="text-muted">Par {{ item.societe.nom }}</small>
+                  </p>
+                  <p class="date-fix col">
+                    <small class="text-muted"><i class="bi bi-geo-alt-fill"></i> {{ item.lieu }} , Le {{ item.date | date: 'dd-MM-yyyy' }}</small>
+                  </p> 
+                  </div>
+                  
+                  <div class="row flex justify-content-between">
+                    <p class="col">Domaine: {{item.domaine}}</p>
+                    <p class="col">Technologies: {{item.technologies}}</p>
+                  </div>
+                  <p class="card-text">{{ item.description }}</p>
+                </div>
+                <div class="champ">
+                  <div>
+                    <!-- <p-badge [value]="item.number_candidats" severity="success"></p-badge>
+                    <span style="margin-left: 10px">Poste(s) demmandé</span> -->
+                    <p class="card-text">Status: {{item.status}}</p>
+                  </div>
+                  <p-button (click)="getOffreById(item._id)"><i class="bi bi-eye"></i> Voir plus</p-button>
+                </div>
               </div>
-              <p-button (click)="getOffreById(item._id)">
-                <i class="bi bi-eye"></i> Voir plus
-              </p-button>
             </div>
           </div>
+          <p-paginator [rows]="4" [totalRecords]="offres.length" [first]="first" (onPageChange)="paginate($event)"></p-paginator>
         </div>
       </div>
     </div>
-  </div></div></div>
-  
+  </div>
+
 
   <div class="card mt-4">
     <div class="card-body text-center">

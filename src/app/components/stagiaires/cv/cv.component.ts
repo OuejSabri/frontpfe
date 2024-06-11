@@ -30,6 +30,7 @@ import { AddSkillComponent } from '../add-skill/add-skill.component';
 import { Profil } from 'src/app/Interface/Profil';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CvService } from 'src/app/services/cv.service';
+import { MessageService } from 'primeng/api';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -61,7 +62,8 @@ export class CVComponent implements OnInit {
     private SkillService: SkillService,
     private userService: UserService,
     public dialog: MatDialog,
-    private profilService: ProfilService
+    private profilService: ProfilService,
+    private messageService: MessageService
   ) {}
 
   onSubmit() {
@@ -95,7 +97,7 @@ export class CVComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
-  } 
+  }
   openAddDialog() {
     {
       const dialogRef = this.dialog.open(AddEducationComponent, {
@@ -296,7 +298,11 @@ export class CVComponent implements OnInit {
   deleteEducation(id: string) {
     this.educationService.delete(id).subscribe(
       (res: any) => {
-        window.alert('Éducation supprimée avec succès');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Éducation supprimée avec succès.',
+        });
         console.log('Éducation supprimée avec succès');
         this.getEducations(); // Actualiser la liste des éducations
       },
@@ -308,7 +314,11 @@ export class CVComponent implements OnInit {
   deleteExperience(id: string) {
     this.experienceService.delete(id).subscribe(
       (res: any) => {
-        window.alert('Experience supprimée avec succès');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Experience supprimée avec succès.',
+        });
         console.log('Experience supprimée avec succès');
         this.getExperience(); // Actualiser la liste des éducations
       },
@@ -323,7 +333,11 @@ export class CVComponent implements OnInit {
   deleteProjet(id: string) {
     this.projetService.delete(id).subscribe(
       (res: any) => {
-        window.alert('projet supprimée avec succès');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'projet supprimée avec succès.',
+        });
         console.log('projet supprimée avec succès');
         this.getProjet(); // Actualiser la liste des éducations
       },
@@ -335,7 +349,11 @@ export class CVComponent implements OnInit {
   deleteCertificat(id: string) {
     this.certificatService.delete(id).subscribe(
       (res: any) => {
-        window.alert('Certificat supprimée avec succès');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Certificat supprimée avec succès.',
+        });
         console.log('Certificat supprimée avec succès');
         this.getCertificat(); // Actualiser la liste des éducations
       },
@@ -350,7 +368,11 @@ export class CVComponent implements OnInit {
   deleteSkill(id: string) {
     this.SkillService.delete(id).subscribe(
       (res: any) => {
-        window.alert('Skill supprimée avec succès');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Skill supprimée avec succès.',
+        });
         console.log('Skill supprimée avec succès');
         this.getSkill(); // Actualiser la liste des éducations
       },
@@ -362,11 +384,22 @@ export class CVComponent implements OnInit {
   getGeneratedCV() {
     this.cvService.generateresume().subscribe(
       (res: any) => {
-        window.alert('Your CV has been successfully generated');
+        
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Votre CV a été généré avec succès.',
+        });
+        
         console.log(res.data);
       },
       (error) => {
         console.error('Error generating CV:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Une erreur est survenue lors du generer de CV.',
+        });
       }
     );
   }
@@ -382,11 +415,19 @@ export class CVComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
-        window.alert('Your CV has been successfully downloaded.');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Votre CV a été téléchargé avec succès.',
+        });
       },
       (error) => {
         console.error('Error downloading CV:', error);
-        window.alert('An error occurred while downloading the CV.');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Une erreur est survenue lors du téléchargement de CV.',
+        });
       }
     );
   }

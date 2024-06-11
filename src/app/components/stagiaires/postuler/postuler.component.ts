@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators , FormBuilder} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { OffreService } from 'src/app/services/offre.service';
-import { PostulerService } from 'src/app/services/postuler.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { dateRangeValidator, futureDateValidator } from './date_validateur';
@@ -17,17 +15,18 @@ import { dateRangeValidator, futureDateValidator } from './date_validateur';
 export class PostulerComponent implements OnInit {
   addForm: FormGroup;
   data: any;
-  postDetail:any;
+  postDetail: any;
   idPost: any;
   curretnUserId: any;
   curretnUser: any;
   constructor(
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private userService: UserService,
     private service: OffreService,
     private acttivatedRoot: ActivatedRoute,
     private authService: AuthService,
-    private candidatureService: CandidatureService
+    private candidatureService: CandidatureService,
+    private router: Router
   ) {
     this.curretnUserId = this.authService.getUserId();
 
@@ -43,24 +42,26 @@ export class PostulerComponent implements OnInit {
         cv: new FormControl('', Validators.required),
         lettre_motivation: new FormControl('', Validators.required),
         datePostulation: new FormControl(Date.now()),
-        date_debut: new FormControl('',[Validators.required, futureDateValidator()]),
+        date_debut: new FormControl('', [
+          Validators.required,
+          futureDateValidator(),
+        ]),
         date_fin: new FormControl('', Validators.required),
       },
-      { validators: dateRangeValidator ('date_debut', 'date_fin') }
+      { validators: dateRangeValidator('date_debut', 'date_fin') }
     );
   }
 
   ngOnInit(): void {
-
-    this.curretnUser = this.userService.getuser().subscribe((res:any)=>{
+    this.curretnUser = this.userService.getuser().subscribe((res: any) => {
       this.postDetail = res.data;
-      this.addForm.patchValue(this.postDetail)
-    })
+      this.addForm.patchValue(this.postDetail);
+    });
     this.service.getOffreById(this.idPost).subscribe((res) => {
       console.log(res);
       this.data = res;
     });
-    console.log(this.curretnUser)
+    console.log(this.curretnUser);
   }
 
   getOffreById(id: number) {
@@ -86,5 +87,12 @@ export class PostulerComponent implements OnInit {
       return;
     }
   }
- 
+  navigateToCvCreation() {
+    this.router.navigateByUrl('/dashboard/student/cv');
+    // this.router.navigate(['/dashboard/student/cv']);
+  }
+  showCvInfo() {
+    // const modal = new bootstrap.Modal(document.getElementById('infoModal'));
+    // modal.show();
+  }
 }

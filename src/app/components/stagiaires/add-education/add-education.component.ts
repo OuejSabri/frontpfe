@@ -3,6 +3,7 @@ import { CVComponent } from '../cv/cv.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EducationService } from 'src/app/services/education.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-education',
@@ -12,7 +13,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddEducationComponent {
   educationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private educationService: EducationService) {
+  constructor(private formBuilder: FormBuilder, private educationService: EducationService, private messageService: MessageService) {
     this.educationForm = this.formBuilder.group({
       institut: ['', Validators.required],
       domaineEtude: ['', Validators.required],
@@ -25,7 +26,11 @@ export class AddEducationComponent {
     if (this.educationForm.valid) {
       this.educationService.create(this.educationForm.value).subscribe(
         response => {
-          window.alert('Education added successfullys')
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Votre Education a été ajouté avec succès.',
+          });
           console.log('Education added successfully', response);
           window.location.reload();
           // Vous pouvez ajouter du code ici pour réinitialiser le formulaire ou afficher un message de succès

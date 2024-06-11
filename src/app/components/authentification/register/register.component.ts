@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   register() {
     let data = this.addForm.getRawValue();
     if (data.password !== data.rep_password) {
-      swal.fire({
+      Swal.fire({
         title: 'Erreur!',
         text: "mot de passe n'est pas identique",
         icon: 'error',
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         (res) => {
           if (res) {
             this.router.navigateByUrl('/auth');
-            swal.fire({
+            Swal.fire({
               title: 'succes!',
               text: 'merci pour votre inscription',
               icon: 'success',
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
           }
         },
         (err) => {
-          swal.fire({
+          Swal.fire({
             title: 'Erreur!',
             text: "un erreur  à l'inscription",
             icon: 'error',
